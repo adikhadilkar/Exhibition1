@@ -1,5 +1,6 @@
 function signin()
 {
+	myApp.showPreloader();
 	var request = createCORSRequest( "post", "http://radio.tekticks.co.in" );
 	if(request)
 	{
@@ -46,12 +47,13 @@ function signin()
 							var a = document.getElementById('signInNext');
 							a.setAttribute("href","otp.html");
 							document.getElementById('signInNext').click();
-							
+							myApp.hidePreloader();
 							myApp.alert('Your OTP Is '+otp,'OTP');
 							
 						}
 						else if(JSON.stringify(response.status)==201)
 						{
+							myApp.hidePreloader();
 							$("#loginInfo").text(JSON.stringify(response.statusMessage).replace(/"/g,""));
 							$("#loginInfo").fadeIn();
 						}
@@ -72,6 +74,7 @@ function signin()
 	
 function verifyotp()
 {
+	myApp.showPreloader();
 	var otp = document.getElementById('otp').value;
 	var mobile=localStorage.getItem("mobileNo");
 	var request = createCORSRequest( "post", "http://radio.tekticks.co.in" );
@@ -93,7 +96,7 @@ function verifyotp()
 					{
 						if(JSON.stringify(response.status)==200)
 						{
-
+							myApp.hidePreloader();
 							myApp.alert(JSON.stringify(response.login).replace(/"/g,""),'Login');
 							
 							send();
@@ -132,7 +135,7 @@ function accept()
 {
 	myApp.showPreloader();
 	var pa=[];
-	 var pa=JSON.parse(localStorage.getItem("patientArray"));
+	var pa=JSON.parse(localStorage.getItem("patientArray"));
 	var flag='1';//this is our flag
 	var d=JSON.parse(localStorage.getItem("doctorId"));
 	var u=localStorage.getItem("uuid");

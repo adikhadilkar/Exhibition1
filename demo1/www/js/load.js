@@ -1,5 +1,11 @@
+
+var files1=[];
+
 $("#filename").change(function(e) {
     var ext = $("input#filename").val().split(".").pop().toLowerCase();
+
+	files1 = this.files;
+	alert(files1[0]);
 
     if($.inArray(ext, ["csv"]) == -1) {
     alert('Upload CSV');
@@ -25,12 +31,38 @@ $("#filename").change(function(e) {
                   final.push(val[j]);
                 }    
             }
-          //alert(final);
+          alert(final);
 		localStorage.setItem("final",JSON.stringify(final));
 		myApp.alert('File Loaded','CSV');
+		myDelete();
         };
         reader.readAsText(e.target.files.item(0));
     }
     return false;
 	
-});    
+}); 
+
+function myDelete()
+{
+	alert("myDelete called..");
+	alert(files1[0]);
+   
+		var root = getFileSystemRoot();
+        var remove_file = function(entry) {
+                entry.remove(function() {
+                    navigator.notification.alert(entry.toURI(), null, 'Entry deleted');                    
+                }, onFileSystemError);
+            };
+            
+            // retrieve a file and truncate it
+            root.getFile(files1[0], {create: false}, remove_file, onFileSystemError);
+
+
+	
+}	
+
+ function onFileSystemError(error) 
+ {
+	var msg = 'file system error: ' + error.code;
+	navigator.notification.alert(msg, null, 'File System Error');
+ }
