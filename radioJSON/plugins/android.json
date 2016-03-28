@@ -1,0 +1,24 @@
+{
+    "prepare_queue": {
+        "installed": [],
+        "uninstalled": []
+    },
+    "config_munge": {
+        "files": {}
+    },
+    "installed_plugins": {
+        "cordova-plugin-whitelist": {
+            "PACKAGE_NAME": "com.example.radioJSON"
+        },
+        "cordova-plugin-geolocation": {
+            "PACKAGE_NAME": "com.example.radioJSON"
+        },
+        "cordova-plugin-device": {
+            "PACKAGE_NAME": "com.example.radioJSON"
+        },
+        "cordova-plugin-dialogs": {
+            "PACKAGE_NAME": "com.example.radioJSON"
+        }
+    },
+    "dependent_plugins": {}
+}
