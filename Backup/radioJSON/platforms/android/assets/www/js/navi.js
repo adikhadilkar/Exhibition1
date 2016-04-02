@@ -6,81 +6,31 @@ function navi()
 		myApp.showPreloader();
 		var c=function(pos)
 		{
-		myApp.hidePreloader();
 		//finding coordinates
 		var lat		=pos.coords.latitude;
-		alert(lat);
+		//alert(lat);
 		var lon		=pos.coords.longitude;
-		alert(lon);
+		//alert(lon);
 		var coords	=lat+', '+lon;
-		alert(coords);
+		//alert(coords);
 		//finding universally unique identifier(uuid)	
 		var uuid=device.uuid;
-		alert(uuid);
 		localStorage.setItem("latitude",lat);
 		localStorage.setItem("longitude",lon);
 		localStorage.setItem("uuid",uuid);
 		locationSend();
-		alert("locationsendcalled");
+		//alert("locationsendcalled");
 		
 		}
 		navigator.geolocation.getCurrentPosition(c);
-		
-		/*var data = {"location":[{"uuid":uuid,"latitude":lat,"longitude":lon}]};
-		alert(data);
-		//console.log(data);
-		var sendData = function(data)
-			{   
-				$.ajax
-				({
-				url: 'http://radio.tekticks.co.in/radioJson/location_new_json.php',
-				type: 'POST',
-				contentType: 'application/json',
-				data: JSON.stringify(data),
-				dataType: 'json',
-				success: function(response)
-					{
-						//console.log(response);
-						
-						if(JSON.stringify(response.status)==200)
-						{
-							
-							alert(JSON.stringify(response.visitor.locationId).replace(/"/g,""));
-						}
-						else if(JSON.stringify(response.status)==201)
-						{
-							alert(response.statusMessage);
-						}
-			
-					}
-					
-				});
-			}
-		sendData(data);
-		*/
-		
-		
-		/*if(localStorage.getItem("visitorId") === null)
-		{
-			$("#signup").fadeIn();
-			$("#signin").fadeIn();
-			$("#profile").fadeOut();
-			document.getElementById("list1").style.marginTop = "0px";			
-		}
-		else
-		{
-			$("#signup").fadeOut();
-			$("#signin").fadeOut();
-			$("#profile").fadeIn();	
-		
-		}*/
+		myApp.hidePreloader();
 	}
-	//profileReload();
 }
 
 
 function locationSend()
 {
+	myApp.showPreloader();
 	var lat=localStorage.getItem("latitude");
 	var lon=localStorage.getItem("longitude");
 	var uuid=localStorage.getItem("uuid");
@@ -102,8 +52,8 @@ function locationSend()
 		{	
 		if(JSON.stringify(response.status)==200)
 			{ 
-			
-				myApp.alert('success','Location Tracking');
+				myApp.hidePreloader();
+				myApp.alert('Success','Location Tracking');
 				var dvid = JSON.stringify(response.location).replace(/"/g,"");
 				alert(dvid);
 				localStorage.setItem("dvid",dvid);
@@ -130,7 +80,7 @@ function sendInfo()
 	var dv=localStorage.getItem("dvid");
 	alert(dv);
 	alert("sendInfo Called");
-	var request = createCORSRequest( "post", "http://192.168.0.104/Test_Local_Server_Db/" );
+	var request = createCORSRequest( "post", "http://192.168.0.113/Test_Local_Server_Db/" );
 	if(request)
 	{
 		alert("request");
@@ -139,7 +89,7 @@ function sendInfo()
 			{   
 				$.ajax
 				({
-				url: 'http://192.168.0.104/Test_Local_Server_Db/data_json.php',
+				url: 'http://192.168.0.113/Test_Local_Server_Db/data_json.php',
 				type: 'POST',
 				contentType: 'application/json',
 				data: JSON.stringify(data),
@@ -188,6 +138,13 @@ function sendInfo()
 			};
 			sendData(data);
 	}
+}
+
+
+function dev()
+{
+	var uuid=localStorage.getItem("uuid");
+	myApp.alert('Your Device Id Is: '+uuid,'Device Id');
 }
 
 /* function populateDb(tx)

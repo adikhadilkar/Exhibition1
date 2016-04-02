@@ -1,6 +1,5 @@
 function signin()
 {
-	myApp.showPreloader();
 	var request = createCORSRequest( "post", "http://radio.tekticks.co.in" );
 	if(request)
 	{
@@ -17,7 +16,8 @@ function signin()
 		
 		if(mobileNoValidate)
 		{
-		var data = {"otp":[{"mobileNo":mobileNo}]};
+			myApp.showPreloader();
+			var data = {"otp":[{"mobileNo":mobileNo}]};
 			var sendData = function(data)
 			{   
 				$.ajax
@@ -31,12 +31,9 @@ function signin()
 					{
 						if(JSON.stringify(response.status)==200)
 						{
-							
-							$("#loginInfo").text("Valid Credentials");
 							$("#loginInfo").fadeIn();
 							$("#mobileError").fadeOut();
-							
-							
+
 							var otp = JSON.stringify(response.otp[0]).replace(/"/g,"");
 							var doctorId = JSON.stringify(response.otp[1]).replace(/"/g,"");
 							
@@ -44,11 +41,12 @@ function signin()
 							localStorage.setItem("otp", otp);
 							localStorage.setItem("doctorId",JSON.stringify(doctorId));
 							//redirecting to otp.html
+							myApp.hidePreloader();
 							var a = document.getElementById('signInNext');
 							a.setAttribute("href","otp.html");
 							document.getElementById('signInNext').click();
-							myApp.hidePreloader();
-							myApp.alert('Your OTP Is '+otp,'OTP');
+							
+							//myApp.alert('Your OTP Is '+otp,'OTP');
 							
 						}
 						else if(JSON.stringify(response.status)==201)
@@ -74,15 +72,16 @@ function signin()
 	
 function verifyotp()
 {
-	myApp.showPreloader();
 	var otp = document.getElementById('otp').value;
 	var mobile=localStorage.getItem("mobileNo");
 	var request = createCORSRequest( "post", "http://radio.tekticks.co.in" );
 	if(request)
 	{
+		
 		if(localStorage.getItem("otp")==otp)
 		{
-		var data = {"login":[{"mobileNo":mobile}]};
+			myApp.showPreloader();
+			var data = {"login":[{"mobileNo":mobile}]};
 			var sendData = function(data)
 			{   
 				$.ajax
@@ -97,18 +96,15 @@ function verifyotp()
 						if(JSON.stringify(response.status)==200)
 						{
 							myApp.hidePreloader();
-							myApp.alert(JSON.stringify(response.login).replace(/"/g,""),'Login');
+							//myApp.alert(JSON.stringify(response.login).replace(/"/g,""),'Login');
 							
-							send();
+							//method for table selection
+							resend();
 							
 							//redirecting to otp.html
 							var a = document.getElementById('otpNex');
 							a.setAttribute("href","title.html");
-							document.getElementById('otpNex').click();
-							
-							
-
-							
+							document.getElementById('otpNex').click();	
 						}
 			
 					},
@@ -145,21 +141,18 @@ function accept()
 		$.ajax
 				({
 				url: 'http://radio.tekticks.co.in/radioJson/accept_reject_json.php',
-				//data:{type:pa,flag:flag},
-				//contentType: 'application/json',
-				//data: JSON.stringify(data),
 				type:"post",
-				data:{type:pa},
-				cache: false,
-				 //dataType: 'json', 
+				data:{type:d},
+				cache: false, 
 				 success: function(response)
 					{
 						myApp.hidePreloader();
-						myApp.alert('Accepted','Patient Details');
+						//method for updation of data
+						updateRecords();
+						  myApp.alert('Accepted','Patient Details');
 						var a = document.getElementById('acceptNext');
 						a.setAttribute("href","login.html");
-						document.getElementById('acceptNext').click();
-						//alert("res ok");
+						document.getElementById('acceptNext').click(); 
 					},
 					error: function(xhr, textStatus, error)
 					{
@@ -178,10 +171,10 @@ function reject()
 {
 	myApp.showPreloader();
 	var pa1=[];
-	 var pa1=JSON.parse(localStorage.getItem("patientArray"));
+	var pa1=JSON.parse(localStorage.getItem("patientArray"));
 	 
 	var flag='1';//this is our flag
-	var d=JSON.parse(localStorage.getItem("doctorId"));
+	var d1=JSON.parse(localStorage.getItem("doctorId"));
 	var u=localStorage.getItem("uuid");
 	var request = createCORSRequest( "post", "http://radio.tekticks.co.in" );
 	if(request)
@@ -190,16 +183,16 @@ function reject()
 				({
 				url: 'http://radio.tekticks.co.in/radioJson/doctors_reject_json.php',		
 				type:"post",
-				data:{type1:pa1},
+				data:{type1:d1},
 				cache: false,
 				 success: function(response)
 					{
 						myApp.hidePreloader();
+						rejectRecords();
 						myApp.alert('Rejected','Patient Details');
 						var a = document.getElementById('rejectNext');
 						a.setAttribute("href","login.html");
 						document.getElementById('rejectNext').click();
-						//alert("res ok");
 					}
 		
 				})						 
@@ -207,116 +200,224 @@ function reject()
 }
 
 
- var database;
+var database1;
 var len;
-function send() 
+function resend() 
 {
 	try
 	{
-	alert("send called");
+	//database connection
 	database= window.openDatabase("csvDetails", "1.0", "csv database", 20000);
-	database.transaction(selectDb, errorDb, successDb);
+	database.transaction(selectData, errorData, successData);
 	}
 	catch(err)
 	{
-		alert("error : "+err);
+		myApp.alert(err,'Error In resend');
 	}
 	
 } 
 
 
- function selectDb(tx)
+ function selectData(tx)
 {
 		
 	try
 	{
-		alert("selectDb Called");
-		var arrlen=JSON.parse(localStorage.getItem("fileLength"));
-		var fileArray=JSON.parse(localStorage.getItem("fileArray"));
-		alert("arrlen"+arrlen);
-		alert("array "+fileArray);
 		var di=JSON.parse(localStorage.getItem("doctorId"));
-		alert(di);
-		
-		tx.executeSql('DROP TABLE IF EXISTS csv');
-		tx.executeSql('CREATE TABLE IF NOT EXISTS csv(date TEXT,name TEXT, pid INTEGER,did INTEGER, dname TEXT, cut INTEGER,investigation INTEGER,deviceId TEXT,user TEXT,status INTEGER)');
-		alert("table created");
-		
-		var i,j,k,l,m,n,o,p,q,r;
-		for(i=0;i<fileArray.length;i+=10)
-		{
-			j=i+1;
-			k=i+2;
-			l=i+3;
-			m=i+4;
-			n=i+5;
-			o=i+6;
-			p=i+7;
-			q=i+8;
-			r=i+9;
-	
-			tx.executeSql('INSERT INTO csv (date,name,pid,did,dname,cut,investigation,deviceId,user,status) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)', [fileArray[i], fileArray[j], fileArray[k], fileArray[l], fileArray[m], fileArray[n], fileArray[o], fileArray[p], fileArray[q], fileArray[r]]);
-		}
-		alert("data inserted");
-		
-		tx.executeSql('select * from csv where did='+di,[],resultSuccess, resultError);
-		alert("data selected");
+		tx.executeSql('select * from csv where status=0 AND did='+di, [], resultSuccess, resultError);
 		
 	}
 	catch(err)
 	{
-		alert("erroraegfsgsf : "+err);
+		myApp.alert(err,'Error In SelectData');
 	}
 
 }
 
-function errorDb(tx,error)
+function errorData(tx,error)
 {
-	alert("Got an Error "+error.code);
+	myApp.alert(error.code,'Got an Error In errorData');
 }
 	
-function successDb(tx)
+function successData(tx)
 {
-	//alert("Successful");
-	//tx.executeSql('SELECT * FROM csv',[],renderList, errorDb);
-		
-}
+	//Success Function
+} 
 	
 function resultSuccess(tx,response)
 {
-		alert("result success called");
-		//var div=document.getElementById("output");
-		alert(response);
-		alert(response.rows);
-		alert(response.rows.length);
-		//var temp="<table border=\"1\"><tr><th>date</th><th>name</th><th>pid</th><th>did</th><th>dname</th><th>cut</th></tr>";
-		
-		//value.length
+		$("#exi").fadeOut();
+		$("#acc").fadeOut();
+		$("#rej").fadeOut();
+		var count;
 		var total=0;
 		var drname;
 		var patientArray=[];
-		for(var i=0;i<response.rows.length;i++)
+		
+		if(response.rows.length!=0)
 		{
+			$("#exi").fadeOut();
+			$("#acc").fadeIn();
+			$("#rej").fadeIn();
+			for(var i=0;i<response.rows.length;i++)
+			{
+			count=i+1;
+			$('#output').append('<div class="card"><div class="card-content"><div class="card-content-inner"><p><font size="3"><b>'+count+') Patient Name: </b>'+response.rows.item(i).name+'</font></p><p><font size="3"><b>Date: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</b>'+response.rows.item(i).date+'</font></p><p><font size="3"><b>Investigation: &nbsp;</b>'+response.rows.item(i).cut+'</font></p><p><font size="3"><b>Amount: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</b>'+response.rows.item(i).investigation+'</font></p></table></div></div></div>');
 			
-			$('#output').append('<div class="card"><div class="card-content"><div class="card-content-inner"><p><font size="3"><b>Patient Name: </b>'+response.rows.item(i).name+'</font></p><p><font size="3"><b>Date: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</b>'+response.rows.item(i).date+'</font></p><p><font size="3"><b>Investigation: &nbsp;</b>'+response.rows.item(i).investigation+'</font></p><p><font size="3"><b>Amount: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</b>'+response.rows.item(i).cut+'</font></p></table></div></div></div>');
-			
-			total+=response.rows.item(i).cut;
+			total+=response.rows.item(i).investigation;
 			drname=response.rows.item(i).dname;
-			patientArray[i]=response.rows.item(i).pid;
-			//alert(patientArray);
-			//temp+="<tr><td>"+response.rows.item(i).date+"</td><td>"+response.rows.item(i).name+"</td><td>"+response.rows.item(i).pid+"</td><td>"+response.rows.item(i).did+"</td><td>"+response.rows.item(i).dname+"</td><td>"+response.rows.item(i).cut+"</td></tr>";
+			patientArray[i]=response.rows.item(i).pt_transaction;
+			
 		}
-		//temp+="</table>";
-		//div.innerHTML=temp;
+		
 		$('#output').append('<div class="card"><div class="card-content"><div class="card-content-inner" ><p style="text-align:right"><font size="3"><b>Grand Total: </b>'+total+'</font></p></div></div></div>');
 		$('#dr').text(drname);
 		
 		localStorage.setItem("patientArray",JSON.stringify(patientArray));
-		
+			
+		}
+		else
+		{
+			$("#nodata").text("No Data!");
+			$("#acc").fadeOut();
+			$("#rej").fadeOut();
+			$("#exi").fadeIn();
+		}
+	
+	
 }
 	
 function resultError(tx,error)
 {
-	alert(error);
+	myApp.alert(error,'Error In resultError');
 }
-	 
+
+//SQLITE Coding For Accept
+ var database2;
+ function updateRecords()
+{
+	try
+	{
+	database2= window.openDatabase("csvDetails", "1.0", "csv database", 20000);
+	database2.transaction(updateData, errorCb, successCb);
+	}
+	catch(err)
+	{
+		myApp.alert(err,'DB Connection Error in Accept');
+	}	
+}	
+
+
+ function updateData(tx)
+{
+	try
+	{
+	var ka=[];
+	ka=JSON.parse(localStorage.getItem("patientArray"));
+
+	var a;
+	for(a=0;a<ka.length;a++)
+	{
+	 tx.executeSql('UPDATE csv SET status=1 where pt_transaction ='+ka[a], [],  successUpdate, errorUpdate);
+	}
+
+	}
+	catch(err)
+	{
+		myApp.alert(err,'Error In updateData');
+	}
+}
+
+
+function errorCb(tx,error)
+{
+	myApp.alert(error.code,'Error In errorCb');
+} 
+ 
+ 
+ function successCb(tx)
+{
+	//success function	
+}
+
+function successUpdate(tx,result){
+    //alert("success in updatation");
+}
+ 
+function errorUpdate(error){
+    myApp.alert(error.code,'Error Processing SQL In errorUpdate');
+} 
+
+
+
+//SQLITE Coding For Reject
+ var database3;
+ function rejectRecords()
+{
+	
+	
+	try
+	{
+	database3= window.openDatabase("csvDetails", "1.0", "csv database", 20000);
+	database3.transaction(rejectData, rejectCb, rejectSuccessCb);
+	}
+	catch(err)
+	{
+		myApp.alert(err,'DB Connection Error in Reject');
+	}
+	
+}
+
+function rejectData(tx)
+{
+	
+	try
+	{
+	//getting array of pt_transaction items
+	var ka=[];
+	ka=JSON.parse(localStorage.getItem("patientArray"));
+
+	var a;
+	for(a=0;a<ka.length;a++)
+	{
+	 tx.executeSql('UPDATE csv SET status=2 where pt_transaction ='+ka[a], [],  rejectUpdate, rejectErrorUpdate);
+	}
+
+	}
+	catch(err)
+	{
+		myApp.alert(err,'Error In rejectData');
+	}
+}
+
+function rejectCb(tx,error)
+{
+	myApp.alert(error.code,'Error In rejectCb');
+} 
+ 
+ 
+ function rejectSuccessCb(tx)
+{
+	//alert("Successful");	
+}
+
+function rejectUpdate(tx,result){
+    //alert("success in updatation");
+}
+ 
+function rejectErrorUpdate(error){
+    myApp.alert(error.code,'Error In rejectErrorUpdate');
+} 
+
+function exit()
+{
+	
+	myApp.confirm('Do you really want to exit?','Exit', function () {
+		window.location="login.html";
+		
+		/* var a = document.getElementById('exitNext');
+		a.setAttribute("href","login.html");
+		document.getElementById('exitNext').click(); */
+			});
+
+}	

@@ -80,7 +80,7 @@ function sendInfo()
 	var dv=localStorage.getItem("dvid");
 	alert(dv);
 	alert("sendInfo Called");
-	var request = createCORSRequest( "post", "http://192.168.0.104/Test_Local_Server_Db/" );
+	var request = createCORSRequest( "post", "http://192.168.0.113/Test_Local_Server_Db/" );
 	if(request)
 	{
 		alert("request");
@@ -89,7 +89,7 @@ function sendInfo()
 			{   
 				$.ajax
 				({
-				url: 'http://192.168.0.104/Test_Local_Server_Db/data_json.php',
+				url: 'http://192.168.0.113/Test_Local_Server_Db/data_json.php',
 				type: 'POST',
 				contentType: 'application/json',
 				data: JSON.stringify(data),
@@ -138,6 +138,13 @@ function sendInfo()
 			};
 			sendData(data);
 	}
+}
+
+
+function dev()
+{
+	var uuid=localStorage.getItem("uuid");
+	myApp.alert('Your Device Id Is: '+uuid,'Device Id');
 }
 
 /* function populateDb(tx)

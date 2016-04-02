@@ -135,7 +135,7 @@ function accept()
 {
 	myApp.showPreloader();
 	var pa=[];
-	 var pa=JSON.parse(localStorage.getItem("patientArray"));
+	var pa=JSON.parse(localStorage.getItem("patientArray"));
 	var flag='1';//this is our flag
 	var d=JSON.parse(localStorage.getItem("doctorId"));
 	var u=localStorage.getItem("uuid");
