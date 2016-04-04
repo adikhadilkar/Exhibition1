@@ -1,0 +1,95 @@
+<div data-page="login-screen-embedded" class="page">
+<div class="navbar">
+    <div class="navbar-inner">
+      <div class="left"><a href="logo.html" class="back link icon-only"><i class="icon icon-back"></i></a></div>
+      <div class="center">Forgot Password</div>
+      <div class="right"><a href="#" class="open-panel link icon-only"><i class="icon icon-bars"></i></a></div>
+	</div>
+</div>
+  
+<div class="page-content login-screen-content" style="padding-top:50px">
+
+<form method="POST" name="fP" >	
+	<div class="list-block inputs-list">
+        <ul>
+			
+					<li>
+						<div class="item-content">
+						<div class="item-media"><i class="icon icon-form-tel"></i></div>
+						<div class="item-inner">
+						<div class="label" id="mobileError" name = "mobileError" style="color:#ff0000"></div>
+						<div class="item-title floating-label">Your Mobile Number*</div>
+						<div class="item-input">
+						<input type="text" name="mobileNo" id="mobileNo" placeholder="" maxlength="10" onkeypress="return isNumber(event)" />
+						</div>
+						</div>
+						</div>
+					</li>
+					
+					<li>
+						<div class="content-block"><a href="#" class="button button-fill button-raised color-blue" onclick="generateOtp()"> Click To Receive OTP</a>
+	  
+	
+							<!--<a href="#" id="cOtpNext"></a>-->
+
+
+						</div>
+					</li>
+					
+					<li>
+					<div class="item-content">
+						<div class="item-media"><i class="icon icon-form-comment"></i></div>
+						<div class="item-inner">
+						<div class="label" id="otpError" name = "otpError" style="color:#ff0000"></div>
+						<div class="item-title floating-label">Your OTP*</div>
+						<div class="item-input">
+						<input type="text" name="otp" id="otp" placeholder="" maxlength="04"/>
+						</div>
+						</div>
+					</div>
+					</li>
+					
+					<li>
+						<div class="item-content">
+						<div class="item-media"><i class="icon icon-form-password"></i></div>
+						<div class="item-inner">
+						<div class="label" id="newPasswordError" name = "newPasswordError" style="color:#ff0000"></div>
+						<div class="item-title floating-label">New Password*</div>
+						<div class="item-input">
+							<input type="password"  name="newPassword"  id="newPassword"  placeholder="" />
+						</div>
+						</div>
+						</div>
+					</li>
+					
+					<li>
+						<div class="item-content">
+						<div class="item-media"><i class="icon icon-form-password"></i></div>
+						<div class="item-inner">
+						<div class="label" id="confirmPasswordError" name = "confirmPasswordError" style="color:#ff0000"></div>
+						<div class="item-title floating-label">Confirm Password*</div>
+						<div class="item-input">
+							<input type="password"  name="confirmPassword"  id="confirmPassword"  placeholder=""/>
+						</div>
+						</div>
+						</div>
+					</li>
+			
+        </ul>
+      </div>
+
+	<div class="content-block"><a href="#" class="button button-fill button-raised color-red" onclick="forgotpass()"> Change Password </a>
+	  
+	
+		<a href="#" id="cPasswordNext"></a>
+
+
+	</div>
+  
+ 
+
+    </form>
+
+  </div>
+</div>
+</div>
