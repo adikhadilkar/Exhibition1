@@ -1,0 +1,106 @@
+<div data-page="notifications" class="page" name="news">
+	<div class="navbar">
+		<div class="navbar-inner">
+			<div class="left"><a href="sw_news.html" class="back link icon-only" onclick="getnews();deletenews();" ><i class="icon icon-back"></i></a></div>
+			<div class="center">News</div>
+			<div class="right"><a href="#" class="open-panel link icon-only" ><i class="icon icon-bars"></i></a></div>
+		</div>
+	</div>
+  
+    <div  class="page-content hide-bars-on-scroll" >
+	<style>
+	a {
+	word-wrap: break-word;
+}
+	</style>
+		<div class="content-block" id="divIDer2" style="text-align:center;padding:0px 0px; margin:0px 0px; visibility:hidden;" >
+		<div>
+			<img src="" id="eachImage" width="100%" height="100%" onclick="openBrowser()" class="lazy" />
+			<div class="content-block" style="text-align:center;">
+				 <div class="item-title"> 
+					<h2 id="eachName"></h2>
+				 </div><hr> 
+				 
+				<div class="item-title">
+					<h4><p align="center">Date: <span id="eachCreatedOn" align="right"></span></p></h4>
+				</div>
+				
+				<p id="eachDescription" style="text-align:left;word-wrap:break-word;"></p>
+				<div class="item-title" style="text-align:left;">
+					<center><h4><span id="publish">Published By:</span> <span id="eachSource" align="left"></span> <span id="line">|</span> <span id="eachAuthor"></span></h4></center>
+					<!--<h4><span id="likeNo">Likes: </span><span id="noOfLikes"></span> | <span id="commentNo">Comments: </span><span id="noOfComments"></span></h4>-->
+				
+				</div>	
+				 <div class="card-footer" id="divEachNews">
+				
+				  
+				   
+				<!--  <a href="#" style="color:#000000" id="likes" value="1" onclick="newsLike()" class="link">Like</a> -->
+				<!-- <a href="#" class="link" href="#" value="1" style="color:#000000" id="likes" onclick="newsLike()" >Like</a>
+				<a  href="sw_newsComments.html"style="color:#000000" class="link" onclick="getComment();" id="getComment">Comment</a>
+				
+				 <a href="#" style="color:#000000" class="link" onclick="shareNews()">Share</a>-->
+				
+				 </div>
+			</div>
+			
+			
+			
+			
+			
+			<!-- div class="item-content">
+	<div class="item-inner">
+<div class="item-title  floating-label"></div>
+	<div class="item-input item-input-field">
+<textarea class="resizable" id="commentTextArea"></textarea>	
+     </div>  
+  </div>	
+</div>   -->
+		  
+		
+      <!-- <div class="card-header">
+        <div class="ks-facebook-avatar" id="imageNews"><img src="http://lorempixel.com/68/68/people/1/" width="34" height="34"/></div> 
+        <div class="ks-facebook-name" style="text-align:left;" id="nameNews" >John Doe</div>
+        <div class="ks-facebook-date" style="text-align:left;" id="dateTime">Monday at 2:15 PM</div>
+      </div>
+      <div class="card-content"> 
+        <div class="card-content-inner">
+		
+	 <p style="text-align:left;" id="datanews">What a nice photo i took yesterday!</p>	
+
+
+
+</div>
+</div> -->
+
+<!-- <div class="list-block inputs-list" id="enteryourcomment" style="display:none">
+      <ul>
+        
+        <li class="align-top">
+          <div class="item-content">
+            <div class="item-media"><i class="icon icon-form-comment"></i></div>
+            <div class="item-inner"> 
+              <!-- <div class="item-title label">Enter Your Comments</div> 
+              <div class="item-input">
+                <textarea class="resizable" id="commentTextArea"></textarea>
+              </div>
+            </div>
+          </div>
+        </li>
+		<li class="align-top">
+          <div class="item-content">
+             <div class="item-media"><i class="icon icon-form-comment"></i></div>
+            <div class="item-inner"> 
+			<a href="#" class="button button-fill button-raised" id="submit" onclick="postComment()" >Submit</a>
+              
+            </div>
+          </div>
+        </li>
+      </ul>
+    </div>	 -->
+      
+	</div>
+	</div>
+</div>
+</div>
+</div>

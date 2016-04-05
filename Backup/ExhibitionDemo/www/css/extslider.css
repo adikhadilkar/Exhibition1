@@ -1,0 +1,23 @@
+#intro{
+.demo-card-header-pic .card-header {
+    height: 38vw;
+    background-size: cover;
+    background-position: center;
+  }
+}
+
+#each{
+.demo-card-header-pic .card-header {
+    height: 30vw;
+    background-size: cover;
+    background-position: center;
+  }
+}
+
+#title{
+.demo-card-header-pic .card-header {
+    height: 30vw;
+    background-size: cover;
+    background-position: center;
+  }
+}
