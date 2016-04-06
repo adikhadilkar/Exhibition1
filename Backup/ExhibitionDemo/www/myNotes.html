@@ -1,125 +1,35 @@
-
 <div data-page="lazy-load" class="page">
   <div class="navbar">
     <div class="navbar-inner">
-      <div class="left"><a href="logo.html" class="back link icon-only"><i class="icon icon-back"></i></a></div>
-      <div class="center">My Notes</div>
+      <div class="left"><a href="sw_index.html" class="back link icon-only" onclick="goBack()"><i class="icon icon-back"></i></a></div>
+      <div class="center">Notes</div>
       <div class="right"><a href="#" class="open-panel link icon-only"><i class="icon icon-bars"></i></a></div>
     </div>
   </div>
-  <div class="page-content infinite-scroll">
-	<style>
-		.demo-card-header-pic .card-header {
-		height: 50vw;
-		background-size: cover;
-		background-position: center;
+  	             
+			
+  <div class="page-content hide-bars-on-scroll">
+  
+	   <style>
+		h3
+		{-webkit-margin-before: 0em;
+		-webkit-margin-after: 0em;
 		}
-	</style>
-	
-	<div class="list-block" style="margin:0px 0px">
-		<ul>
-			<li class="bg-yellow swipeout">
-				<div class="swipeout-content">
-					<a href="#" class="item-content item-link">
-					<div class="item-inner">
-						<div class="item-title-row">
-							<div class="item-title">Overswipe Feature</div>
-							
-							<div class="item-text">
-								<p>overswipe can be used only on last button in right swipeout actions, and only on first button in left swipeout actions.
-
-								With overswipe, script will automatically trigger "click" event on overswipe button, so you need to add appropriate event listener to this button
-
-								Overswipe button will have additonal "swipeout-overswipe-active" class during overswipe which you can use for additional styling of such state</p>
-							</div>
-						</div>
-					</div>
-					</a>
-				</div>
-				<div class="swipeout-actions-left">
-					<a href="notes.html" class="bg-green forward">Edit</a>
-				</div>
-				<div class="swipeout-actions-right">
-					<a href="#" class="swipeout-delete">Delete</a>
-				</div>
-			</li>
-			
-			<li class="bg-teal swipeout">
-				<div class="swipeout-content">
-					<a href="#" class="item-content item-link">
-					<div class="item-inner">
-						<div class="item-title-row">
-							<div class="item-title">Big Bang</div>
-							
-							<div class="item-text">
-								<p>The Big Bang theory is the prevailing cosmological model for the universe from the earliest known periods through its subsequent large-scale evolution. The model accounts for the fact that the universe expanded from a very high density and high temperature state, and offers a comprehensive explanation for a broad range of phenomena, including the abundance of light elements, the cosmic microwave background, large scale structure and Hubble's Law. If the known laws of physics are extrapolated beyond where they are valid, there is a singularity. Modern measurements place this moment at approximately 13.8 billion years ago, which is thus considered the age of the universe.After the initial expansion, the universe cooled sufficiently to allow the formation of subatomic particles, and later simple atoms. Giant clouds of these primordial elements later coalesced through gravity to form stars and galaxies.</p>
-							</div>
-						</div>
-					</div>
-					</a>
-				</div>
-				<div class="swipeout-actions-left">
-					<a href="notes.html" class="bg-green forward">Edit</a>
-				</div>
-				<div class="swipeout-actions-right">
-					<a href="#" class="swipeout-delete">Delete</a>
-				</div>
-			</li>
-			
-			<li class="bg-blue swipeout">
-				<div class="swipeout-content">
-					<a href="#" class="item-content item-link">
-					<div class="item-inner">
-						<div class="item-title-row">
-							<div class="item-title">Barack Obama</div>
-							
-							<div class="item-text">
-								<p>Despite the lack of action from Congress, organizers continue to push for progress on gun violence prevention. 
-
-								As tragic acts of gun violence continue to plague communities across the country, last week, with several OFA volunteers in attendance, President Obama announced a series of common-sense executive actions that will help save lives.
-
-								For those who attended the event at the White House, watching President Obama's announcement proved incredibly moving. Read some of their reactions.
-								</p>
-							</div>
-						</div>
-					</div>
-					</a>
-				</div>
-				<div class="swipeout-actions-left">
-					<a href="notes.html" class="bg-green forward">Edit</a>
-				</div>
-				<div class="swipeout-actions-right">
-					<a href="#" class="swipeout-delete">Delete</a>
-				</div>
-			</li>
-	</ul>
+		
+		a {
+	word-wrap: break-word;
+		}
+		
+		.demo-card-header-pic .card-header {
+    height: 30vw;
+    background-size: cover;
+    background-position: center;
+	}
+		</style>
+		
+		<div  id="notesOutput">
+			<a href="#" id="nextNote"></a>
+		</div>
+		
 	</div>
-	
-	<script>
-		var myApp = new Framework7();
- 
-		var $$ = Dom7;
- 
-		$$('.mark').on('click', function () {
-		myApp.alert('Mark');
-		});
-		$$('.reply').on('click', function () {
-		myApp.alert('Reply');
-		});
-		$$('.forward').on('click', function () {
-		myApp.alert('Forward');
-		});          
-	</script>	
-
-	</div></div>
-
-    
-
-   
-  
-	
-
-	
-	
-	
-  
+</div>

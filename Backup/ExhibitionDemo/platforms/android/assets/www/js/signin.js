@@ -25,9 +25,10 @@ function signin()
 		{
 			$("#passwordError").fadeIn();
 		}
+		
 		if(emailIdValidate && passwordValidate)
 		{
-			myApp.showPreloader();
+		myApp.showPreloader();
 		var data = {"signIn":[{"emailId":emailId,"password":password}]};
 			var sendData = function(data)
 			{   
@@ -69,11 +70,13 @@ function signin()
 						}
 						else if(JSON.stringify(response.status)==203)
 						{
+							myApp.hidePreloader();
 							$("#loginInfo").text(JSON.stringify(response.statusMessage).replace(/"/g,""));
 							$("#loginInfo").fadeIn();
 						}
 						else if(JSON.stringify(response.status)==202)
 						{
+							myApp.hidePreloader();
 							$("#loginInfo").text(JSON.stringify(response.statusMessage).replace(/"/g,""));
 							$("#loginInfo").fadeIn();
 						}

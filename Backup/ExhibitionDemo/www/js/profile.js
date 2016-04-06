@@ -177,9 +177,10 @@ function sendProfile()
 }
 
 function getBase64Image(img) {
+	alert("get base called");
   var canvas = document.createElement("canvas");
   canvas.width = img.width;
-  canvas.height =img.height;
+  canvas.height = img.height;
   var ctx = canvas.getContext("2d");
   ctx.drawImage(img, 0, 0);
   var dataURL = canvas.toDataURL("image/png");

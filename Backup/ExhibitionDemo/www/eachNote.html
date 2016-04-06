@@ -11,29 +11,27 @@
 	<style>
 	a {
 	word-wrap: break-word;
-		}
+}
 	</style>
 		<div class="content-block" id="divNote" style="text-align:center;padding:0px 0px; margin:0px 0px; visibility:hidden;" >
 		<div>
-		<div class="content-block" style="text-align:center;">
-			<div class="item-title">
-				<h4><p align="center"><span id="description"></span></p></h4>
-			</div>
-			<div class="row">
-				<div class="col-50">
-					<center><a href="#" class="button button-fill button-raised color-orange" onclick="editNotes()">Edit</a></center>
+			<img src="" id="eachImage" width="100%" height="100%" onclick="openBrowser()" class="lazy" />
+			<div class="content-block" style="text-align:center;">
+				 <div class="item-title"> 
+					<h2 id="eachName"></h2>
+				 </div><hr> 
+				 
+				<div class="item-title">
+					<h4><p align="center">Date: <span id="eachCreatedOn" align="right"></span></p></h4>
 				</div>
-				<div class="col-50">
-					<center><a href="#" class="button button-fill button-raised color-grey" onclick="deleteNotes()">Delete</a></center>
-				</div>
-			</div>
+				
+				<p id="eachDescription" style="text-align:left;word-wrap:break-word;"></p>
+				<div class="item-title" style="text-align:left;">
+					<center><h4><span id="publish">Published By:</span> <span id="eachSource" align="left"></span> <span id="line">|</span> <span id="eachAuthor"></span></h4></center>
+			</div>	
 		</div>
 	</div>
 	</div>
 </div>
 </div>
 </div>
-
-
-
-
