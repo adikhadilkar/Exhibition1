@@ -26,15 +26,24 @@
 			<!--<a href="#" id="next"></a>-->
 		</div>
 		
-		<div class="content-block"><a href="#" class="button button-fill button-raised color-green" onclick="accept()"> Accept </a>
+		<div class="content-block"><a href="#" class="button button-fill button-raised color-green" onclick="accept()" id="acc" name="acc"> Accept </a>
 	  
 			<a href="#" id="acceptNext"></a>
 
 		</div>
-		<div class="content-block"><a href="#" class="button button-fill button-raised color-red" onclick="reject()"> Reject </a>
+		<div class="content-block"><a href="#" class="button button-fill button-raised color-red" onclick="reject()" id="rej" name="rej"> Reject </a>
 	  
 			<a href="#" id="rejectNext"></a>
 
 		</div>
+		
+		<center><p id="nodata" name="nodata"></p></center>
+		
+		<div class="content-block"><a href="#" class="button button-fill button-raised color-red" onclick="exit()" id="exi" name="exi"> Exit </a>
+	  
+			<a href="#" id="exitNext"></a>
+
+		</div>
+		
 	</div>
 </div>

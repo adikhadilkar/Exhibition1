@@ -1,6 +1,6 @@
 function getNotes()
 {
-	//myApp.showPreloader();	
+	myApp.showPreloader();	
 	var request = createCORSRequest( "post", "http://exhibition.tekticks.co.in" );
 	if(request)
 	{
@@ -11,7 +11,7 @@ function getNotes()
 		success:function(data)
 		{
 		
-		//myApp.hidePreloader();
+		myApp.hidePreloader();
 		var n=Object.keys(data.notesInformation).length;
 		
 		
@@ -45,7 +45,7 @@ function getNotes()
 
  function getEachNote(item)
 {	
-//myApp.showPreloader();
+myApp.showPreloader();
 var request = createCORSRequest( "post", "http://exhibition.tekticks.co.in" );
 	if(request)
 	{
@@ -57,7 +57,7 @@ var request = createCORSRequest( "post", "http://exhibition.tekticks.co.in" );
 			{
 				
 		$.ajax({
-		url:"http://exhibition.tekticks.co.in/application/json/notes.php",
+		url:"http://exhibition.tekticks.co.in/application/json/news.php",
 		type: 'POST',
 		dataType:"json",
 		data: JSON.stringify(data),
@@ -67,17 +67,39 @@ var request = createCORSRequest( "post", "http://exhibition.tekticks.co.in" );
 			if(JSON.stringify(response.status)==200)
 			{
 				
-				var notesTitle= JSON.stringify(response.notes.notesTitle).replace(/"/g,"");
+				var newsTitle= JSON.stringify(response.news.newsTitle).replace(/"/g,"");
+				/* alert(newsTitle); */
+			    var imageLink= JSON.stringify(response.news.imageLink).replace(/"/g,""); 
+			    /* alert(imageLink); */
+				var description= JSON.stringify(response.news.description).replace(/"/g,"");
+				/* alert(description); */
+				var source= JSON.stringify(response.news.source).replace(/"/g,"");
+					/* alert(source); */
+				var author= JSON.stringify(response.news.author).replace(/"/g,"");
+					/* alert(author); */
+				 var createdOn= JSON.stringify(response.news.createdOn).replace(/"/g,""); 
+					/* alert(createdOn); */
+					//var noOfLikes = JSON.stringify(response.news.NoOflikes).replace(/"/g,""); 
+					//var noOfComments = JSON.stringify(response.news.comments).replace(/"/g,""); 
+				//alert(noOfLikes);
+				//alert(noOfComments);
+
+
+				localStorage.setItem("newsTitle", newsTitle);
+				  localStorage.setItem("imageLink", imageLink); 
+				  localStorage.setItem("description", description);
+				    localStorage.setItem("source", source);
+					  localStorage.setItem("author", author);
+					    localStorage.setItem("createdOn", createdOn); 
+						//localStorage.setItem("NoOflikes", noOfLikes); 
+						//localStorage.setItem("noOfComments", noOfComments); 
 				
-				var notes= JSON.stringify(response.notes.notes).replace(/"/g,"");
-
-
-				localStorage.setItem("notesTitle", notesTitle);
-				  
-				  localStorage.setItem("notes", notes);
-				    
-					//myApp.hidePreloader();
-					initialize3();  
+				//var divId = "divIDer2";
+				//jQuery(divId).ready(function() {
+					myApp.hidePreloader();
+					initialize2();  //function called
+					//$("#divIDer2").hide();
+					//});
 				
 		}
 		}
@@ -87,52 +109,3 @@ sendData(data);
 console.log(data);
 }
 }
-
-
-function initialize3()
-{		
-	 var show = document.getElementById('divNote');
-    show.style.visibility = 'visible';
-	
-	 var notesTitle = localStorage.getItem("notesTitle"); 
-	var notes = localStorage.getItem("notes"); 
-	
-	
-		  
-	if(notesTitle.replace(/\s/g,"") == "")
-	{
-	
-		$("#noteTitle").fadeOut();
-	}
-	else
-	{
-	    $("#noteTitle").fadeIn();
-		$("#noteTitle").text(notesTitle);
-          		  
-	}
-	
-	 
-		 
-	if(notes.replace(/\s/g,"") == "")
-	{
-		 $("#description").fadeOut();
-	}
-	else
-	{
-		 $("#description").fadeIn();
-		 $("#description").text(notes);
-	}  
-	 
-	 
-	 
-	/* $("#eachName").text(newsTitle); 
-	$("#eachImage").attr("src",imageLink);
-	 $("#eachDescription").text(description);
-	 // $("#eachSource").text(source);
-	 // $("#eachAuthor").text(author);
-	$("#eachCreatedOn").text(createdOn);	
-	//$("#noOfLikes").text(NoOflikes);	
-	//$("#noOfComments").text(noOfComments); */	
-	
-	
-} 

@@ -1,7 +1,5 @@
 <?php
 header("Content-Type: text/html; charset=utf-8");
-
-
 //Access Control Headers
 header('Access-Control-Allow-Origin: *');
 header('Access-Control-Allow-Credentials: true');

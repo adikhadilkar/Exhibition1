@@ -1,26 +1,21 @@
 function navi()
 {
+	myApp.showPreloader();
 	var request = createCORSRequest( "post", "http://radio.tekticks.co.in" );
 	if(request)
 	{
-		myApp.showPreloader();
 		var c=function(pos)
 		{
-		//finding coordinates
-		var lat		=pos.coords.latitude;
-		//alert(lat);
-		var lon		=pos.coords.longitude;
-		//alert(lon);
-		var coords	=lat+', '+lon;
-		//alert(coords);
-		//finding universally unique identifier(uuid)	
-		var uuid=device.uuid;
-		localStorage.setItem("latitude",lat);
-		localStorage.setItem("longitude",lon);
-		localStorage.setItem("uuid",uuid);
-		locationSend();
-		//alert("locationsendcalled");
-		
+			//finding coordinates
+			var lat		=pos.coords.latitude;
+			var lon		=pos.coords.longitude;
+			var coords	=lat+', '+lon;
+			//finding universally unique identifier(uuid)	
+			var uuid=device.uuid;
+			localStorage.setItem("latitude",lat);
+			localStorage.setItem("longitude",lon);
+			localStorage.setItem("uuid",uuid);
+			locationSend();	
 		}
 		navigator.geolocation.getCurrentPosition(c);
 		myApp.hidePreloader();
@@ -53,43 +48,37 @@ function locationSend()
 		if(JSON.stringify(response.status)==200)
 			{ 
 				myApp.hidePreloader();
-				myApp.alert('Success','Location Tracking');
+				//myApp.alert('Success','Location Tracking');
 				var dvid = JSON.stringify(response.location).replace(/"/g,"");
-				alert(dvid);
 				localStorage.setItem("dvid",dvid);
 				sendInfo();
 			
 			}
 			if(JSON.stringify(response.status)==203)
-			{ 
-			
-				
-			
-			}
+			{ 	}
 		}
 	});
 	}
 sendData(data);	
-//console.log(data);
 	}
 }
 
 var len;
 function sendInfo()
 {
+	
+	//getting device id
 	var dv=localStorage.getItem("dvid");
-	alert(dv);
-	alert("sendInfo Called");
-	var request = createCORSRequest( "post", "http://192.168.0.113/Test_Local_Server_Db/" );
+	var request = createCORSRequest( "post", "http://192.168.0.112/Test_Local_Server_Db/" );
 	if(request)
 	{
-		alert("request");
+		myApp.showPreloader();
 		var data = {"file":[{"deviceId":dv}]};
 			var sendData = function(data)
 			{   
 				$.ajax
 				({
-				url: 'http://192.168.0.113/Test_Local_Server_Db/data_json.php',
+				url: 'http://192.168.0.112/Test_Local_Server_Db/data_json.php',
 				type: 'POST',
 				contentType: 'application/json',
 				data: JSON.stringify(data),
@@ -97,29 +86,32 @@ function sendInfo()
 				success: function(response)
 					{
 						if(JSON.stringify(response.status)==200)
-						{
-							len=response.file.length;
-							alert(len);
+						{	
 							
+							//alert(response);
+							var e=response.file;
+							//alert(e);
+							len=response.file.length;
+							//alert(len);
+							if(len==0 || e=="")
+							{
+								myApp.hidePreloader();
+								myApp.alert('Data Not Found','Localhost');
+							}
+							else
+							{
+									//data collected from IP
 							var fileArray=response.file;
-							alert(fileArray);
 					
 							localStorage.setItem("fileLength",JSON.stringify(len));
 							localStorage.setItem("fileArray",JSON.stringify(fileArray));
+							myApp.hidePreloader();
+							myApp.alert('Data Collected','Localhost');
 							
-							myApp.alert('Data Collected','Localhost')
-					
-							/* try
-							{
-							database= window.openDatabase("csvDetails", "1.0", "csv database", 20000);
-							database.transaction(populateDb, errorDb, SuccessDb);
-							alert("database made");
+							//method for creation of table and insertion
+							send();
 							}
-							catch(err)
-							{
-								alert("error : "+err);
-							} */
-	
+							
 						}
 						else if(JSON.stringify(response.status)==201)
 						{
@@ -144,33 +136,43 @@ function sendInfo()
 function dev()
 {
 	var uuid=localStorage.getItem("uuid");
-	myApp.alert('Your Device Id Is: '+uuid,'Device Id');
+	myApp.alert('Your Device Id Is: <b>'+uuid+'</b>','Device Id');
 }
 
-/* function populateDb(tx)
+
+var database;
+var len;
+function send() 
+{
+	try
+	{
+	//connection to the database
+	database= window.openDatabase("csvDetails", "1.0", "csv database", 20000);
+	database.transaction(selectDb, errorDb, successDb);
+	}
+	catch(err)
+	{
+		myApp.alert(err,'Error');
+	}
+	
+} 
+
+
+ function selectDb(tx)
 {
 		
 	try
 	{
-		alert("populateDb Called");
+		//table creation and insertion
+		var arrlen=JSON.parse(localStorage.getItem("fileLength"));
+		var fileArray=JSON.parse(localStorage.getItem("fileArray"));
+		var di=JSON.parse(localStorage.getItem("doctorId"));
+		
 		tx.executeSql('DROP TABLE IF EXISTS csv');
-		tx.executeSql('CREATE TABLE IF NOT EXISTS csv(date TEXT,name TEXT, pid INTEGER,did INTEGER, dname TEXT, cut INTEGER,investigation INTEGER,deviceId TEXT,user TEXT,status INTEGER)');
-		alert("table created");
+		tx.executeSql('CREATE TABLE IF NOT EXISTS csv(pt_transaction INTEGER,date TEXT,name TEXT, pid INTEGER,did INTEGER, dname TEXT, cut INTEGER,investigation INTEGER,deviceId TEXT,user TEXT,status INTEGER)');
 		
-		
-		var fileLength=localStorage.getItem("fileLength");
-		var fileArray=localStorage.getItem("fileArray");
-		alert(fileLength);
-		alert(fileArray);
-		
-		
-		
-		
-		//alert(line[0][0]);
-		
-		
-		var i,j,k,l,m,n,o,p,q,r;
-		for(i=0;i<fileLength;i+=10)
+		var i,j,k,l,m,n,o,p,q,r,s;
+		for(i=0;i<fileArray.length;i+=11)
 		{
 			j=i+1;
 			k=i+2;
@@ -181,44 +183,25 @@ function dev()
 			p=i+7;
 			q=i+8;
 			r=i+9;
-			//tx.executeSql("INSERT INTO csv(date,name,pid,did,dname,cut) VALUES ('"+value[i]+"','"+value[j]+"',"+value[k]+","+value[l]+",'"+value[m]+"',"+value[n]+")");
-			tx.executeSql('INSERT INTO csv (date,name,pid,did,dname,cut,investigation,deviceId,user,status) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)', [fileArray[i], fileArray[j], fileArray[k], fileArray[l], fileArray[m], fileArray[n], fileArray[o], fileArray[p], fileArray[q], fileArray[r]]);
-		}
-		alert("data inserted");
-		
-		//tx.executeSql("INSERT INTO csv VALUES ('"+value[0]+"','"+value[1]+"',"+value[2]+","+value[3]+",'"+value[4]+"',"+value[5]+")");
-		//tx.executeSql("INSERT INTO csv VALUES ('"+value[6]+"','"+value[7]+"',"+value[8]+","+value[9]+",'"+value[10]+"',"+value[11]+")");
-		//tx.executeSql('INSERT INTO csv (pid, pname) VALUES ('+parseInt(line[2])+',"'+toString(line[3])+'")');
-		//tx.executeSql('INSERT INTO csv (pid, pname) VALUES ('+parseInt(line[6])+',"'+line[7]+'")');
-		//alert("data inserted");
-		//tx.executeSql('select * from csv where did='+di,[],resultSuccess, resultError);
-		//alert("data selected");
-		
+			s=i+10;
+	
+			tx.executeSql('INSERT INTO csv (pt_transaction,date,name,pid,did,dname,cut,investigation,deviceId,user,status) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)', [fileArray[i], fileArray[j], fileArray[k], fileArray[l], fileArray[m], fileArray[n], fileArray[o], fileArray[p], fileArray[q], fileArray[r], fileArray[s]]);
+		}	
 	}
 	catch(err)
 	{
-		alert("erroraegfsgsf : "+err);
+		myApp.alert(err,'Error');
 	}
 
 }
 
 function errorDb(tx,error)
 {
-	alert("Got an Error "+error.code);
+	myApp.alert(error.code,'Error');
 }
 	
-function SuccessDb(tx)
+function successDb(tx)
 {
-	alert("Successful");
-	//tx.executeSql('SELECT * FROM csv',[],renderList, errorDb);
-		
+	//Success Method	
 }
- */
- 
-
-
-
-
-
-
 

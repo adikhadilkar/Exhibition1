@@ -1,5 +1,6 @@
 function getNotes()
 {
+	alert("getNotes called");
 	//myApp.showPreloader();	
 	var request = createCORSRequest( "post", "http://exhibition.tekticks.co.in" );
 	if(request)
@@ -45,7 +46,7 @@ function getNotes()
 
  function getEachNote(item)
 {	
-//myApp.showPreloader();
+myApp.showPreloader();
 var request = createCORSRequest( "post", "http://exhibition.tekticks.co.in" );
 	if(request)
 	{
@@ -76,7 +77,7 @@ var request = createCORSRequest( "post", "http://exhibition.tekticks.co.in" );
 				  
 				  localStorage.setItem("notes", notes);
 				    
-					//myApp.hidePreloader();
+					myApp.hidePreloader();
 					initialize3();  
 				
 		}
