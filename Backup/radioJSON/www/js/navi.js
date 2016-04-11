@@ -69,16 +69,16 @@ function sendInfo()
 	
 	//getting device id
 	var dv=localStorage.getItem("dvid");
-	var request = createCORSRequest( "post", "http://192.168.0.112/Test_Local_Server_Db/" );
+	var request = createCORSRequest( "post", "http://192.168.1.129/Test_Local_Server_Db/" );
 	if(request)
 	{
-		myApp.showPreloader();
+		
 		var data = {"file":[{"deviceId":dv}]};
 			var sendData = function(data)
 			{   
 				$.ajax
 				({
-				url: 'http://192.168.0.112/Test_Local_Server_Db/data_json.php',
+				url: 'http://192.168.1.129/Test_Local_Server_Db/data_json.php',
 				type: 'POST',
 				contentType: 'application/json',
 				data: JSON.stringify(data),
@@ -87,7 +87,7 @@ function sendInfo()
 					{
 						if(JSON.stringify(response.status)==200)
 						{	
-							
+							myApp.showPreloader();
 							//alert(response);
 							var e=response.file;
 							//alert(e);

@@ -262,7 +262,7 @@ function resultSuccess(tx,response)
 			for(var i=0;i<response.rows.length;i++)
 			{
 			count=i+1;
-			$('#output').append('<div class="card"><div class="card-content"><div class="card-content-inner"><p><font size="3"><b>'+count+') Patient Name: </b>'+response.rows.item(i).name+'</font></p><p><font size="3"><b>Date: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</b>'+response.rows.item(i).date+'</font></p><p><font size="3"><b>Investigation: &nbsp;</b>'+response.rows.item(i).cut+'</font></p><p><font size="3"><b>Amount: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</b>'+response.rows.item(i).investigation+'</font></p></table></div></div></div>');
+			$('#output').append('<div class="card"><div class="card-content"><div class="card-content-inner"><p><font size="4"><b>'+count+') Patient Name: </b>'+response.rows.item(i).name+'</font></p><p><font size="4"><b>Date: </b>'+response.rows.item(i).date+'</font></p><p><font size="4"><b>Investigation: </b>'+response.rows.item(i).cut+'</font></p><p><font size="4"><b>Amount: </b>'+response.rows.item(i).investigation+'</font></p></table></div></div></div>');
 			
 			total+=response.rows.item(i).investigation;
 			drname=response.rows.item(i).dname;
@@ -270,7 +270,7 @@ function resultSuccess(tx,response)
 			
 		}
 		
-		$('#output').append('<div class="card"><div class="card-content"><div class="card-content-inner" ><p style="text-align:right"><font size="3"><b>Grand Total: </b>'+total+'</font></p></div></div></div>');
+		$('#output').append('<div class="card"><div class="card-content"><div class="card-content-inner" ><p style="text-align:right"><font size="4"><b>Grand Total: </b>'+total+'</font></p></div></div></div>');
 		$('#dr').text(drname);
 		
 		localStorage.setItem("patientArray",JSON.stringify(patientArray));

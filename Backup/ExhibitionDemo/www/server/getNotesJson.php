@@ -11,9 +11,9 @@ include 'config.php';
 $data=array();
 $response=array();
 //select news details
-@$selectNotesQuery="SELECT id,notesTitle,notes FROM visitorNotes";
-@$selectNotes=mysql_query($selectNotesQuery,$conn) or die(mysql_error());
-@$notesRows=mysql_num_rows($selectNotes);
+$selectNotesQuery="SELECT id,notesTitle,notes FROM visitorNotes";
+$selectNotes=mysql_query($selectNotesQuery,$conn) or die(mysql_error());
+$notesRows=mysql_num_rows($selectNotes);
   while($notes=mysql_fetch_array($selectNotes))
   {
 		//$createdOn=$news['createdOn'];
@@ -28,7 +28,7 @@ $response=array();
 		$id=$news['id'];
 		
 		$response['id'] = $id;
-		$response['notesTitle']=$newsTitle;
+		$response['notesTitle']=$notesTitle;
 		$response['notes']=$notes;
 		 
 		array_push($data,$response);

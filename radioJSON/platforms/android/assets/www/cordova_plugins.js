@@ -43,6 +43,14 @@ module.exports = [
         "merges": [
             "navigator.notification"
         ]
+    },
+    {
+        "file": "plugins/com.phonegap.plugins.nativesettingsopener/www/settings.js",
+        "id": "com.phonegap.plugins.nativesettingsopener.Settings",
+        "pluginId": "com.phonegap.plugins.nativesettingsopener",
+        "clobbers": [
+            "cordova.plugins.settings"
+        ]
     }
 ];
 module.exports.metadata = 
@@ -51,7 +59,8 @@ module.exports.metadata =
     "cordova-plugin-whitelist": "1.2.1",
     "cordova-plugin-geolocation": "2.1.0",
     "cordova-plugin-device": "1.1.1",
-    "cordova-plugin-dialogs": "1.2.0"
+    "cordova-plugin-dialogs": "1.2.0",
+    "com.phonegap.plugins.nativesettingsopener": "1.0"
 }
 // BOTTOM OF METADATA
 });
