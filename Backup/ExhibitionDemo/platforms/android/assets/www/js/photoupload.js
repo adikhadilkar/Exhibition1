@@ -44,7 +44,7 @@ function onPhotoURISuccess(imageURI) {
     // Unhide image elements
     //
    galleryImage.style.display = 'block';
-   galleryImage.style = 'width:device-width';
+  // galleryImage.style = 'width:720px;height:1280px';
     // Show the captured photo
     // The inline CSS rules are used to resize the image
     //
