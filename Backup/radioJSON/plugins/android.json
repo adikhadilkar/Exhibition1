@@ -18,6 +18,9 @@
         },
         "cordova-plugin-dialogs": {
             "PACKAGE_NAME": "com.example.radioJSON"
+        },
+        "com.phonegap.plugins.nativesettingsopener": {
+            "PACKAGE_NAME": "com.example.radioJSON"
         }
     },
     "dependent_plugins": {}

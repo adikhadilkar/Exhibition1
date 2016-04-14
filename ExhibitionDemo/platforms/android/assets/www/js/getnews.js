@@ -10,87 +10,72 @@ var request = createCORSRequest( "post", "http://exhibition.tekticks.co.in" );
 		contentType: 'application/json',
 		success:function(data)
 		{
-		/* console.log(data.newsInformation); */
-		/* 
-		var div=document.createElement('div'); */
+		
 		myApp.hidePreloader();
 		var n=Object.keys(data.newsInformation).length;
-		/* alert(n); */
-		//array for id
+		
+		if(n>0)
+		{
 		var newsid = []; // create array here
 		$.each(data.newsInformation, function (index, newsInformation) {
         newsid.push(newsInformation.id); //push values here
 		});
-		 /* console.log(newsid);  */
-		/* alert(newsid); */
 		
 		//array for newsTitle
 		var newsTitle = []; // create array here
 		$.each(data.newsInformation, function (index, newsInformation) {
         newsTitle.push(newsInformation.newsTitle); //push values here
 		});
-		/* console.log(newsTitle); */
-		 /* alert(newsTitle);  */
 		
 		//array for newimage
 		var imageLink = []; // create array here
 		$.each(data.newsInformation, function (index, newsInformation) {
         imageLink.push(newsInformation.imageLink); //push values here
 		});
-		/* console.log(imageLink); */
-		/* alert(imageLink); */
 		
 		//array for description
 		var description = []; // create array here
 		$.each(data.newsInformation, function (index, newsInformation) {
         description.push(newsInformation.description); //push values here
 		});
-		/* console.log(description); */
-		/* alert(description); */
 		
 		//array for source
 		var source = []; // create array here
 		$.each(data.newsInformation, function (index, newsInformation) {
         source.push(newsInformation.source); //push values here
 		});
-		/* console.log(source); */
-		/* alert(source); */
-					
+		
 		//array for author
 		var author = []; // create array here
 		$.each(data.newsInformation, function (index, newsInformation) {
         author.push(newsInformation.author); //push values here
 		});
-		/* console.log(description); */
-		/* alert(description); */
 		
 		//array for Tagline
 		var tagLine = []; // create array here
 		$.each(data.newsInformation, function (index, newsInformation) {
         tagLine.push(newsInformation.tagLine); //push values here
 		});
-		/* console.log(description); */
-		/* alert(description); */
-		
-			
+	
 		//array for createdOn
 		var createdOn = []; // create array here
 		$.each(data.newsInformation, function (index, newsInformation) {
         createdOn.push(newsInformation.date); //push values here
 		});
-		/* console.log(description); */
-		/* alert(description); */
 		
 		
 		for(var i=0;i<n;i++)
-	{ 
-
-/* $('#output').append('<a href="sw_eachNews.html"  class="item-link close-panel" id="'+newsid[i]+'" onclick="geteachnews(this)"><div class="card ks-facebook-card" ><div class="card-content"><div class="card-content-inner"><div class="row"><div class="col-33"><img src="'+imageLink[i]+'" class="lazy lazy-fadeIn ks-demo-lazy"/></div><div class="col-66"><h3>'+newsTitle[i]+'</h3><span>'+tagline[i]+'<span>......Read More</span></span><p>'+source[i]+'  |  '+author[i]+'</p><p><span>Posted On:-</span>'+createdOn[i]+'</div></div></div></div></div></a>');
- */
-  $('#newsOutput').append('<a href="eachNews.html"  class="item-link close-panel" id="'+newsid[i]+'" onclick="geteachnews(this)"><div class="card demo-card-header-pic"><div style="background-image:url('+imageLink[i]+')" valign="bottom" class="card-header color-white no-border"></div><div class="card-content"> <div class="card-content-inner"> <p class="color-black"><b><big>'+newsTitle[i]+'</big></b></p><p class="color-black">Author - '+author[i]+'</p></div></div></div> </a>');
- 
-
-		}}
+		{ 
+			$('#newsOutput').append('<a href="eachNews.html"  class="item-link close-panel" id="'+newsid[i]+'" onclick="geteachnews(this)"><div class="card demo-card-header-pic"><div style="background-image:url('+imageLink[i]+')" valign="bottom" class="card-header color-white no-border"></div><div class="card-content"> <div class="card-content-inner"> <p class="color-black"><b><big>'+newsTitle[i]+'</big></b></p><p class="color-black">Author - '+author[i]+'</p></div></div></div> </a>');
+		}
+		}
+		else
+		{
+				myApp.hidePreloader();
+			myApp.alert('There are no more news for you.','News');
+		}
+		
+		}
 }
 	)};
 }

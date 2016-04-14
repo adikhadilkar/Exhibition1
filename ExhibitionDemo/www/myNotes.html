@@ -1,28 +1,20 @@
 <div data-page="lazy-load" class="page">
   <div class="navbar">
     <div class="navbar-inner">
-      <div class="left"><a href="sw_index.html" class="back link icon-only" onclick="goBack()"><i class="icon icon-back"></i></a></div>
+      <div class="left"><a href="myNotes.html" class="back link icon-only" onclick="goBack()"><i class="icon icon-back"></i></a></div>
       <div class="center">Notes</div>
       <div class="right"><a href="#" class="open-panel link icon-only"><i class="icon icon-bars"></i></a></div>
     </div>
   </div>
   	
-	 <div class="speed-dial">
+	<div class="speed-dial">
 		<!-- FAB inside will open Speed Dial actions -->
-		<a href="#" class="floating-button">
+		<a href="addNote.html" class="floating-button">
 		<!-- First icon is visible when Speed Dial actions are closed -->
 		<i class="icon icon-plus"></i>
 		<!-- Second icon is visible when Speed Dial actions are opened -->
-		<i class="icon icon-close"></i>
+		 <i class="icon icon-plus"></i>
 		</a>
-		<!-- Speed Dial Actions -->
-		<div class="speed-dial-buttons">
-		<!-- First Speed Dial button -->
-		<a href="addNote.html">
-        <i class="icon icon-form-comment color-white"></i>
-		<!-- <img src="img/ic.png" width="24px" height="24px"/> -->
-		</a>
-    </div>
 	</div>
 			
   <div class="page-content hide-bars-on-scroll">
@@ -42,9 +34,15 @@
     background-size: cover;
     background-position: center;
 	}
+	
+	#notesOutput
+	{
+	width: device-width;
+	word-wrap: break-word;
+	}
 		</style>
 		
-		<div  id="notesOutput">
+		<div id="notesOutput">
 			<a href="#" id="nextNote"></a>
 		</div>
 		
