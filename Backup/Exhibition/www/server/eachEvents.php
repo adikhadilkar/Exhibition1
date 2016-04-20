@@ -31,7 +31,7 @@ $id=$data['events'][0]['id'];
 			$selectEventsResult1=mysql_fetch_assoc($selectEvents1);
 			$selectEventsResult2=mysql_fetch_assoc($selectEvents2);
 			
-			$date= $selectEventsResult['createdOn'];
+			$date= $selectEventsResult1['date'];
 			$newDate = date("d-m-Y", strtotime($date));
 			
 			$eventTitle=urldecode($selectEventsResult['eventTitle']);

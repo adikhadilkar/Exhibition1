@@ -13,7 +13,7 @@ var request = createCORSRequest( "post", "http://exhibition.tekticks.co.in" );
 		
 		myApp.hidePreloader();
 		var n=Object.keys(data.eventsInformation).length;
-		
+
 		if(n>0)
 		{
 		var id = []; // create array here
@@ -114,7 +114,7 @@ var request = createCORSRequest( "post", "http://exhibition.tekticks.co.in" );
 				var eventTitle= JSON.stringify(response.events.eventTitle).replace(/"/g,"");
 				var venueName= JSON.stringify(response.events.venueName).replace(/"/g,"");
 				var date= JSON.stringify(response.events.date).replace(/"/g,"");
-
+				//alert(date);
 
 				localStorage.setItem("eventTitle", eventTitle); 
 				  localStorage.setItem("description", description);
@@ -124,7 +124,7 @@ var request = createCORSRequest( "post", "http://exhibition.tekticks.co.in" );
 						localStorage.setItem("venueName", venueName); 
 						
 					myApp.hidePreloader();
-					initialize2();  //function called
+					initialize4();  //function called
 					
 				
 		}
@@ -137,7 +137,7 @@ console.log(data);
 }
 
 
- function initialize2()
+ function initialize4()
 {		
 	 var show = document.getElementById('divEvent');
     show.style.visibility = 'visible';
