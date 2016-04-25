@@ -1,7 +1,7 @@
 function navi()
 {
-	myApp.showPreloader();
-	var request = createCORSRequest( "post", "http://radio.tekticks.co.in" );
+	//myApp.showPreloader();
+	var request = createCORSRequest( "post", "http://radio.tekticks.com" );
 	if(request)
 	{
 		var c=function(pos)
@@ -18,27 +18,27 @@ function navi()
 			locationSend();	
 		}
 		navigator.geolocation.getCurrentPosition(c);
-		myApp.hidePreloader();
+		//myApp.hidePreloader();
 	}
 }
 
 
 function locationSend()
 {
-	myApp.showPreloader();
 	var lat=localStorage.getItem("latitude");
 	var lon=localStorage.getItem("longitude");
 	var uuid=localStorage.getItem("uuid");
 	
-	var request = createCORSRequest( "post", "http://radio.tekticks.co.in" );
+	var request = createCORSRequest( "post", "http://radio.tekticks.com" );
 	if(request)
 	{
+	myApp.showPreloader();
 	var data = {"location":[{"uuid":uuid,"latitude":lat,"longitude":lon}]};
 	console.log(data);
 	var sendData = function(data)
 	{
 	$.ajax({
-		url:"http://radio.tekticks.co.in/radioJson/location_new_json.php",
+		url:"http://radio.tekticks.com/radioJson/location_new_json.php",
 		dataType:"json",
 		type: 'POST',
 		data: JSON.stringify(data),
@@ -55,7 +55,9 @@ function locationSend()
 			
 			}
 			if(JSON.stringify(response.status)==203)
-			{ 	}
+			{ 	
+				//myApp.hidePreloader();
+			}
 		}
 	});
 	}
@@ -65,20 +67,20 @@ sendData(data);
 
 var len;
 function sendInfo()
-{
-	
+{	
 	//getting device id
 	var dv=localStorage.getItem("dvid");
-	var request = createCORSRequest( "post", "http://192.168.0.119/Test_Local_Server_Db/" );
+	
+	var request = createCORSRequest( "post", "http://192.168.0.111:8080/Test_Local_Server_Db/" );
 	if(request)
 	{
-		
+		//myApp.showPreloader();
 		var data = {"file":[{"deviceId":dv}]};
 			var sendData = function(data)
 			{   
 				$.ajax
 				({
-				url: 'http://192.168.0.119/Test_Local_Server_Db/data_json.php',
+				url: 'http://192.168.0.111:8080/Test_Local_Server_Db/data_json.php',
 				type: 'POST',
 				contentType: 'application/json',
 				data: JSON.stringify(data),
@@ -87,7 +89,8 @@ function sendInfo()
 					{
 						if(JSON.stringify(response.status)==200)
 						{	
-							myApp.showPreloader();
+							//myApp.hidePreloader();
+							//myApp.showPreloader();
 							//alert(response);
 							var e=response.file;
 							//alert(e);
@@ -95,7 +98,7 @@ function sendInfo()
 							//alert(len);
 							if(len==0 || e=="")
 							{
-								myApp.hidePreloader();
+								//myApp.hidePreloader();
 								myApp.alert('Data Not Found','Localhost');
 							}
 							else
@@ -105,7 +108,7 @@ function sendInfo()
 					
 							localStorage.setItem("fileLength",JSON.stringify(len));
 							localStorage.setItem("fileArray",JSON.stringify(fileArray));
-							myApp.hidePreloader();
+							//myApp.hidePreloader();
 							myApp.alert('Data Collected','Localhost');
 							
 							//method for creation of table and insertion
@@ -115,6 +118,7 @@ function sendInfo()
 						}
 						else if(JSON.stringify(response.status)==201)
 						{
+							//myApp.hidePreloader();
 							$("#loginInfo").text(JSON.stringify(response.statusMessage).replace(/"/g,""));
 							$("#loginInfo").fadeIn();
 						}
@@ -122,9 +126,11 @@ function sendInfo()
 					},
 					error: function(xhr, textStatus, error)
 					{
+						//myApp.hidePreloader();
 						console.log(xhr.statusText);
 						console.log(textStatus);
 						console.log(error);
+						myApp.alert('server unavailable','Localhost');
 					}
 				});
 			};
