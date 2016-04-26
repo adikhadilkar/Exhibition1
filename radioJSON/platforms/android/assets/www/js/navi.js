@@ -1,9 +1,11 @@
 function navi()
 {
-	//myApp.showPreloader();
+	
+	myApp.showPreloader();
 	var request = createCORSRequest( "post", "http://radio.tekticks.com" );
 	if(request)
 	{
+		$("#loc").text("Off");
 		var c=function(pos)
 		{
 			//finding coordinates
@@ -15,10 +17,11 @@ function navi()
 			localStorage.setItem("latitude",lat);
 			localStorage.setItem("longitude",lon);
 			localStorage.setItem("uuid",uuid);
+			//$("#loc").text("On");
 			locationSend();	
 		}
 		navigator.geolocation.getCurrentPosition(c);
-		//myApp.hidePreloader();
+		myApp.hidePreloader();
 	}
 }
 
@@ -32,6 +35,7 @@ function locationSend()
 	var request = createCORSRequest( "post", "http://radio.tekticks.com" );
 	if(request)
 	{
+	$("#loc").text("On");
 	myApp.showPreloader();
 	var data = {"location":[{"uuid":uuid,"latitude":lat,"longitude":lon}]};
 	console.log(data);
@@ -68,12 +72,14 @@ sendData(data);
 var len;
 function sendInfo()
 {	
+	myApp.showPreloader();
 	//getting device id
 	var dv=localStorage.getItem("dvid");
 	
 	var request = createCORSRequest( "post", "http://192.168.0.111:8080/Test_Local_Server_Db/" );
 	if(request)
 	{
+		//myApp.alert("entered localhost",'Localhost');
 		//myApp.showPreloader();
 		var data = {"file":[{"deviceId":dv}]};
 			var sendData = function(data)
@@ -89,7 +95,7 @@ function sendInfo()
 					{
 						if(JSON.stringify(response.status)==200)
 						{	
-							//myApp.hidePreloader();
+							myApp.hidePreloader();
 							//myApp.showPreloader();
 							//alert(response);
 							var e=response.file;
@@ -130,7 +136,7 @@ function sendInfo()
 						console.log(xhr.statusText);
 						console.log(textStatus);
 						console.log(error);
-						myApp.alert('server unavailable','Localhost');
+						//myApp.alert('server unavailable','Localhost');
 					}
 				});
 			};

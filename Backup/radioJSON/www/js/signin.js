@@ -1,6 +1,6 @@
 function signin()
 {
-	var request = createCORSRequest( "post", "http://radio.tekticks.co.in" );
+	var request = createCORSRequest( "post", "http://radio.tekticks.com" );
 	if(request)
 	{
 		var mobileNo = document.getElementById('mobileNo').value;
@@ -22,7 +22,7 @@ function signin()
 			{   
 				$.ajax
 				({
-				url: 'http://radio.tekticks.co.in/radioJson/create_otp_json.php',
+				url: 'http://radio.tekticks.com/radioJson/create_otp_json.php',
 				type: 'POST',
 				contentType: 'application/json',
 				data: JSON.stringify(data),
@@ -74,7 +74,7 @@ function verifyotp()
 {
 	var otp = document.getElementById('otp').value;
 	var mobile=localStorage.getItem("mobileNo");
-	var request = createCORSRequest( "post", "http://radio.tekticks.co.in" );
+	var request = createCORSRequest( "post", "http://radio.tekticks.com" );
 	if(request)
 	{
 		
@@ -86,7 +86,7 @@ function verifyotp()
 			{   
 				$.ajax
 				({
-				url: 'http://radio.tekticks.co.in/radioJson/login_details.php',
+				url: 'http://radio.tekticks.com/radioJson/login_details.php',
 				type: 'POST',
 				contentType: 'application/json',
 				data: JSON.stringify(data),
@@ -135,12 +135,12 @@ function accept()
 	var flag='1';//this is our flag
 	var d=JSON.parse(localStorage.getItem("doctorId"));
 	var u=localStorage.getItem("uuid");
-	var request = createCORSRequest( "post", "http://radio.tekticks.co.in" );
+	var request = createCORSRequest( "post", "http://radio.tekticks.com" );
 	if(request)
 	{
 		$.ajax
 				({
-				url: 'http://radio.tekticks.co.in/radioJson/accept_reject_json.php',
+				url: 'http://radio.tekticks.com/radioJson/accept_reject_json.php',
 				type:"post",
 				data:{type:d},
 				cache: false, 
@@ -149,10 +149,19 @@ function accept()
 						myApp.hidePreloader();
 						//method for updation of data
 						updateRecords();
-						  myApp.alert('Accepted','Patient Details');
+						
+						
+						myApp.confirm('Do you really want to Accpet?','Patient Records', function () {
+						navigator.app.clearHistory(); 
+						navigator.app.exitApp();
+						
+						/* myApp.alert('Accepted','Patient Details');
 						var a = document.getElementById('acceptNext');
 						a.setAttribute("href","login.html");
-						document.getElementById('acceptNext').click(); 
+						document.getElementById('acceptNext').click(); */ 
+						});
+						
+						  
 					},
 					error: function(xhr, textStatus, error)
 					{
@@ -176,12 +185,12 @@ function reject()
 	var flag='1';//this is our flag
 	var d1=JSON.parse(localStorage.getItem("doctorId"));
 	var u=localStorage.getItem("uuid");
-	var request = createCORSRequest( "post", "http://radio.tekticks.co.in" );
+	var request = createCORSRequest( "post", "http://radio.tekticks.com" );
 	if(request)
 	{
 		$.ajax
 				({
-				url: 'http://radio.tekticks.co.in/radioJson/doctors_reject_json.php',		
+				url: 'http://radio.tekticks.com/radioJson/doctors_reject_json.php',		
 				type:"post",
 				data:{type1:d1},
 				cache: false,
@@ -189,10 +198,18 @@ function reject()
 					{
 						myApp.hidePreloader();
 						rejectRecords();
-						myApp.alert('Rejected','Patient Details');
+						
+						myApp.confirm('Do you really want to Reject?','Patient Records', function () {
+						navigator.app.clearHistory(); 
+						navigator.app.exitApp();
+						
+						/* myApp.alert('Rejected','Patient Details');
 						var a = document.getElementById('rejectNext');
 						a.setAttribute("href","login.html");
-						document.getElementById('rejectNext').click();
+						document.getElementById('rejectNext').click(); */
+						});
+						
+						
 					}
 		
 				})						 
@@ -413,11 +430,14 @@ function exit()
 {
 	
 	myApp.confirm('Do you really want to exit?','Exit', function () {
-		window.location="login.html";
+		
+		navigator.app.clearHistory(); 
+		navigator.app.exitApp();
+		//window.location="login.html";
 		
 		/* var a = document.getElementById('exitNext');
 		a.setAttribute("href","login.html");
-		document.getElementById('exitNext').click(); */
+		document.getElementById('exitNext').click();  */
 			});
 
 }	
