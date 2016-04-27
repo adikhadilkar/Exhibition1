@@ -46,7 +46,7 @@ function signin()
 							a.setAttribute("href","otp.html");
 							document.getElementById('signInNext').click();
 							
-							//myApp.alert('Your OTP Is '+otp,'OTP');
+							myApp.alert('Your OTP Is '+otp,'OTP');
 							
 						}
 						else if(JSON.stringify(response.status)==201)
@@ -96,11 +96,8 @@ function verifyotp()
 						if(JSON.stringify(response.status)==200)
 						{
 							myApp.hidePreloader();
-							//myApp.alert(JSON.stringify(response.login).replace(/"/g,""),'Login');
-							
 							//method for table selection
 							resend();
-							
 							//redirecting to otp.html
 							var a = document.getElementById('otpNex');
 							a.setAttribute("href","title.html");
@@ -129,6 +126,8 @@ function verifyotp()
 
 function accept()
 {
+	
+	myApp.confirm('Do you really want to accept?','Patient Details', function () {
 	myApp.showPreloader();
 	var pa=[];
 	var pa=JSON.parse(localStorage.getItem("patientArray"));
@@ -150,18 +149,10 @@ function accept()
 						//method for updation of data
 						updateRecords();
 						
-						
-						myApp.confirm('Do you really want to Accpet?','Patient Records', function () {
-						navigator.app.clearHistory(); 
-						navigator.app.exitApp();
-						
-						/* myApp.alert('Accepted','Patient Details');
-						var a = document.getElementById('acceptNext');
+						myApp.alert('Your response has been recorded! ','Data Accepted');
+						 var a = document.getElementById('acceptNext');
 						a.setAttribute("href","login.html");
-						document.getElementById('acceptNext').click(); */ 
-						});
-						
-						  
+						document.getElementById('acceptNext').click(); 
 					},
 					error: function(xhr, textStatus, error)
 					{
@@ -172,12 +163,13 @@ function accept()
 		
 				})						 
 	}			
-							
+	});						
 }
 
 
 function reject()
 {
+	myApp.confirm('Do you really want to reject?','Patient Details', function () {	
 	myApp.showPreloader();
 	var pa1=[];
 	var pa1=JSON.parse(localStorage.getItem("patientArray"));
@@ -198,22 +190,15 @@ function reject()
 					{
 						myApp.hidePreloader();
 						rejectRecords();
-						
-						myApp.confirm('Do you really want to Reject?','Patient Records', function () {
-						navigator.app.clearHistory(); 
-						navigator.app.exitApp();
-						
-						/* myApp.alert('Rejected','Patient Details');
+						myApp.alert('Your response has been recorded! ','Data Rejected');
 						var a = document.getElementById('rejectNext');
 						a.setAttribute("href","login.html");
-						document.getElementById('rejectNext').click(); */
-						});
-						
-						
+						document.getElementById('rejectNext').click();						
 					}
 		
 				})						 
-	}			
+	}	
+	});			
 }
 
 
@@ -279,7 +264,7 @@ function resultSuccess(tx,response)
 			for(var i=0;i<response.rows.length;i++)
 			{
 			count=i+1;
-			$('#output').append('<div class="card"><div class="card-content"><div class="card-content-inner"><p><font size="4"><b>'+count+') Patient Name: </b>'+response.rows.item(i).name+'</font></p><p><font size="4"><b>&nbsp;&nbsp;&nbsp;&nbsp;Date: </b>'+response.rows.item(i).date+'</font></p><p><font size="4"><b>&nbsp;&nbsp;&nbsp;&nbsp;Investigation: </b>'+response.rows.item(i).cut+'</font></p><p><font size="4"><b>&nbsp;&nbsp;&nbsp;&nbsp;Amount: </b>'+response.rows.item(i).investigation+'</font></p></table></div></div></div>');
+			$('#output').append('<div class="card"><div class="card-content"><div class="card-content-inner"><p><font size="4"><b>'+count+') Patient Name: </b>'+response.rows.item(i).name+'</font></p><p><font size="4"><b>&nbsp;&nbsp;&nbsp;&nbsp;Date: </b>'+response.rows.item(i).date+'</font></p><p><font size="4"><b>&nbsp;&nbsp;&nbsp;&nbsp;Investigation: </b>'+response.rows.item(i).cut+'</font></p><p><font size="4"><b>&nbsp;&nbsp;&nbsp;&nbsp;IP: </b>'+response.rows.item(i).investigation+'</font></p></table></div></div></div>');
 			
 			total+=response.rows.item(i).investigation;
 			drname=response.rows.item(i).dname;
@@ -287,17 +272,17 @@ function resultSuccess(tx,response)
 			
 		}
 		
-		$('#output').append('<div class="card"><div class="card-content"><div class="card-content-inner" ><p style="text-align:right"><font size="4"><b>Grand Total: </b>'+total+'</font></p></div></div></div>');
-		$('#dr').text(drname);
+		$('#output').append('<div class="card"><div class="card-content"><div class="card-content-inner" ><p style="text-align:right"><font size="4"><b>Total IP: </b>'+total+'</font></p></div></div></div>');
+		$('#dr').text('Dr. '+drname);
 		
 		localStorage.setItem("patientArray",JSON.stringify(patientArray));
 			
 		}
 		else
 		{
-			$("#nodata").text("No Data!");
 			$("#acc").fadeOut();
 			$("#rej").fadeOut();
+			$("#nodata").text("No Data!");
 			$("#exi").fadeIn();
 		}
 	
@@ -433,11 +418,12 @@ function exit()
 		
 		navigator.app.clearHistory(); 
 		navigator.app.exitApp();
-		//window.location="login.html";
 		
+		
+		//window.location.assign("login.html");
 		/* var a = document.getElementById('exitNext');
 		a.setAttribute("href","login.html");
-		document.getElementById('exitNext').click();  */
+		document.getElementById('exitNext').click();  */ 
 			});
-
+			//myApp.alert('Your response has been recorded! ','Data Rejected');
 }	
