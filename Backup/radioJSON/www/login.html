@@ -36,11 +36,11 @@
               </div>
 			</div>
 		
-            <div  class="page-content infinite-scroll login-screen-content" style="padding-top:50px">
+            <div  class="page-content infinite-scroll login-screen-content" style="padding-top:40px">
 			<div class="login-screen-title">Sign In</div>
 			<form method="POST" name="login" >	
    
-			<div class="list-block inputs-list">
+			<div class="list-block inputs-list" style="margin:0px 0px">
 			<ul>
 			
 				<li class="item-content">
@@ -77,13 +77,19 @@
   
 			<center><div class="content-block"><div class="label" id="loginInfo" name = "loginInfo" style="color:#ff0000"></div></div></center>
 			
-			 <div class="content-block"><a href="#" class="button button-fill button-raised color-blue" onclick="dev()"><b>Get Device Id</b></a></div>
-			 
+			 <div class="row" style="margin:0px 0px">
+			 <div class="col-50" >
+			 <center><div class="content-block"><a href="#" class="button button-fill button-raised color-blue" onclick="dev()"><b>Get Device Id</b></a></div></center>
+			 </div>
+			 <div class="col-50">
+			 <div class="content-block"><a href="#" class="button button-fill button-raised color-blue" onclick="location.reload();" style="padding-bottom:20px"><b>Refresh</b></a></div>
+			 </div>
+			 </div>
 	
-			 <center><p style="color:#0000ff">Turn On The <u>Location Settings</u></p></center>
-			 <center><p style="color:#0000ff">For The App To Work Properly.</p></center>
-			 <center>Location is <div id=loc></div></center>
- 
+			 <center><p style="color:#0000ff">Turn On The Location Settings For The App To Work Properly.</p></center>
+			
+			 <center><font size="4"><b>Location is <span id="loc"></span></b></font></center>
+			 
 			</form>
 			</div>
 		</div>

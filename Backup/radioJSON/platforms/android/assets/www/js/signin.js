@@ -42,11 +42,12 @@ function signin()
 							localStorage.setItem("doctorId",JSON.stringify(doctorId));
 							//redirecting to otp.html
 							myApp.hidePreloader();
-							var a = document.getElementById('signInNext');
+							mainView.router.loadPage("otp.html");
+							/* var a = document.getElementById('signInNext');
 							a.setAttribute("href","otp.html");
-							document.getElementById('signInNext').click();
+							document.getElementById('signInNext').click(); */
 							
-							myApp.alert('Your OTP Is '+otp,'OTP');
+							//myApp.alert('Your OTP Is '+otp,'OTP');
 							
 						}
 						else if(JSON.stringify(response.status)==201)
@@ -77,7 +78,6 @@ function verifyotp()
 	var request = createCORSRequest( "post", "http://radio.tekticks.com" );
 	if(request)
 	{
-		
 		if(localStorage.getItem("otp")==otp)
 		{
 			myApp.showPreloader();
@@ -96,12 +96,11 @@ function verifyotp()
 						if(JSON.stringify(response.status)==200)
 						{
 							myApp.hidePreloader();
-							//method for table selection
 							resend();
-							//redirecting to otp.html
-							var a = document.getElementById('otpNex');
+							mainView.router.loadPage("title.html");
+							/* var a = document.getElementById('otpNex');
 							a.setAttribute("href","title.html");
-							document.getElementById('otpNex').click();	
+							document.getElementById('otpNex').click();	 */
 						}
 			
 					},
@@ -116,10 +115,10 @@ function verifyotp()
 			sendData(data);
 		}
 		else
-			{
-				$("#otpError").text("Please enter a valid OTP");
-				$("#otpError").fadeIn();
-			}
+		{
+			$("#otpError").text("Please enter a valid OTP");
+			$("#otpError").fadeIn();
+		}
 	}
 }
 	
@@ -148,11 +147,8 @@ function accept()
 						myApp.hidePreloader();
 						//method for updation of data
 						updateRecords();
-						
+						mainView.router.loadPage("login.html");
 						myApp.alert('Your response has been recorded! ','Data Accepted');
-						 var a = document.getElementById('acceptNext');
-						a.setAttribute("href","login.html");
-						document.getElementById('acceptNext').click(); 
 					},
 					error: function(xhr, textStatus, error)
 					{
@@ -174,7 +170,7 @@ function reject()
 	var pa1=[];
 	var pa1=JSON.parse(localStorage.getItem("patientArray"));
 	 
-	var flag='1';//this is our flag
+	var flag='2';//this is our flag
 	var d1=JSON.parse(localStorage.getItem("doctorId"));
 	var u=localStorage.getItem("uuid");
 	var request = createCORSRequest( "post", "http://radio.tekticks.com" );
@@ -189,11 +185,10 @@ function reject()
 				 success: function(response)
 					{
 						myApp.hidePreloader();
+						//method for updation of data
 						rejectRecords();
 						myApp.alert('Your response has been recorded! ','Data Rejected');
-						var a = document.getElementById('rejectNext');
-						a.setAttribute("href","login.html");
-						document.getElementById('rejectNext').click();						
+						mainView.router.loadPage("login.html");
 					}
 		
 				})						 
@@ -273,7 +268,7 @@ function resultSuccess(tx,response)
 		}
 		
 		$('#output').append('<div class="card"><div class="card-content"><div class="card-content-inner" ><p style="text-align:right"><font size="4"><b>Total IP: </b>'+total+'</font></p></div></div></div>');
-		$('#dr').text('Dr. '+drname);
+		$('#dr').text('DR. '+drname);
 		
 		localStorage.setItem("patientArray",JSON.stringify(patientArray));
 			

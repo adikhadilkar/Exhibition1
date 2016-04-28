@@ -1,11 +1,11 @@
 function navi()
 {
-	
-	myApp.showPreloader();
+	$("#loc").text("OFF");
+	$("#loc").css('color', 'red');
+	myApp.showPreloader('Collecting Data');
 	var request = createCORSRequest( "post", "http://radio.tekticks.com" );
 	if(request)
 	{
-		$("#loc").text("Off");
 		var c=function(pos)
 		{
 			//finding coordinates
@@ -17,7 +17,7 @@ function navi()
 			localStorage.setItem("latitude",lat);
 			localStorage.setItem("longitude",lon);
 			localStorage.setItem("uuid",uuid);
-			//$("#loc").text("On");
+			$("#loc").text("On");
 			locationSend();	
 		}
 		navigator.geolocation.getCurrentPosition(c);
@@ -35,8 +35,9 @@ function locationSend()
 	var request = createCORSRequest( "post", "http://radio.tekticks.com" );
 	if(request)
 	{
-	$("#loc").text("On");
-	myApp.showPreloader();
+	$("#loc").text("ON");
+	$("#loc").css('color', 'green');
+	myApp.showPreloader('Data Collecting');
 	var data = {"location":[{"uuid":uuid,"latitude":lat,"longitude":lon}]};
 	console.log(data);
 	var sendData = function(data)
@@ -72,21 +73,18 @@ sendData(data);
 var len;
 function sendInfo()
 {	
-	myApp.showPreloader();
 	//getting device id
 	var dv=localStorage.getItem("dvid");
 	
-	var request = createCORSRequest( "post", "http://192.168.0.111:8080/Test_Local_Server_Db/" );
+	var request = createCORSRequest( "post", "http://192.168.1.5/Test_Local_Server_Db/" );
 	if(request)
 	{
-		//myApp.alert("entered localhost",'Localhost');
-		//myApp.showPreloader();
 		var data = {"file":[{"deviceId":dv}]};
 			var sendData = function(data)
 			{   
 				$.ajax
 				({
-				url: 'http://192.168.0.111:8080/Test_Local_Server_Db/data_json.php',
+				url: 'http://192.168.1.5/Test_Local_Server_Db/data_json.php',
 				type: 'POST',
 				contentType: 'application/json',
 				data: JSON.stringify(data),
@@ -95,8 +93,7 @@ function sendInfo()
 					{
 						if(JSON.stringify(response.status)==200)
 						{	
-							myApp.hidePreloader();
-							//myApp.showPreloader();
+							myApp.showPreloader();
 							//alert(response);
 							var e=response.file;
 							//alert(e);
@@ -104,7 +101,7 @@ function sendInfo()
 							//alert(len);
 							if(len==0 || e=="")
 							{
-								//myApp.hidePreloader();
+								myApp.hidePreloader();
 								myApp.alert('Data Not Found','Localhost');
 							}
 							else
@@ -114,8 +111,8 @@ function sendInfo()
 					
 							localStorage.setItem("fileLength",JSON.stringify(len));
 							localStorage.setItem("fileArray",JSON.stringify(fileArray));
-							//myApp.hidePreloader();
-							myApp.alert('Data Collected','Localhost');
+							myApp.hidePreloader();
+							myApp.alert('Data Collected','');
 							
 							//method for creation of table and insertion
 							send();
