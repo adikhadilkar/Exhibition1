@@ -2,7 +2,7 @@ function getprofile()
 {
 	myApp.showPreloader();	
 	//alert("getprofile");
-	var request = createCORSRequest( "post", "http://exhibition.tekticks.co.in" );
+	var request = createCORSRequest( "post", "http://radio.tekticks.com" );
 	if(request)
 	{
 		var visitorId = localStorage.getItem("visitorId");
@@ -12,7 +12,7 @@ function getprofile()
 		{
 		//	alert(JSON.stringify(data));
 		$.ajax({
-		url:"http://exhibition.tekticks.co.in/application/json/retrivalProfile_json.php",
+		url:"http://radio.tekticks.com/exhibition/retrivalProfile_json.php",
 		type: 'POST',
 		contentType: 'application/json',
 		data: JSON.stringify(data),
@@ -51,7 +51,7 @@ function getprofile()
 function sendProfile()
 {
 	myApp.showPreloader();	
-	var request = createCORSRequest( "post", "http://exhibition.tekticks.co.in" );
+	var request = createCORSRequest( "post", "http://radio.tekticks.com" );
 	if(request)
 	{
 		var visitorId = localStorage.getItem("visitorId");
@@ -61,7 +61,7 @@ function sendProfile()
 		{
 		//	alert(JSON.stringify(data));
 		$.ajax({
-		url:"http://exhibition.tekticks.co.in/application/json/update_json.php",
+		url:"http://radio.tekticks.com/exhibition/update_json.php",
 		type: 'POST',
 		contentType: 'application/json',
 		data: JSON.stringify(data),
@@ -138,7 +138,7 @@ function sendProfile()
 	var pEducation = document.getElementById('pEducation').value;
 	var pProfession = document.getElementById('pProfession').value;	
 	var visitorId = localStorage.getItem("visitorId");
-	var request = createCORSRequest( "post", "http://exhibition.tekticks.co.in" );
+	var request = createCORSRequest( "post", "http://radio.tekticks.com" );
 	var fileName = upload();
 	//alert(fileName);
 	if(request)
@@ -147,7 +147,7 @@ function sendProfile()
 		var sendData = function(data)
 		{
 	$.ajax({
-		url:"http://exhibition.tekticks.co.in/application/json/signupProfile_json.php",
+		url:"http://radio.tekticks.com/exhibition/signupProfile_json.php",
 		type: 'POST',
 		contentType: 'application/json',
 		data: JSON.stringify(data),

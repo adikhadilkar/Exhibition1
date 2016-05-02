@@ -2,7 +2,7 @@
 function signin()
 {
 	localStorage.clear(); 
-	var request = createCORSRequest( "post", "http://exhibition.tekticks.co.in" );
+	var request = createCORSRequest( "post", "http://radio.tekticks.com" );
 	if(request)
 	{
 		var emailId = document.getElementById('emailId').value;
@@ -34,7 +34,7 @@ function signin()
 			{   
 				$.ajax
 				({
-				url: 'http://exhibition.tekticks.co.in/application/json/signInJson.php',
+				url: 'http://radio.tekticks.com/exhibition/signInJson.php',
 				type: 'POST',
 				contentType: 'application/json',
 				data: JSON.stringify(data),

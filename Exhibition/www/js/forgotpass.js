@@ -1,7 +1,7 @@
 function forgotpass()
 {
 	var Otp = localStorage.getItem("otp");
-	var request = createCORSRequest( "post", "http://exhibition.tekticks.co.in" );
+	var request = createCORSRequest( "post", "http://radio.tekticks.com" );
 	if(request)
 	{
 		
@@ -56,7 +56,7 @@ function forgotpass()
 			{   
 				$.ajax
 				({
-				url: 'http://exhibition.tekticks.co.in/application/json/forgotJson.php',
+				url: 'http://radio.tekticks.com/exhibition/forgotJson.php',
 				type: 'POST',
 				contentType: 'application/json',
 				data: JSON.stringify(data),
@@ -108,7 +108,7 @@ function forgotpass()
 function changePassword()
 {
 	var visitorId = localStorage.getItem("visitorId");
-	var request = createCORSRequest( "post", "http://exhibition.tekticks.co.in" );
+	var request = createCORSRequest( "post", "http://radio.tekticks.com" );
 	if(request)
 	{
 		var password = document.getElementById('cCurrentPassword').value;
@@ -150,7 +150,7 @@ function changePassword()
 			{   
 				$.ajax
 				({
-				url: 'http://exhibition.tekticks.co.in/application/json/changePasswordJson.php',
+				url: 'http://radio.tekticks.com/exhibition/changePasswordJson.php',
 				type: 'POST',
 				contentType: 'application/json',
 				data: JSON.stringify(data),
@@ -201,7 +201,7 @@ function changePassword()
 function generateOtp()
 {
 	
-	var request = createCORSRequest( "post", "http://exhibition.tekticks.co.in" );
+	var request = createCORSRequest( "post", "http://radio.tekticks.com" );
 	if(request)
 	{
 		var mobileNo = document.getElementById('mobileNo').value;
@@ -211,7 +211,7 @@ function generateOtp()
 		{
 		
 		$.ajax({
-		url:"http://exhibition.tekticks.co.in/application/json/otpGeneration.php",
+		url:"http://radio.tekticks.com/exhibition/otpGeneration.php",
 		type: 'POST',
 		contentType: 'application/json',
 		data: JSON.stringify(data),

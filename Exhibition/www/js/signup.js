@@ -3,7 +3,7 @@ function signup()
 	
 	//document.getElementById('preload').click();
 	localStorage.clear(); 
-	var request = createCORSRequest( "post", "http://exhibition.tekticks.co.in" );
+	var request = createCORSRequest( "post", "http://radio.tekticks.com" );
 	if(request)
 	{
 		var name = document.getElementById('name').value;
@@ -55,7 +55,7 @@ function signup()
 			{   
 				$.ajax
 				({
-				url: 'http://exhibition.tekticks.co.in/application/json/otpCreation.php',
+				url: 'http://radio.tekticks.com/exhibition/otpCreation.php',
 				type: 'POST',
 				contentType: 'application/json',
 				data: JSON.stringify(data),
@@ -112,7 +112,7 @@ function verifyotp()
 	if(localStorage.getItem("otp")==otp)
 	{
 		$("#otpConfirm").text("OTP Verified");
-		var request = createCORSRequest( "post", "http://exhibition.tekticks.co.in" );
+		var request = createCORSRequest( "post", "http://radio.tekticks.com" );
 		if(request)
 		{
 			var mobileNo = localStorage.getItem("mobileNo");
@@ -124,7 +124,7 @@ function verifyotp()
 				{   
 					$.ajax
 					({
-					url: 'http://exhibition.tekticks.co.in/application/json/signUpJson.php',
+					url: 'http://radio.tekticks.com/exhibition/signUpJson.php',
 					type: 'POST',
 					contentType: 'application/json',
 					data: JSON.stringify(data),
