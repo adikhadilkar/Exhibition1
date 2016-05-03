@@ -1,11 +1,11 @@
 function getNews()
 {
 myApp.showPreloader();	
-var request = createCORSRequest( "post", "http://exhibition.tekticks.co.in" );
+var request = createCORSRequest( "post", "http://radio.tekticks.com" );
 	if(request)
 	{
 	$.ajax({
-		url:"http://exhibition.tekticks.co.in/application/json/news_json.php",
+		url:"http://radio.tekticks.com/exhibition/news_json.php",
 		dataType:"json",
 		contentType: 'application/json',
 		success:function(data)
@@ -87,7 +87,7 @@ var request = createCORSRequest( "post", "http://exhibition.tekticks.co.in" );
  function geteachnews(item)
 {	
 myApp.showPreloader();
-var request = createCORSRequest( "post", "http://exhibition.tekticks.co.in" );
+var request = createCORSRequest( "post", "http://radio.tekticks.com" );
 	if(request)
 	{
 		var newsId = $(item).attr("id");
@@ -99,7 +99,7 @@ var request = createCORSRequest( "post", "http://exhibition.tekticks.co.in" );
 			{
 				
 		$.ajax({
-		url:"http://exhibition.tekticks.co.in/application/json/news.php",
+		url:"http://radio.tekticks.com/exhibition/news.php",
 		type: 'POST',
 		dataType:"json",
 		data: JSON.stringify(data),

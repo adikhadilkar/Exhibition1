@@ -49,7 +49,7 @@ function getNotes()
 			//alert(z);
 			//var x=decodeURI(notes[i]);
 			//alert(x);
-			$('#notesOutput').append('<a href="eachNote.html" class="item-link close-panel" id="'+id[i]+'" onclick="getEachNote(this)"><div class="card"><div class="card-header" style="color:black"><b>'+notesTitle[i]+'</b></div><div class="card-content" ><div class="card-content-inner" style="padding-left: 15px; padding-right: 5px; padding-top: 5px; padding-bottom: 5px; word-wrap:break-word"><pre style="word-wrap: break-word"><font face="Roboto" color="black">'+notes[i]+'</font></pre></div></div></div></a>');
+			$('#notesOutput').append('<a href="eachNote.html" class="item-link close-panel" id="'+id[i]+'" onclick="getEachNote(this)"><div class="card"><div class="card-header" style="color:black"><b>'+notesTitle[i]+'</b></div><div class="card-content" ><div class="card-content-inner" style="padding-left: 15px; padding-right: 5px; padding-top: 5px; padding-bottom: 5px; word-wrap:break-word"><pre style="white-space: pre-wrap;"><font face="Roboto" color="black">'+notes[i]+'</font></pre></div></div></div></a>');
 		}
 		}
 		else
@@ -207,9 +207,10 @@ function updateNote()
 						{
 							myApp.hidePreloader();	
 							myApp.alert('Successfully Updated','Note');
-							var a = document.getElementById('nextNote');
+							mainView.router.loadPage("logo.html");
+							/* var a = document.getElementById('nextNote');
 							a.setAttribute("href","logo.html");
-							document.getElementById('nextNote').click();
+							document.getElementById('nextNote').click(); */
 						}
 		}
 	  
@@ -243,9 +244,7 @@ function deleteNote()
 			{
 					myApp.hidePreloader();	
 					myApp.alert('Successfully Deleted','Note');
-					var a = document.getElementById('deleteNext');
-					a.setAttribute("href","logo.html");
-					document.getElementById('deleteNext').click();	
+					mainView.router.loadPage("logo.html");
 			}
 		}
 		});
@@ -283,9 +282,7 @@ function addNote()
 						{
 							myApp.hidePreloader();	
 							myApp.alert('Successfully added','Note');
-							var a = document.getElementById('noteAdd');
-							a.setAttribute("href","logo.html");
-							document.getElementById('noteAdd').click();
+							mainView.router.loadPage("logo.html");
 						}
 		}
 	  

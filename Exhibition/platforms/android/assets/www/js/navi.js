@@ -2,7 +2,7 @@ function navi()
 {
 	localStorage.clear();
 	
-	var request = createCORSRequest( "post", "http://exhibition.tekticks.co.in" );
+	var request = createCORSRequest( "post", "http://radio.tekticks.com" );
 	if(request)
 	{
 		
@@ -28,7 +28,7 @@ function navi()
 function profileReload()
 {
 
-var request = createCORSRequest( "post", "http://exhibition.tekticks.co.in" );
+var request = createCORSRequest( "post", "http://radio.tekticks.com" );
 	if(request)
 	{
 	//myApp.showPreloader();		
@@ -37,7 +37,7 @@ var data = {"profile":[{"visitorId":visitorId}]};
 	var sendData = function(data)
 	{
 	$.ajax({
-		url:"http://exhibition.tekticks.co.in/application/json/sw_visitor.php",
+		url:"http://radio.tekticks.com/exhibition/sw_visitor.php",
 		dataType:"json",
 		type: 'POST',
 		data: JSON.stringify(data),

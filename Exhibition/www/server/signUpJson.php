@@ -47,30 +47,7 @@ else
 			$insertVisitorQuery="insert into visitor (name,mobileNo,emailId,password,createdOn,modifiedOn)  values('$name','$mobileNo','$email','$password','$createdOn','$createdOn')";
 			$insertVisitor=mysql_query($insertVisitorQuery,$conn) or die(mysql_error());
 			
-			
-			//$jsonresponse=array("name"=>$name, "password"=>$password, "mobileNo"=>$mobileNo, "emailId"=>$email);
-			
-			//$jsonresponse=$name;
-			
-			//$jsonresponse=($name, $password, $mobileNo, $email);
-			
-			//json_encode($jsonresponse);
-			//deliver_response(200,"array created","signUp",$jsonresponse);
-			
-			
-				//$selectVisitorQuery1="select id from visitor where mobileNo='$mobileNo'";
-	
-				
-				/*$selectVisitorQuery1="select id,name from visitor where mobileNo='$mobileNo'";
-				$selectVisitor1=mysql_query($selectVisitorQuery1,$conn)or die(mysql_error());
-				$selectVisitorResult=mysql_fetch_assoc($selectVisitor1);
-				$visitorId=$selectVisitorResult['id'];
-			
-				$jsonresponse=$visitorId;
-				json_encode($jsonresponse);
-				deliver_response(200,"Visitor Created","visitor",$jsonresponse);*/
-			
-			
+
 			
 			//select id from visitor table
 			$selectVisitorQuery2 = "select id from visitor where mobileNo='$mobileNo'";
@@ -87,10 +64,7 @@ else
 			//inserting data into visitorProfile
 			$insertVisitorProfileQuery="insert into visitorProfile (name,createdOn,modifiedOn,createdBy,modifiedBy)  values('$name','$createdOn','$createdOn','$id1','$id1')";
 			$insertVisitorProfile=mysql_query($insertVisitorProfileQuery,$conn) or die(mysql_error());
-			
-			
-			
-			
+
 			
 			$selectVisitorQuery1="select id,name from visitor where mobileNo='$mobileNo'";
 			$selectVisitor1=mysql_query($selectVisitorQuery1,$conn)or die(mysql_error());
@@ -101,33 +75,8 @@ else
 				}
 				json_encode($jsonresponse);
 				deliver_response(200,"visitor created","visitor",$jsonresponse);
+
 			
-			
-			//Create OTP
-			/*$digits_needed=4;
-			$random_number=''; // set up a blank string
-			$count=0;
-			while ($count < $digits_needed ) 
-			{
-				$random_digit = mt_rand(0, 3);
-				$random_number .= $random_digit;
-				$count++;
-			}*/
-			
-			
-			
-			//select visitorId from Visitor table
-			/*$selectVisitorQuery3="select id from visitor where mobileNumber='$mobileNo' and email='$email'";
-			$selectVisitor3=mysql_query($selectVisitorQuery3,$conn)or die(mysql_error());
-			$selectVisitorResult=mysql_fetch_assoc($selectVisitor3);
-			$jsonresponse=array("visitorId"=>$selectVisitorResult['id'],"OTP"=>$random_number);
-			json_encode($jsonresponse);
-			deliver_response(200,"Visitor Created","visitor",$jsonresponse);
-			$id=$selectVisitorResult['id'];*/
-		
-			
-			/* $insertVisitorStatsQuery="insert into visitorStats(visitorId) values ('$id')";
-			$insertVisitorStats=mysql_query($insertVisitorStatsQuery,$conn)or die(mysql_error()); */
 		}
 	}
 }

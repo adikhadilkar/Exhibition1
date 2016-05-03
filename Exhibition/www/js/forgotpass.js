@@ -69,11 +69,10 @@ function forgotpass()
 							myApp.alert('Password Changed','Password');
 							
 							navi();
-							
-							
-							var a = document.getElementById('cPasswordNext');
+							mainView.router.loadPage("logo.html");
+							/* var a = document.getElementById('cPasswordNext');
 							a.setAttribute("href","logo.html");
-							document.getElementById('cPasswordNext').click();
+							document.getElementById('cPasswordNext').click(); */
 							
 						}
 						else if(JSON.stringify(response.status)==203)
@@ -163,11 +162,7 @@ function changePassword()
 							myApp.alert('Password Changed','Password');
 							
 							navi();
-							
-							
-							var a = document.getElementById('changePasswordNext');
-							a.setAttribute("href","logo.html");
-							document.getElementById('changePasswordNext').click();
+							mainView.router.loadPage("logo.html");
 							
 						}
 						else if(JSON.stringify(response.status)==203)

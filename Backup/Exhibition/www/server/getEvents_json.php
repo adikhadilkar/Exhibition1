@@ -17,10 +17,10 @@ $response1=array();
 $response2=array();
 
 //select event title & description 
-@$selectEventsQuery="SELECT m.id, m.exhibitionId, m.eventTitle, m.description, v.id, v.exhibitionEventsId, v.date, v.starttime, v.endtime, z.venueName
-FROM exhibitionEvents m, exhibitionEventsDetail v, exhibitionEventVenue z
+@$selectEventsQuery="SELECT m.id, m.exhibitionId, m.eventTitle, m.description, v.id, v.exhibitionEventsId, v.date, v.starttime, v.endtime, z.venueName, l.imageLink
+FROM exhibitionEvents m, exhibitionEventsDetail v, exhibitionEventVenue z, exhibitionEvents_media l
 WHERE m.exhibitionId = v.exhibitionEventsId
-AND v.exhibitionEventsId = z.exhibitionId";
+AND v.exhibitionEventsId = z.exhibitionId AND z.exhibitionId = l.exhibitionEventsId";
 @$selectEvents=mysql_query($selectEventsQuery,$conn) or die(mysql_error());
 @$eventRows=mysql_num_rows($selectEvents);
 
@@ -34,6 +34,7 @@ while($events=mysql_fetch_array($selectEvents))
 		$exhibitionEventsId=$events['exhibitionEventsId'];
 		$starttime=$events['starttime'];
 		$endtime=$events['endtime'];
+		$imageLink=$events['imageLink'];
 
 		$date= $events['date'];
 		$newDate = date("d-m-Y", strtotime($date));
@@ -49,6 +50,7 @@ while($events=mysql_fetch_array($selectEvents))
 		$response['endtime']=$endtime;
 		$response['date']=$newDate;
 		$response['venueName'] = $venueName;
+		$response['imageLink']= $imageLink;
 		
 		array_push($data,$response);	
 } 

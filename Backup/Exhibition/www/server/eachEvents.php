@@ -25,11 +25,17 @@ $id=$data['events'][0]['id'];
 	$selectEvents2 = mysql_query($selectEventsQuery2,$conn) or die(mysql_error());
 	$selectEventsRows2 = mysql_num_rows($selectEvents2);
 	
-	if($selectEventsRows > 0 and $selectEventsRows1 > 0 and $selectEventsRows2 > 0 )
+	//select event media
+	$selectEventsQuery3 = "select imageLink from exhibitionEvents_media where id='$id'";
+	$selectEvents3 = mysql_query($selectEventsQuery3,$conn) or die(mysql_error());
+	$selectEventsRows3 = mysql_num_rows($selectEvents3);
+	
+	if($selectEventsRows > 0 and $selectEventsRows1 > 0 and $selectEventsRows2 > 0 and $selectEventsRows3 > 0)
 	{
 			$selectEventsResult=mysql_fetch_assoc($selectEvents);
 			$selectEventsResult1=mysql_fetch_assoc($selectEvents1);
 			$selectEventsResult2=mysql_fetch_assoc($selectEvents2);
+			$selectEventsResult3=mysql_fetch_assoc($selectEvents3);
 			
 			$date= $selectEventsResult1['date'];
 			$newDate = date("d-m-Y", strtotime($date));
@@ -45,6 +51,7 @@ $id=$data['events'][0]['id'];
 			$jsonresponse['starttime']=urldecode($selectEventsResult1['starttime']);
 			$jsonresponse['endtime']=urldecode($selectEventsResult1['endtime']);
 			$jsonresponse['venueName']=urldecode($selectEventsResult2['venueName']);
+			$jsonresponse['imageLink']=urldecode($selectEventsResult3['imageLink']);
 			$jsonresponse['date']=$newDate;
 			
 			json_encode($jsonresponse);
