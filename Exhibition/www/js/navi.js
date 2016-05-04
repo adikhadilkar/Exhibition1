@@ -2,6 +2,10 @@ function navi()
 {
 	localStorage.clear();
 	
+	//code for direct login should be removed in final testing
+	var visitorId="3";
+	localStorage.setItem("visitorId",visitorId);
+	
 	var request = createCORSRequest( "post", "http://radio.tekticks.com" );
 	if(request)
 	{
@@ -52,7 +56,7 @@ var data = {"profile":[{"visitorId":visitorId}]};
 			   					
 			 	if(profilePic=="null")
 				{
-					document.getElementById("profilePic1").style.backgroundImage='linear-gradient(rgba(0, 0, 0, 0.3),rgba(0, 0, 0, 0.8)),url(img/Profilelogo.png)';
+				document.getElementById("profilePic1").style.backgroundImage='linear-gradient(rgba(0, 0, 0, 0.3),rgba(0, 0, 0, 0.8)),url(img/Profilelogo.png)';
 				}
 				else
 				{

@@ -26,19 +26,26 @@ function getprofile()
 					$("#pName").text(JSON.stringify(response.visitor[0].name).replace(/"/g,""));
 					$("#pEmailId").text(JSON.stringify(response.visitor[0].emailId).replace(/"/g,""));
 					$("#pMobileNo").text(JSON.stringify(response.visitor[0].mobileNo).replace(/"/g,""));
-					//$("#pbirthdate").val(convertDate(JSON.stringify(response.visitor[0].dob).replace(/"/g,"")));
 					
 					
-					document.getElementById("prof1").style.backgroundImage='linear-gradient(rgba(0, 0, 0, 0.3),rgba(0, 0, 0, 0.8)),url("data:image/(png|jpg);base64,'+Pic+'")';
+					var p1=JSON.stringify(response.visitor[0].profilePic).replace(/"/g,"");
+					
+					
+					if(p1=="null")
+					{
+						document.getElementById("prof1").style.backgroundImage='linear-gradient(rgba(0, 0, 0, 0.3),rgba(0, 0, 0, 0.8)),url(img/Profilelogo.png)';
+					}
+					else
+					{
+						
+						 document.getElementById("prof1").style.backgroundImage='linear-gradient(rgba(0, 0, 0, 0.3),rgba(0, 0, 0, 0.8)),url("data:image/(png|jpg);base64,'+Pic+'")'; 
+					}
+					
+					
 					//$("#pcity").val(JSON.stringify(response.visitor[0].city).replace(/"/g,""));
-					//$("#profilePic").attr("src",'data:image/(png|jpg);base64,'+JSON.stringify(response.visitor[0].image).replace(/"/g,"")+'');
-					//$("#pgender").val(JSON.stringify(response.visitor[0].gender).replace(/"/g,""));
-					//alert(JSON.stringify(response.visitor[0].photoLink));
+					
 					
 					//$("#profilePic").attr("src",JSON.stringify(response.visitor[0].profilePic).replace(/"/g,""));
-					
-					//var show = document.getElementById('profileShow');
-					//show.style.visibility = 'visible';
 					
 		}
 		});
@@ -88,6 +95,7 @@ function sendProfile()
 					
 					document.getElementById("pProfession").value = JSON.stringify(response.visitor[0].profession).replace(/"/g,"");
 				
+					$("#profilePic").attr("src",response.visitor[0].profilePic);
 					//$("#pname").val(JSON.stringify(response.visitor[0].name).replace(/"/g,""));
 					//$("#pMobile").text(JSON.stringify(response.visitor[0].mobileNo).replace(/"/g,""));
 					//$("#pEmail").text(JSON.stringify(response.visitor[0].emailId).replace(/"/g,""));
@@ -129,14 +137,20 @@ function sendProfile()
     show.style.visibility = 'visible';
 	var profilePic = document.getElementById('profilePic').src;
 	//alert(profilePic);
-	var profilePicture = getBase64Image(document.getElementById('profilePic'));
+	//var profilePicture = getBase64Image(document.getElementById('profilePic'));
 	//alert(profilePicture);
-
+	
+	window.plugins.Base64.encodeFile(profilePic, function(base64)
+	{
+		alert('file base64 encoding: ' + base64);
+		localStorage.setItem("profilePic",base64);
+		
 	var pname = document.getElementById('pname').value;
 	var pphone = document.getElementById('pMobile').value;
 	var pemail = document.getElementById('pEmail').value;
 	var pBirthDate = document.getElementById('pBirthDate').value;
 	var pGender = document.getElementById("pGender").value;
+	alert(pGender);
 	var pEducation = document.getElementById('pEducation').value;
 	var pProfession = document.getElementById('pProfession').value;	
 	var visitorId = localStorage.getItem("visitorId");
@@ -145,7 +159,7 @@ function sendProfile()
 	//alert(fileName);
 	if(request)
 	{
-		var data = {"profile":[{"visitorId":visitorId,"pname":pname,"pemail":pemail,"profilePicture":profilePicture,"pphone":pphone,"pGender":pGender,"pBirthDate":pBirthDate,"pEducation":pEducation,"pProfession":pProfession}]};
+		var data = {"profile":[{"visitorId":visitorId,"pname":pname,"pemail":pemail,"profilePicture":base64,"pphone":pphone,"pGender":pGender,"pBirthDate":pBirthDate,"pEducation":pEducation,"pProfession":pProfession}]};
 		var sendData = function(data)
 		{
 	$.ajax({
@@ -162,9 +176,6 @@ function sendProfile()
 							profileReload();
 							myApp.alert('Data Updated','Update');
 							mainView.router.loadPage("logo.html");
-							/* var a = document.getElementById('reloadProfile');
-							a.setAttribute("href","logo.html");
-							document.getElementById('reloadProfile').click(); */
 						}
 							
 		
@@ -173,10 +184,12 @@ function sendProfile()
 		});
 		} 
 	sendData(data);
-	//console.log(data);
+
+	}
+		
+	}
 
 	
-	}
 }
 
 function getBase64Image(img) {

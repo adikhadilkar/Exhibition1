@@ -17,7 +17,7 @@ $visitorid1=$data['profile'][0]['visitorId'];
 		//Cheking visitor entry in Visitor table
 	
 	
-	$selectVisitorQuery="select v.name,v.mobileNo,v.emailId,vp.image from visitor v,visitorProfile vp where v.id='$visitorid1' and vp.createdBy=v.id";
+	$selectVisitorQuery="select v.name,v.mobileNo,v.emailId,vp.profilePic from visitor v,visitorProfile vp where v.id='$visitorid1' and vp.createdBy=v.id";
 	
 	//$selectVisitorQuery="select vp.name,vp.gender,vp.dob,vp.city,vp.photoLink,v.mobileNumber,v.email from visitorprofile vp,visitor v where vp.createdBy='$visitorid1' and vp.createdBy=v.id";
 	

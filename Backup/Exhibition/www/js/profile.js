@@ -1,10 +1,11 @@
 function getprofile()
 {
-	myApp.showPreloader();	
+	
 	//alert("getprofile");
 	var request = createCORSRequest( "post", "http://radio.tekticks.com" );
 	if(request)
 	{
+		myApp.showPreloader();	
 		var visitorId = localStorage.getItem("visitorId");
 		var data = {"profile":[{"visitorId":visitorId}]};
 		
@@ -20,7 +21,7 @@ function getprofile()
 		success:function(response)
 		{
 			myApp.hidePreloader();	
-			var Pic= JSON.stringify(response.visitor[0].image).replace(/"/g,"");
+			var Pic= JSON.stringify(response.visitor[0].profilePic).replace(/"/g,"");
 					//$(".floating-label").hide();
 					$("#pName").text(JSON.stringify(response.visitor[0].name).replace(/"/g,""));
 					$("#pEmailId").text(JSON.stringify(response.visitor[0].emailId).replace(/"/g,""));
@@ -50,10 +51,11 @@ function getprofile()
 
 function sendProfile()
 {
-	myApp.showPreloader();	
+		
 	var request = createCORSRequest( "post", "http://radio.tekticks.com" );
 	if(request)
 	{
+		myApp.showPreloader();
 		var visitorId = localStorage.getItem("visitorId");
 		var data = {"profile":[{"visitorId":visitorId}]};
 		
@@ -159,9 +161,10 @@ function sendProfile()
 							myApp.hidePreloader();	
 							profileReload();
 							myApp.alert('Data Updated','Update');
-							var a = document.getElementById('reloadProfile');
+							mainView.router.loadPage("logo.html");
+							/* var a = document.getElementById('reloadProfile');
 							a.setAttribute("href","logo.html");
-							document.getElementById('reloadProfile').click();
+							document.getElementById('reloadProfile').click(); */
 						}
 							
 		

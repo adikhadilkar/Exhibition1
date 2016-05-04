@@ -2,11 +2,11 @@ function getNotes()
 {
 	myApp.showPreloader();
 	$("#nodata").fadeOut();	
-	var request = createCORSRequest( "post", "http://exhibition.tekticks.co.in" );
+	var request = createCORSRequest( "post", "http://radio.tekticks.com" );
 	if(request)
 	{
 	$.ajax({
-		url:"http://exhibition.tekticks.co.in/application/json/getNotesJson.php",
+		url:"http://radio.tekticks.com/exhibition/getNotesJson.php",
 		dataType:"json",
 		contentType: 'application/json',
 		success:function(data)
@@ -49,7 +49,7 @@ function getNotes()
 			//alert(z);
 			//var x=decodeURI(notes[i]);
 			//alert(x);
-			$('#notesOutput').append('<a href="eachNote.html" class="item-link close-panel" id="'+id[i]+'" onclick="getEachNote(this)"><div class="card"><div class="card-header" style="color:black"><b>'+notesTitle[i]+'</b></div><div class="card-content" ><div class="card-content-inner" style="padding-left: 15px; padding-right: 5px; padding-top: 5px; padding-bottom: 5px; word-wrap:break-word"><pre style="word-wrap: break-word"><font face="Roboto" color="black">'+notes[i]+'</font></pre></div></div></div></a>');
+			$('#notesOutput').append('<a href="eachNote.html" class="item-link close-panel" id="'+id[i]+'" onclick="getEachNote(this)"><div class="card"><div class="card-header" style="color:black"><b>'+notesTitle[i]+'</b></div><div class="card-content" ><div class="card-content-inner" style="padding-left: 15px; padding-right: 5px; padding-top: 5px; padding-bottom: 5px; word-wrap:break-word"><pre style="white-space: pre-wrap;"><font face="Roboto" color="black">'+notes[i]+'</font></pre></div></div></div></a>');
 		}
 		}
 		else
@@ -67,7 +67,7 @@ function getNotes()
  function getEachNote(item)
 {	
 myApp.showPreloader();
-var request = createCORSRequest( "post", "http://exhibition.tekticks.co.in" );
+var request = createCORSRequest( "post", "http://radio.tekticks.com" );
 	if(request)
 	{
 		var id = $(item).attr("id");
@@ -78,7 +78,7 @@ var request = createCORSRequest( "post", "http://exhibition.tekticks.co.in" );
 			{
 				
 		$.ajax({
-		url:"http://exhibition.tekticks.co.in/application/json/notes.php",
+		url:"http://radio.tekticks.com/exhibition/notes.php",
 		type: 'POST',
 		dataType:"json",
 		data: JSON.stringify(data),
@@ -151,7 +151,7 @@ function initialize3()
 function editNote()
 {
 	myApp.showPreloader();
-	var request = createCORSRequest( "post", "http://exhibition.tekticks.co.in" );
+	var request = createCORSRequest( "post", "http://radio.tekticks.com" );
 	if(request)
 	{
 		var notesId = localStorage.getItem("notesId");
@@ -160,7 +160,7 @@ function editNote()
 		var getData = function(data)
 		{
 		$.ajax({
-		url:"http://exhibition.tekticks.co.in/application/json/retrivalNotes_json.php",
+		url:"http://radio.tekticks.com/exhibition/retrivalNotes_json.php",
 		type: 'POST',
 		contentType: 'application/json',
 		data: JSON.stringify(data),
@@ -188,7 +188,7 @@ function updateNote()
 	var content = document.getElementById('note').value;
 	var content2 = encodeURI(content);
 	var nId = localStorage.getItem("notesId");
-	var request = createCORSRequest( "post", "http://exhibition.tekticks.co.in" );
+	var request = createCORSRequest( "post", "http://radio.tekticks.com" );
 
 	if(request)
 	{
@@ -196,7 +196,7 @@ function updateNote()
 		var sendData = function(data)
 		{
 		$.ajax({
-		url:"http://exhibition.tekticks.co.in/application/json/notesUpdate.php",
+		url:"http://radio.tekticks.com/exhibition/notesUpdate.php",
 		type: 'POST',
 		contentType: 'application/json',
 		data: JSON.stringify(data),
@@ -207,9 +207,10 @@ function updateNote()
 						{
 							myApp.hidePreloader();	
 							myApp.alert('Successfully Updated','Note');
-							var a = document.getElementById('nextNote');
+							mainView.router.loadPage("logo.html");
+							/* var a = document.getElementById('nextNote');
 							a.setAttribute("href","logo.html");
-							document.getElementById('nextNote').click();
+							document.getElementById('nextNote').click(); */
 						}
 		}
 	  
@@ -223,7 +224,7 @@ function updateNote()
 function deleteNote()
 {
 	myApp.showPreloader();
-	var request = createCORSRequest( "post", "http://exhibition.tekticks.co.in" );
+	var request = createCORSRequest( "post", "http://radio.tekticks.com" );
 	if(request)
 	{
 		var notesId = localStorage.getItem("notesId");
@@ -232,7 +233,7 @@ function deleteNote()
 		var getData = function(data)
 		{
 		$.ajax({
-		url:"http://exhibition.tekticks.co.in/application/json/deleteNote.php",
+		url:"http://radio.tekticks.com/exhibition/deleteNote.php",
 		type: 'POST',
 		contentType: 'application/json',
 		data: JSON.stringify(data),
@@ -243,9 +244,7 @@ function deleteNote()
 			{
 					myApp.hidePreloader();	
 					myApp.alert('Successfully Deleted','Note');
-					var a = document.getElementById('deleteNext');
-					a.setAttribute("href","logo.html");
-					document.getElementById('deleteNext').click();	
+					mainView.router.loadPage("logo.html");
 			}
 		}
 		});
@@ -264,7 +263,7 @@ function addNote()
 	//alert(title1);
 	var content2 = encodeURI(content);
 	//alert(content2);
-	var request = createCORSRequest( "post", "http://exhibition.tekticks.co.in" );
+	var request = createCORSRequest( "post", "http://radio.tekticks.com" );
 
 	if(request)
 	{
@@ -272,7 +271,7 @@ function addNote()
 		var sendData = function(data)
 		{
 		$.ajax({
-		url:"http://exhibition.tekticks.co.in/application/json/notesAdd.php",
+		url:"http://radio.tekticks.com/exhibition/notesAdd.php",
 		type: 'POST',
 		contentType: 'application/json',
 		data: JSON.stringify(data),
@@ -283,9 +282,7 @@ function addNote()
 						{
 							myApp.hidePreloader();	
 							myApp.alert('Successfully added','Note');
-							var a = document.getElementById('noteAdd');
-							a.setAttribute("href","logo.html");
-							document.getElementById('noteAdd').click();
+							mainView.router.loadPage("logo.html");
 						}
 		}
 	  

@@ -260,7 +260,13 @@ function resultSuccess(tx,response)
 			for(var i=0;i<response.rows.length;i++)
 			{
 			count=i+1;
-			$('#output').append('<div class="card" style="padding:0px 0px 0px 0px"><div class="card-content"><div class="card-content-inner" style="padding:0px 0px 0px 0px"><p><b>'+count+') Patient Name: </b>'+response.rows.item(i).name+'<br><b>&nbsp;&nbsp;&nbsp;&nbsp;Investigation: </b>'+response.rows.item(i).cut+'<br><b>&nbsp;&nbsp;&nbsp;&nbsp;IP: </b>'+response.rows.item(i).investigation+'</p></div></div></div>');
+			  $('#output').append('<div class="card" style="padding:2px 2px 2px 2px"><div class="card-content"><div class="card-content-inner" style="padding:0px 0px 0px 0px"><p style="word-wrap: break-word;"><b>'+count+') Patient Name: </b>'+response.rows.item(i).name+'<br><b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Investigation: </b>'+response.rows.item(i).cut+'<br><b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;IP: </b>'+response.rows.item(i).investigation+'</p></div></div></div>');
+			
+			
+			 /* $('#output').append('<div class="card" style="padding:2px 2px 2px 2px"><div class="card-content"><div class="card-content-inner" style="padding:0px 0px 0px 0px"><p style="word-wrap: break-word;"><b>'+count+') Patient Name: </b>'+response.rows.item(i).name+'</p><p style="word-wrap: break-word;"><b>&nbsp;&nbsp;&nbsp;&nbsp;Investigation: </b>'+response.rows.item(i).cut+'</p><p style="word-wrap: break-word;"><b>&nbsp;&nbsp;&nbsp;&nbsp;IP: </b>'+response.rows.item(i).investigation+'</p></div></div></div>'); */ 
+			
+			
+			
 			
 			total+=response.rows.item(i).investigation;
 			drname=response.rows.item(i).dname;

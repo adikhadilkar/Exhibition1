@@ -113,7 +113,7 @@ function upload() {
     var ft = new FileTransfer();
 	//ft.upload(fileEntry.toURL(), encodeURI("http://socialworker.tekticks.co.in/json/uploadProfile.php"), onSuccess, onError, getFileUploadOptions(fileEntry.fullPath));	
 
-    ft.upload(imageURI, encodeURI("http://exhibition.tekticks.co.in/application/json/uploadProfile.php"), win, fail, options);
+    ft.upload(imageURI, encodeURI("http://radio.tekticks.com/exhibition/uploadProfile.php"), win, fail, options);
 	return imageURI.substr(imageURI.lastIndexOf('/'));
 	
 } 

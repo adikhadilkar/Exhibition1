@@ -1,4 +1,5 @@
 <?php
+date_default_timezone_set("Asia/Kolkata");
 header("Content-Type: text/html; charset=utf-8");
 //Access Control Headers
 header('Access-Control-Allow-Origin: *');
@@ -11,7 +12,7 @@ include 'config.php';
 $data=array();
 $response=array();
 //select news details
-@$selectNewsQuery="SELECT id,newsTitle,imageLink,description,tagLine,source,author,createdOn as date FROM news order by createdOn desc";
+@$selectNewsQuery="SELECT * FROM `news`";
 @$selectNews=mysql_query($selectNewsQuery,$conn) or die(mysql_error());
 @$newsRows=mysql_num_rows($selectNews);
   while($news=mysql_fetch_array($selectNews))
@@ -19,33 +20,25 @@ $response=array();
 		//$createdOn=$news['createdOn'];
 		//$date = date("d/m/Y", strtotime($createdOn));
 		
-		$date= $selectNewsResult['createdOn'];
-		$newDate = date("d-m-Y", strtotime($date));
+		/* $date= $selectNewsResult['createdOn'];
+		$newDate = date("d-m-Y", strtotime($date)); */
 		
-		$tagLine=urldecode($news['tagLine']);
-		$tagline =$info = mb_convert_encoding($tagLine, "HTML-ENTITIES", "UTF-8");
-		$newsTitle=urldecode($news['newsTitle']);
-		$newsTitle =$info = mb_convert_encoding($newsTitle, "HTML-ENTITIES", "UTF-8");
-		$author=urldecode($news['author']);
-		$author =$info = mb_convert_encoding($author, "HTML-ENTITIES", "UTF-8");
-		$source=urldecode($news['source']);
-		$source =$info = mb_convert_encoding($source, "HTML-ENTITIES", "UTF-8");
-		$description=urldecode($news['description']);
-		$description =$info = mb_convert_encoding($description, "HTML-ENTITIES", "UTF-8");
-		$id=$news['id'];
-		$response['id'] = $id;
-		$response['tagLine'] = $tagLine;
-		$response['newsTitle']=$newsTitle;
+		$date= $selectNewsResult['createdOn'];
+		$newDate = date("F j, Y, g:i a", strtotime($date));
+		
+		$response['id'] = $news['id'];
+		$response['tagLine'] = $news['tagline'];
+		$response['newsTitle']=$news['title'];
 		$response['imageLink']=$news['imageLink'];
-		$response['description']=$description;
-		$response['author']=$author;
+		$response['description']=$news['description'];
+		$response['author']=$news['author'];
 		$response['date']=$newDate;
-		$response['source']=$source;
+		$response['source']=$news['source'];
 		 
 		array_push($data,$response);
 		
 }
     $json= json_encode($data,JSON_NUMERIC_CHECK);     
-deliver_response(200,"news","newsInformation",$data);
+	deliver_response(200,"news","newsInformation",$data);
 
 ?>

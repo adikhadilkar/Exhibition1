@@ -19,7 +19,7 @@ else
 
 {			
 		//Cheking visitor entry in Visitor table
-	$selectVisitorQuery="select name,image from visitorProfile where createdBy='$visitorid1'";
+	$selectVisitorQuery="select name,profilePic from visitorProfile where createdBy='$visitorid1'";
 	$selectVisitor=mysql_query($selectVisitorQuery,$conn)or die(mysql_error());
 	$selectVisitorResult=mysql_fetch_assoc($selectVisitor);
 	$visitorResultRows=mysql_num_rows($selectVisitor);
@@ -27,7 +27,7 @@ else
 	if($visitorResultRows>0)
 	{
 		$jsonresponse['name']=$selectVisitorResult['name'];
-		$jsonresponse['image']=$selectVisitorResult['image'];
+		$jsonresponse['image']=$selectVisitorResult['profilePic'];
 		json_encode($jsonresponse);
 		deliver_response(200,"Record found","visitor",$jsonresponse);
 			

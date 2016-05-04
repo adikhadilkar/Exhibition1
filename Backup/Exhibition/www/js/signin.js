@@ -62,10 +62,10 @@ function signin()
 							
 							profileReload();
 							
-							
-							var a = document.getElementById('signInNext');
+							mainView.router.loadPage("logo.html");
+							/* var a = document.getElementById('signInNext');
 							a.setAttribute("href","logo.html");
-							document.getElementById('signInNext').click();
+							document.getElementById('signInNext').click(); */
 							
 						}
 						else if(JSON.stringify(response.status)==203)

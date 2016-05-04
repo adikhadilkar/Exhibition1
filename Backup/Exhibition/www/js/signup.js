@@ -1,8 +1,7 @@
 function signup()
 {
-	
-	//document.getElementById('preload').click();
 	localStorage.clear(); 
+	
 	var request = createCORSRequest( "post", "http://radio.tekticks.com" );
 	if(request)
 	{
@@ -49,6 +48,7 @@ function signup()
 		
 		if(mobileNoValidate && emailIdValidate && passwordValidate)
 		{
+			myApp.showPreloader();
 			//sending otp
 			var data = {"otp":[{"mobileNo":mobileNo,"emailId":emailId}]};
 			var sendData = function(data)
@@ -64,8 +64,6 @@ function signup()
 					{
 						if(JSON.stringify(response.status)==200)
 						{
-							$("#displayInfo").text("Valid Credentials");
-							$("#displayInfo").fadeIn();
 							$("#mobileError").fadeOut();
 							$("#emailError").fadeOut();
 							$("#nameError").fadeOut();
@@ -77,19 +75,24 @@ function signup()
 							localStorage.setItem("password", password);
 							localStorage.setItem("name", name);
 							localStorage.setItem("otp", otp);
+							myApp.hidePreloader();
 							//redirecting to otp.html
-							var a = document.getElementById('signupNext');
+							mainView.router.loadPage("otp.html");
+							myApp.alert('Your OTP is '+otp,'OTP');
+							/* var a = document.getElementById('signupNext');
 							a.setAttribute("href","otp.html");
-							document.getElementById('signupNext').click();
+							document.getElementById('signupNext').click(); */
 							
 						}
 						else if(JSON.stringify(response.status)==202)
 						{
+							myApp.hidePreloader();
 							$("#displayInfo").text(JSON.stringify(response.statusMessage).replace(/"/g,""));
 							$("#displayInfo").fadeIn();
 						}
 						else if(JSON.stringify(response.status)==203)
 						{
+							myApp.hidePreloader();
 							$("#displayInfo").text(JSON.stringify(response.statusMessage).replace(/"/g,""));
 							$("#displayInfo").fadeIn();
 						}
@@ -111,11 +114,14 @@ function verifyotp()
 	var otp = document.getElementById('otp').value;
 	if(localStorage.getItem("otp")==otp)
 	{
-		$("#otpConfirm").text("OTP Verified");
+		myApp.showPreloader();
+		//$("#otpConfirm").text("OTP Verified");
 		var request = createCORSRequest( "post", "http://radio.tekticks.com" );
 		if(request)
 		{
+			alert("sdasf");
 			var mobileNo = localStorage.getItem("mobileNo");
+			alert(mobileNo);
 			var emailId = localStorage.getItem("emailId");
 			var password = localStorage.getItem("password");
 			var name = localStorage.getItem("name");
@@ -140,6 +146,7 @@ function verifyotp()
 								localStorage.setItem("visitorId",visitorId);
 								//$("#displayName").text(JSON.stringify("Welcome "+response.visitor[0].name).replace(/"/g,""));
 								//var Name = JSON.stringify(response.signUp).replace(/"/g,"");
+								myApp.hidePreloader();
 								myApp.alert('Welcome '+Name,'SignUp');
 								
 								$("#signup").fadeOut();
@@ -162,16 +169,15 @@ function verifyotp()
 								
 								profileReload();
 								
-								var b = document.getElementById('otpNext');
-								b.setAttribute("href","logo.html");
-								document.getElementById('otpNext').click();
+								mainView.router.loadPage("logo.html");
 								
 								
 							}
-							else
+							 else
 							{
+								myApp.hidePreloader();
 								alert(JSON.stringify(response.statusMessage).replace(/"/g,""));
-							}
+							} 
 						},
 						error: function(xhr, textStatus, error)
 						{

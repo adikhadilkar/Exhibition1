@@ -66,7 +66,7 @@ var request = createCORSRequest( "post", "http://radio.tekticks.com" );
 		
 		for(var i=0;i<n;i++)
 		{ 
-			$('#newsOutput').append('<a href="eachNews.html"  class="item-link close-panel" id="'+newsid[i]+'" onclick="geteachnews(this)"><div class="card demo-card-header-pic"><div style="background-image:url('+imageLink[i]+')"  class="card-header color-white no-border" style="display: block;"></div><div class="card-content"> <div class="card-content-inner"> <p class="color-black"><b><big>'+newsTitle[i]+'</big></b></p><p class="color-black">Author - '+author[i]+'</p></div></div></div> </a>');
+			$('#newsOutput').append('<a href="eachNews.html"  class="item-link close-panel" id="'+newsid[i]+'" onclick="geteachnews(this)"><div class="card demo-card-header-pic"><div style="background-image:url('+imageLink[i]+')"  class="card-header color-white no-border" style="display: block;"></div><div class="card-content"> <div class="card-content-inner"> <p class="color-black"><b><big>'+newsTitle[i]+'</big></b><br>Author - '+author[i]+'</p></div></div></div> </a>');
 		}
 		}
 		else
