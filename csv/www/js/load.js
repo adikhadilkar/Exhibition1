@@ -1,0 +1,68 @@
+var files1=[];
+
+$("#filename").change(function(e) {
+    var ext = $("input#filename").val().split(".").pop().toLowerCase();
+	alert(ext);
+	files1 = this.files;
+	alert(files1);
+
+    if($.inArray(ext, ["csv"]) == -1) {
+    alert('Upload CSV');
+    return false;
+    }
+
+    if (e.target.files != undefined) {
+		alert(e.target.files);
+        var reader = new FileReader();
+        var csvLines;
+        var csvValues;
+        var i,j;
+        var val=[];
+        var final=[];
+
+        reader.onload = function(e) {
+            csvLines = e.target.result.split("\n");
+            for(i=0; i<csvLines.length; i++){
+                csvValues = csvLines[i].split(",");
+                //alert(csvValues);
+                for(j=0;j<csvValues.length;j++)
+                {
+                	val[j] = csvValues[j].split(",");
+                  final.push(val[j]);
+                }    
+            }
+          alert(final);
+		localStorage.setItem("final",JSON.stringify(final));
+		myApp.alert('File Loaded','CSV');
+		myDelete();
+        };
+        reader.readAsText(e.target.files.item(0));
+    }
+    return false;
+	
+}); 
+
+ function myDelete()
+{
+	alert("myDelete called..");
+	alert(files1[0]);
+   
+		var root = getFileSystemRoot();
+        var remove_file = function(entry) {
+                entry.remove(function() {
+                    navigator.notification.alert(entry.toURI(), null, 'Entry deleted');                    
+                }, onFileSystemError);
+            };
+            
+            // retrieve a file and truncate it
+            root.getFile("input#filename", {create: false}, remove_file, onFileSystemError);
+			alert("file deleted");
+
+	
+}	
+
+ function onFileSystemError(error) 
+ {
+	var msg = 'file system error: ' + error.code;
+	navigator.notification.alert(msg, null, 'File System Error');
+ } 
