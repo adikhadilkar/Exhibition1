@@ -1,6 +1,6 @@
 function signin()
 {
-	var request = createCORSRequest( "post", "http://alienpro.in" );
+	var request = createCORSRequest( "post", "http://radio.tekticks.com" );
 	if(request)
 	{
 		var mobileNo = document.getElementById('mobileNo').value;
@@ -22,7 +22,7 @@ function signin()
 			{   
 				$.ajax
 				({
-				url: 'http://alienpro.in/create_otp_json.php',
+				url: 'http://radio.tekticks.com/radioJson/create_otp_json.php',
 				type: 'POST',
 				contentType: 'application/json',
 				data: JSON.stringify(data),
@@ -47,7 +47,7 @@ function signin()
 							a.setAttribute("href","otp.html");
 							document.getElementById('signInNext').click(); */
 							
-							myApp.alert('Your OTP Is '+otp,'OTP');
+							//myApp.alert('Your OTP Is '+otp,'OTP');
 							
 						}
 						else if(JSON.stringify(response.status)==201)
@@ -75,7 +75,7 @@ function verifyotp()
 {
 	var otp = document.getElementById('otp').value;
 	var mobile=localStorage.getItem("mobileNo");
-	var request = createCORSRequest( "post", "http://alienpro.in" );
+	var request = createCORSRequest( "post", "http://radio.tekticks.com" );
 	if(request)
 	{
 		if(localStorage.getItem("otp")==otp)
@@ -86,7 +86,7 @@ function verifyotp()
 			{   
 				$.ajax
 				({
-				url: 'http://alienpro.in/login_details.php',
+				url: 'http://radio.tekticks.com/radioJson/login_details.php',
 				type: 'POST',
 				contentType: 'application/json',
 				data: JSON.stringify(data),
@@ -133,12 +133,12 @@ function accept()
 	var flag='1';//this is our flag
 	var d=JSON.parse(localStorage.getItem("doctorId"));
 	var u=localStorage.getItem("uuid");
-	var request = createCORSRequest( "post", "http://alienpro.in" );
+	var request = createCORSRequest( "post", "http://radio.tekticks.com" );
 	if(request)
 	{
 		$.ajax
 				({
-				url: 'http://alienpro.in/accept_reject_json.php',
+				url: 'http://radio.tekticks.com/radioJson/accept_reject_json.php',
 				type:"post",
 				data:{type:d},
 				cache: false, 
@@ -173,12 +173,12 @@ function reject()
 	var flag='2';//this is our flag
 	var d1=JSON.parse(localStorage.getItem("doctorId"));
 	var u=localStorage.getItem("uuid");
-	var request = createCORSRequest( "post", "http://alienpro.in" );
+	var request = createCORSRequest( "post", "http://radio.tekticks.com" );
 	if(request)
 	{
 		$.ajax
 				({
-				url: 'http://alienpro.in/doctors_reject_json.php',		
+				url: 'http://radio.tekticks.com/radioJson/doctors_reject_json.php',		
 				type:"post",
 				data:{type1:d1},
 				cache: false,
@@ -269,9 +269,11 @@ function resultSuccess(tx,response)
 			 /* $('#output').append('<div class="card" style="padding:2px 2px 2px 2px"><div class="card-content"><div class="card-content-inner" style="padding:0px 0px 0px 0px"><p style="word-wrap: break-word;"><b>'+count+') Patient Name: </b>'+response.rows.item(i).name+'</p><p style="word-wrap: break-word;"><b>&nbsp;&nbsp;&nbsp;&nbsp;Investigation: </b>'+response.rows.item(i).cut+'</p><p style="word-wrap: break-word;"><b>&nbsp;&nbsp;&nbsp;&nbsp;IP: </b>'+response.rows.item(i).investigation+'</p></div></div></div>'); */ 
 			
 			//records are separated with comma
-			 $('#output').append('<div class="card" style="padding:2px 2px 2px 2px"><div class="card-content"><div class="card-content-inner" style="padding:0px 0px 0px 0px"><p style="word-wrap: break-word;"><b>'+count+') Patient Name: </b>'+response.rows.item(i).name+'<b>, Investigation: </b>'+response.rows.item(i).cut+'<b>, IP: </b>'+response.rows.item(i).investigation+'</p></div></div></div>');
+			 $('#output').append('<div class="card" style="padding:2px 2px 2px 2px"><div class="card-content"><div class="card-content-inner" style="padding:0px 0px 0px 0px"><p style="word-wrap: break-word;">'+count+') '+response.rows.item(i).name+', '+response.rows.item(i).investigation+', '+response.rows.item(i).cut+'</p></div></div></div>');
+			 
+			 
 			
-			total+=response.rows.item(i).investigation;
+			total+=response.rows.item(i).cut;
 			drname=response.rows.item(i).dname;
 			patientArray[i]=response.rows.item(i).pt_transaction;
 			
@@ -285,6 +287,7 @@ function resultSuccess(tx,response)
 		}
 		else
 		{
+			$("#showButton").fadeOut();
 			$("#acc").fadeOut();
 			$("#rej").fadeOut();
 			$("#nodata").text("No Data!");

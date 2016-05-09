@@ -1,7 +1,6 @@
 function navi()
 {
 	localStorage.clear();
-	
 	var request = createCORSRequest( "post", "http://radio.tekticks.com" );
 	if(request)
 	{
@@ -56,6 +55,8 @@ var data = {"profile":[{"visitorId":visitorId}]};
 				}
 				else
 				{
+				//$('#profilePic1').css('backgroundImage','url(' + encodeURI(profilePic) +')');
+				
 				document.getElementById("profilePic1").style.backgroundImage='linear-gradient(rgba(0, 0, 0, 0.3),rgba(0, 0, 0, 0.8)),url("data:image/(png|jpg);base64,'+profilePic+'")';
 				}
 		 

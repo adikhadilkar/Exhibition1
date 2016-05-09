@@ -19,7 +19,7 @@ $pGender=$data['profile'][0]['pGender'];
 $pprofession=$data['profile'][0]['pProfession'];
 $pEducation=$data['profile'][0]['pEducation'];
 $pBirthDate=$data['profile'][0]['pBirthDate'];
-$image=$data['profile'][0]['profilePicture'];
+$profilePic=$data['profile'][0]['profilePicture'];
 
 //echo $pbirthdate;
 			
@@ -31,7 +31,7 @@ $image=$data['profile'][0]['profilePicture'];
 $updateVisitorProfileQuery="update visitorProfile
 set name='$pname',
 gender='$pGender',
-image='$image',
+profilePic='$profilePic',
 dateOfBirth='$dob',	
 profession='$pprofession',
 education='$pEducation'
@@ -42,8 +42,7 @@ mysql_query($updateVisitorProfileQuery,$conn);
 $updateVisitorQuery="update visitor
 set name='$pname',
 emailId='$pemail',
-mobileNo='$pphone',
-image='$image'	
+mobileNo='$pphone'	
 where id='$visitorId'";	
 mysql_query($updateVisitorQuery,$conn); 
 	

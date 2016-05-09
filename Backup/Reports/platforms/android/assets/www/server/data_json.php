@@ -11,7 +11,7 @@ include 'jsonDeliver.php';
 include 'config.php';
 
 //Fetch and decode JSON
-//$json ='{"file":[{"deviceId":"db7b47eb4398efca"}]}';
+//$json ='{"file":[{"deviceId":"iPhone 6s"}]}';
 $json = file_get_contents("php://input");
 $data = json_decode($json, true);
 $jsonresponse = array();
@@ -26,10 +26,10 @@ $deviceId=$data['file'][0]['deviceId'];
 		deliver_response(203,"Missing Information","file",$jsonresponse);
 	}
 	else
-	{ 
-		$selectData="select * from csvfile where deviceId='$deviceId' AND status='0'";
-		$resData=mysqli_query($conn,$selectData)or die(mysqli_error());
-		while($rows=mysqli_fetch_array($resData))
+	{
+		$selectData="select * from csvfile where deviceId=$deviceId AND status='0'";
+		$resData=mysql_query($selectData,$conn)or die(mysql_error());
+		while($rows=mysql_fetch_array($resData))
 		{
 			$jsonresponse[]=$rows['pt_transaction'];
 			$jsonresponse[]=$rows['radioPatientRptDate'];
@@ -37,6 +37,7 @@ $deviceId=$data['file'][0]['deviceId'];
 			$jsonresponse[]=$rows['radioPatientsId'];
 			$jsonresponse[]=$rows['radioDoctorId'];
 			$jsonresponse[]=$rows['radioName'];
+			$jsonresponse[]=$rows['cut'];
 			$jsonresponse[]=$rows['invest'];
 			$jsonresponse[]=$rows['cut'];
 			$jsonresponse[]=$rows['deviceId'];
@@ -47,8 +48,8 @@ $deviceId=$data['file'][0]['deviceId'];
 		
 		json_encode($jsonresponse);
 		deliver_response(200,"New Records Found","file",$jsonresponse);
- 
+
 	}
-	 	
+			
 	
 ?>

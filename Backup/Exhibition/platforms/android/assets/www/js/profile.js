@@ -1,10 +1,11 @@
 function getprofile()
 {
-	myApp.showPreloader();	
+	
 	//alert("getprofile");
 	var request = createCORSRequest( "post", "http://radio.tekticks.com" );
 	if(request)
 	{
+		myApp.showPreloader();	
 		var visitorId = localStorage.getItem("visitorId");
 		var data = {"profile":[{"visitorId":visitorId}]};
 		
@@ -20,24 +21,30 @@ function getprofile()
 		success:function(response)
 		{
 			myApp.hidePreloader();	
-			var Pic= JSON.stringify(response.visitor[0].image).replace(/"/g,"");
+			var Pic= JSON.stringify(response.visitor[0].profilePic).replace(/"/g,"");
 					//$(".floating-label").hide();
 					$("#pName").text(JSON.stringify(response.visitor[0].name).replace(/"/g,""));
 					$("#pEmailId").text(JSON.stringify(response.visitor[0].emailId).replace(/"/g,""));
 					$("#pMobileNo").text(JSON.stringify(response.visitor[0].mobileNo).replace(/"/g,""));
-					//$("#pbirthdate").val(convertDate(JSON.stringify(response.visitor[0].dob).replace(/"/g,"")));
 					
 					
-					document.getElementById("prof1").style.backgroundImage='linear-gradient(rgba(0, 0, 0, 0.3),rgba(0, 0, 0, 0.8)),url("data:image/(png|jpg);base64,'+Pic+'")';
+					var p1=JSON.stringify(response.visitor[0].profilePic).replace(/"/g,"");
+					
+					
+					if(p1=="null")
+					{
+						document.getElementById("prof1").style.backgroundImage='linear-gradient(rgba(0, 0, 0, 0.3),rgba(0, 0, 0, 0.8)),url(img/Profilelogo.png)';
+					}
+					else
+					{
+						document.getElementById("prof1").style.backgroundImage='linear-gradient(rgba(0, 0, 0, 0.3),rgba(0, 0, 0, 0.8)),url("data:image/(png|jpg);base64,'+Pic+'")';
+					}
+					
+					
 					//$("#pcity").val(JSON.stringify(response.visitor[0].city).replace(/"/g,""));
-					//$("#profilePic").attr("src",'data:image/(png|jpg);base64,'+JSON.stringify(response.visitor[0].image).replace(/"/g,"")+'');
-					//$("#pgender").val(JSON.stringify(response.visitor[0].gender).replace(/"/g,""));
-					//alert(JSON.stringify(response.visitor[0].photoLink));
+					
 					
 					//$("#profilePic").attr("src",JSON.stringify(response.visitor[0].profilePic).replace(/"/g,""));
-					
-					//var show = document.getElementById('profileShow');
-					//show.style.visibility = 'visible';
 					
 		}
 		});
@@ -50,10 +57,11 @@ function getprofile()
 
 function sendProfile()
 {
-	myApp.showPreloader();	
+		
 	var request = createCORSRequest( "post", "http://radio.tekticks.com" );
 	if(request)
 	{
+		myApp.showPreloader();
 		var visitorId = localStorage.getItem("visitorId");
 		var data = {"profile":[{"visitorId":visitorId}]};
 		
@@ -135,6 +143,7 @@ function sendProfile()
 	var pemail = document.getElementById('pEmail').value;
 	var pBirthDate = document.getElementById('pBirthDate').value;
 	var pGender = document.getElementById("pGender").value;
+	alert(pGender);
 	var pEducation = document.getElementById('pEducation').value;
 	var pProfession = document.getElementById('pProfession').value;	
 	var visitorId = localStorage.getItem("visitorId");

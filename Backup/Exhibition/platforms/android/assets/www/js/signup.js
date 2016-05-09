@@ -119,7 +119,9 @@ function verifyotp()
 		var request = createCORSRequest( "post", "http://radio.tekticks.com" );
 		if(request)
 		{
+			alert("sdasf");
 			var mobileNo = localStorage.getItem("mobileNo");
+			alert(mobileNo);
 			var emailId = localStorage.getItem("emailId");
 			var password = localStorage.getItem("password");
 			var name = localStorage.getItem("name");

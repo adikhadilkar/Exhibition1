@@ -16,6 +16,30 @@
       <div class="right"><a href="#" class="open-panel link icon-only"><i class="icon icon-bars"></i></a></div>
     </div>
   </div>
+  
+  <div class="speed-dial">
+		<!-- FAB inside will open Speed Dial actions -->
+		<a href="#" class="floating-button">
+		<!-- First icon is visible when Speed Dial actions are closed -->
+		<i class="icon icon-plus"></i>
+		<!-- Second icon is visible when Speed Dial actions are opened -->
+		 <i class="icon icon-close"></i>
+		</a>
+		
+		 <div class="speed-dial-buttons">
+		
+      <a href="profileEdit.html" onclick="sendProfile()">
+        <i class="icon"><img src="img/edit.png" title="Edit Profile"></i>
+      </a>
+      <a href="changePassword.html">
+        <i class="icon"><img src="img/changepassword.png" title="change password" ></i>
+      </a>
+	  <a href="#">
+        <i class="icon"><img src="img/follow.png" title="Follow" ></i>
+      </a>
+    </div>	
+	</div>
+  
   <div class="page-content infinite-scroll">
 	<style>
 	.demo-card-header-pic .card-header {
@@ -51,7 +75,7 @@
 				<!--<div style="background-image:url(http://lorempixel.com/1000/611/)" valign="bottom" class="card-header color-white no-border"><b><h2><div class="label" id="pName" name = "pName"></div></h2></b></div>-->
 				
 				<a id="newProfile" href="#" class="item-link close-panel"  name="profile" style="background: url();height:400px">
-							<div  id="prof1" style="background-image:url();background-repeat:no-repeat;background-size:100% 100%;width:device-width;height:350px;position:initial;margin-left:5px;margin-top:5px;margin-right:5px" class="lazy">	
+							<div  id="prof1" style="background-image:url();background-repeat:no-repeat;background-size:100% 100%;width:200;height:350px;position:initial;margin-left:5px;margin-top:5px;margin-right:5px" class="lazy">	
 							</div>
 						</a>
 				
@@ -69,11 +93,11 @@
 				</div>
 				
 				<div class="card-content">
-				<div class="content-block" style="padding:10px"><a href="profileEdit.html" class="button button-fill button-raised color-green" onclick="sendProfile()">Edit Profile</a></div>
+<!-- 				<div class="content-block" style="padding:10px"><a href="profileEdit.html" class="button button-fill button-raised color-green" onclick="sendProfile()">Edit Profile</a></div>
 						
 				<div class="content-block" style="padding:10px"><a href="changePassword.html" class="button button-fill button-raised color-red">Change Password</a></div>
 						
-				<div class="content-block" style="padding:10px"><a href="#" class="button button-fill button-raised color-blue">Follow</a></div>
+				<div class="content-block" style="padding:10px"><a href="#" class="button button-fill button-raised color-blue">Follow</a></div> -->
 						
 				</div>
 				

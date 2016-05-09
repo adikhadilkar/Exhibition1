@@ -1,0 +1,34 @@
+<div data-page="login-screen-embedded" class="page">
+<a href="#" id="preloader" class="button button-raised demo-preloader-custom"></a>
+<div class="navbar">
+    <div class="navbar-inner">
+      <!--<div class="left"><a href="logo.html" class="back link icon-only"><i class="icon icon-back"></i></a></div>-->
+      <div class="center">Verify OTP</div>
+      <div class="right"><a href="#" class="open-panel link icon-only"><i class="icon icon-bars"></i></a></div>
+    </div>
+  </div>
+  <div class="page-content login-screen-content" style="padding-top:40px">
+    <div class="login-screen-title">Verify OTP</div>
+    <form>
+      <div class="list-block inputs-list">
+        <ul>
+			<li class="item-content">
+			<div class="item-media"><i class="icon icon-form-comment"></i></div>
+            <div class="item-inner"> 
+			<div class="label" id="otpError" name = "otpError" style="color:#ff0000"></div>
+              <div class="item-title floating-label">Enter OTP</div>
+              <div class="item-input">
+                <input type="tel" name="otp" id="otp" placeholder="" maxlength="4" onkeypress="return isNumber(event)"/>
+              </div>
+            </div>
+          </li>
+        </ul>
+      </div>
+	  
+    <div class="content-block"><a href="#" class="button button-fill button-raised color-blue" onclick="verifyotp()">Verify</a>
+	<a href="#" id="otpNex"></a>
+    
+  </div>
+  <center><div class="content-block"><div class="label" id="otpConfirm" name = "otpConfirm" style="color:#0000FF"></div></div></center>
+  </form>
+</div>

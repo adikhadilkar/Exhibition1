@@ -52,7 +52,7 @@ var data = {"profile":[{"visitorId":visitorId}]};
 			   					
 			 	if(profilePic=="null")
 				{
-					document.getElementById("profilePic1").style.backgroundImage='linear-gradient(rgba(0, 0, 0, 0.3),rgba(0, 0, 0, 0.8)),url(img/Profilelogo.png)';
+				document.getElementById("profilePic1").style.backgroundImage='linear-gradient(rgba(0, 0, 0, 0.3),rgba(0, 0, 0, 0.8)),url(img/Profilelogo.png)';
 				}
 				else
 				{

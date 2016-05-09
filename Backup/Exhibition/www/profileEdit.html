@@ -29,7 +29,7 @@ display:block;
 
 		<!-- <a href="#" class="button button-fill button-raised color-red" id="profilePic" onclick="getPhoto(pictureSource.PHOTOLIBRARY);" class="lazy"> Upload Image </a> -->
    
-		<img src="img/Profilelogo.png" id="profilePic" onclick="getPhoto(pictureSource.PHOTOLIBRARY);" class="lazy" width="200" width="200">
+		<center><img src="img/Profilelogo.png" id="profilePic" onclick="getPhoto(pictureSource.PHOTOLIBRARY);" class="lazy" width="200" height="200"></center>
              </div>
       <div class="list-block inputs-list" style="padding:0px 0px">
         <ul>
@@ -94,15 +94,25 @@ display:block;
 		<div class="content-block">
 		<div class="content-block-title color-black">Additional Information</div>  
         <li>
-      <div class="item-content">
+      <!-- <div class="item-content">
         <div class="item-media"><i class="icon icon-form-calendar"></i></div>
         <div class="item-inner">
           <div class="item-title">Date Of Birth</div>
           <div class="item-input">
-            <input type="date" placeholder="YYYY-MM-DD" id="pBirthDate">
+            <input type="date" placeholder="Enter Birthdate" id="pBirthDate" value="2014-04-30">
           </div>
         </div>
-      </div>
+      </div> -->
+	  
+	  <div class="item-content">
+            <div class="item-media"><i class="icon icon-form-calendar"></i></div>
+            <div class="item-inner"> 
+              <div class="item-input">
+            <input type="date" placeholder="Select birth date"  id="pBirthDate" >
+          </div>
+            </div>
+          </div>
+	  
     </li>
 		
 		

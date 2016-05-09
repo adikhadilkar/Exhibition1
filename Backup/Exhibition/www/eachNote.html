@@ -13,17 +13,17 @@
 		<!-- First icon is visible when Speed Dial actions are closed -->
 		<i class="icon icon-plus"></i>
 		<!-- Second icon is visible when Speed Dial actions are opened -->
-		 <i class="icon icon-plus"></i>
+		 <i class="icon icon-close"></i>
 		</a>
 		
 		 <div class="speed-dial-buttons">
 		
       <a href="notes.html" onclick="editNote()">
-        <i class="icon">Edit</i>
+        <i class="icon"><img src="img/edit.png" title="Edit Note"></i>
       </a>
       <!-- Second Speed Dial  button -->
       <a href="#" onclick="deleteNote()">
-        <i class="icon">Delete</i>
+        <i class="icon"><img src="img/deleteNote.png" title="Delete Note" ></i>
       </a>
     </div>
 		
@@ -41,7 +41,7 @@
 		<div>
 		<div class="content-block" >
 			<div class="item-title">
-				<h4><pre><font face="Roboto"><span id="description"></span></font></pre></h4>
+				<h4><pre style="white-space: pre-wrap;"><font face="Roboto"><span id="description" style="word-wrap:break-word;"></span></font></pre></h4>
 			</div>
 			
 			<!-- <div class="row">
