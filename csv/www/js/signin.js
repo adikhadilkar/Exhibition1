@@ -43,12 +43,6 @@ function signin()
 							//redirecting to otp.html
 							myApp.hidePreloader();
 							mainView.router.loadPage("otp.html");
-							/* var a = document.getElementById('signInNext');
-							a.setAttribute("href","otp.html");
-							document.getElementById('signInNext').click(); */
-							
-							//myApp.alert('Your OTP Is '+otp,'OTP');
-							
 						}
 						else if(JSON.stringify(response.status)==201)
 						{
@@ -98,9 +92,6 @@ function verifyotp()
 							myApp.hidePreloader();
 							resend();
 							mainView.router.loadPage("title.html");
-							/* var a = document.getElementById('otpNex');
-							a.setAttribute("href","title.html");
-							document.getElementById('otpNex').click();	 */
 						}
 			
 					},
@@ -211,7 +202,6 @@ function resend()
 	{
 		myApp.alert(err,'Error In resend');
 	}
-	
 } 
 
 
@@ -260,6 +250,7 @@ function resultSuccess(tx,response)
 			for(var i=0;i<response.rows.length;i++)
 			{
 			count=i+1;
+			
 			//this is how the reports will look inside the app
 			//records in same paragraph
 			 /*  $('#output').append('<div class="card" style="padding:2px 2px 2px 2px"><div class="card-content"><div class="card-content-inner" style="padding:0px 0px 0px 0px"><p style="word-wrap: break-word;"><b>'+count+') Patient Name: </b>'+response.rows.item(i).name+'<br><b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Investigation: </b>'+response.rows.item(i).cut+'<br><b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;IP: </b>'+response.rows.item(i).investigation+'</p></div></div></div>'); */
@@ -270,8 +261,7 @@ function resultSuccess(tx,response)
 			
 			//records are separated with comma
 			 $('#output').append('<div class="card" style="padding:2px 2px 2px 2px"><div class="card-content"><div class="card-content-inner" style="padding:0px 0px 0px 0px"><p style="word-wrap: break-word;">'+count+') '+response.rows.item(i).name+', '+response.rows.item(i).investigation+', '+response.rows.item(i).cut+'</p></div></div></div>');
-			 
-			 
+			  
 			
 			total+=response.rows.item(i).cut;
 			drname=response.rows.item(i).dname;
@@ -431,12 +421,5 @@ function exit()
 		
 		navigator.app.clearHistory(); 
 		navigator.app.exitApp();
-		
-		
-		//window.location.assign("login.html");
-		/* var a = document.getElementById('exitNext');
-		a.setAttribute("href","login.html");
-		document.getElementById('exitNext').click();  */ 
 			});
-			//myApp.alert('Your response has been recorded! ','Data Rejected');
 }	

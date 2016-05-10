@@ -21,7 +21,7 @@ $visitorid1=$data['profile'][0]['visitorId'];
 	//$selectVisitorQuery="select vp.name,vp.gender,vp.dob,vp.city,vp.photoLink,v.mobileNumber,v.email from visitorprofile vp,visitor v where vp.createdBy='$visitorid1' and vp.createdBy=v.id";
 	
 	
-	$selectVisitorQuery="select v.name,v.mobileNo,v.emailId,vp.dateOfBirth,vp.gender,vp.education,vp.profession from visitorProfile vp,visitor v where vp.createdBy='$visitorid1' and vp.createdBy=v.id";
+	$selectVisitorQuery="select v.name,v.mobileNo,v.emailId,vp.dateOfBirth,vp.gender,vp.education,vp.profession,vp.profilePic from visitorProfile vp,visitor v where vp.createdBy='$visitorid1' and vp.createdBy=v.id";
 	
 	
 	//$selectVisitorQuery="select name,mobileNo,emailId from visitor where id='$visitorid1'";

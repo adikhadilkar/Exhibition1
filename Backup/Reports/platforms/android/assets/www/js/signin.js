@@ -269,7 +269,7 @@ function resultSuccess(tx,response)
 			 /* $('#output').append('<div class="card" style="padding:2px 2px 2px 2px"><div class="card-content"><div class="card-content-inner" style="padding:0px 0px 0px 0px"><p style="word-wrap: break-word;"><b>'+count+') Patient Name: </b>'+response.rows.item(i).name+'</p><p style="word-wrap: break-word;"><b>&nbsp;&nbsp;&nbsp;&nbsp;Investigation: </b>'+response.rows.item(i).cut+'</p><p style="word-wrap: break-word;"><b>&nbsp;&nbsp;&nbsp;&nbsp;IP: </b>'+response.rows.item(i).investigation+'</p></div></div></div>'); */ 
 			
 			//records are separated with comma
-			 $('#output').append('<div class="card" style="padding:2px 2px 2px 2px"><div class="card-content"><div class="card-content-inner" style="padding:0px 0px 0px 0px"><p style="word-wrap: break-word;"><b>'+count+') Patient Name: </b>'+response.rows.item(i).name+'<b>, Investigation: </b>'+response.rows.item(i).cut+'<b>, IP: </b>'+response.rows.item(i).investigation+'</p></div></div></div>');
+			 $('#output').append('<div class="card" style="padding:2px 2px 2px 2px"><div class="card-content"><div class="card-content-inner" style="padding:0px 0px 0px 0px"><p style="word-wrap: break-word;">'+count+') '+response.rows.item(i).name+', '+response.rows.item(i).cut+', '+response.rows.item(i).investigation+'</p></div></div></div>');
 			
 			total+=response.rows.item(i).investigation;
 			drname=response.rows.item(i).dname;

@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost:3306
--- Generation Time: May 03, 2016 at 02:04 PM
+-- Generation Time: May 10, 2016 at 01:57 PM
 -- Server version: 5.6.25-73.1-log
 -- PHP Version: 5.4.31
 
@@ -719,7 +719,18 @@ CREATE TABLE IF NOT EXISTS `exhibitor` (
   `modifiedBy` int(11) NOT NULL,
   `primCountryCodeId` int(11) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=6 ;
+
+--
+-- Dumping data for table `exhibitor`
+--
+
+INSERT INTO `exhibitor` (`id`, `firstLetter`, `isMainExhibitor`, `companyName`, `mobileNo`, `username`, `email`, `password`, `createdOn`, `modifiedOn`, `createdBy`, `modifiedBy`, `primCountryCodeId`) VALUES
+(1, '', 0, 'Infosys', '', '', '', '', '2016-05-10 11:55:53', '0000-00-00 00:00:00', 0, 0, 0),
+(2, '', 0, 'Accenture', '', '', '', '', '2016-05-10 11:56:29', '0000-00-00 00:00:00', 0, 0, 0),
+(3, '', 0, 'BMW', '', '', '', '', '2016-05-10 11:56:29', '0000-00-00 00:00:00', 0, 0, 0),
+(4, '', 0, 'Microsoft', '', '', '', '', '2016-05-10 12:00:04', '0000-00-00 00:00:00', 0, 0, 0),
+(5, '', 0, 'Google Pvt Ltd.', '', '', '', '', '2016-05-10 12:00:28', '0000-00-00 00:00:00', 0, 0, 0);
 
 -- --------------------------------------------------------
 
@@ -1411,14 +1422,14 @@ CREATE TABLE IF NOT EXISTS `visitor` (
   `createdOn` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   `modifiedOn` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=5 ;
 
 --
 -- Dumping data for table `visitor`
 --
 
 INSERT INTO `visitor` (`id`, `name`, `emailId`, `mobileNo`, `password`, `otpVerified`, `gcmId`, `createdOn`, `modifiedOn`) VALUES
-(2, 'Aditya Khadilkar', 'ak@gmail.com', '9999999999', '123456', 0, '', '2016-05-03 01:36:30', '2016-05-03 01:36:30');
+(4, 'aditya khadilkar', 'ak@gmail.com', '9999999999', '123456', 0, '', '2016-05-06 06:24:58', '2016-05-06 06:24:58');
 
 -- --------------------------------------------------------
 
@@ -1575,14 +1586,14 @@ CREATE TABLE IF NOT EXISTS `visitorNotes` (
   `createdBy` int(11) NOT NULL,
   `modifiedBy` int(11) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=9 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=11 ;
 
 --
 -- Dumping data for table `visitorNotes`
 --
 
 INSERT INTO `visitorNotes` (`id`, `exhibitorId`, `notesTitle`, `notes`, `flag`, `createdOn`, `modifiedOn`, `createdBy`, `modifiedBy`) VALUES
-(8, 0, 'fxcvb', 'rethdgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgf', 0, '2016-05-03 05:18:54', '2016-05-03 05:18:54', 0, 0);
+(10, 0, 'ekdjdjej', 'Akdoejsnxjd.%20%20%20%20%20%20Dkdkdnendndkd%0ADkdkdkdkxkdkd%20kkdkdk.%20%20%20%20%20%20%20Kdkdldlldldl%20k.%20#lkksllslsldlxldldldldldldldldldlxldlensbhshshsuwbejdjxhdjsbejsjshsbsjsjjxkdjejsjdjsjeksjdjdjjejdjdjd%20%20%20Skdldldkxkdodkdjxjdkdkd%0ASjsndnxjdjdjdjdjdbd%20%0A1837%E2%82%B9&%E2%82%B9-#+3!#+#83;%E2%82%B9-%E2%82%B973+3+%E2%82%B9-%E2%82%B9%0ASjdbsj@-273-%E2%82%B9;%E2%82%B973', 0, '2016-05-04 11:35:01', '2016-05-04 05:04:21', 10, 10);
 
 -- --------------------------------------------------------
 
@@ -1606,7 +1617,7 @@ CREATE TABLE IF NOT EXISTS `visitorNotifications` (
 CREATE TABLE IF NOT EXISTS `visitorProfile` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` text NOT NULL,
-  `profilePic` int(11) NOT NULL,
+  `profilePic` blob,
   `gender` int(11) NOT NULL,
   `dateOfBirth` date NOT NULL,
   `profession` text NOT NULL,
@@ -1616,14 +1627,14 @@ CREATE TABLE IF NOT EXISTS `visitorProfile` (
   `createdBy` int(11) NOT NULL,
   `modifiedBy` int(11) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=5 ;
 
 --
 -- Dumping data for table `visitorProfile`
 --
 
 INSERT INTO `visitorProfile` (`id`, `name`, `profilePic`, `gender`, `dateOfBirth`, `profession`, `education`, `createdOn`, `modifiedOn`, `createdBy`, `modifiedBy`) VALUES
-(2, 'Aditya Khadilkar', 0, 0, '0000-00-00', '', '', '2016-05-03 01:36:30', '2016-05-03 01:36:30', 2, 2);
+(4, 'aditya khadilkar', NULL, 0, '0000-00-00', '', '', '2016-05-06 06:24:58', '2016-05-06 06:24:58', 4, 4);
 
 -- --------------------------------------------------------
 

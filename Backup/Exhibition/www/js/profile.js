@@ -1,6 +1,5 @@
 function getprofile()
 {
-	
 	//alert("getprofile");
 	var request = createCORSRequest( "post", "http://radio.tekticks.com" );
 	if(request)
@@ -21,7 +20,7 @@ function getprofile()
 		success:function(response)
 		{
 			myApp.hidePreloader();	
-			var Pic= JSON.stringify(response.visitor[0].profilePic).replace(/"/g,"");
+			//var Pic= JSON.stringify(response.visitor[0].profilePic).replace(/"/g,"");
 					//$(".floating-label").hide();
 					$("#pName").text(JSON.stringify(response.visitor[0].name).replace(/"/g,""));
 					$("#pEmailId").text(JSON.stringify(response.visitor[0].emailId).replace(/"/g,""));
@@ -31,22 +30,15 @@ function getprofile()
 					var p1=JSON.stringify(response.visitor[0].profilePic).replace(/"/g,"");
 					
 					
-					if(p1=="null")
+					 if(p1=="null")
 					{
 						document.getElementById("prof1").style.backgroundImage='linear-gradient(rgba(0, 0, 0, 0.3),rgba(0, 0, 0, 0.8)),url(img/Profilelogo.png)';
 					}
 					else
 					{
 						
-						 document.getElementById("prof1").style.backgroundImage='linear-gradient(rgba(0, 0, 0, 0.3),rgba(0, 0, 0, 0.8)),url("data:image/(png|jpg);base64,'+Pic+'")'; 
-					}
-					
-					
-					//$("#pcity").val(JSON.stringify(response.visitor[0].city).replace(/"/g,""));
-					
-					
-					//$("#profilePic").attr("src",JSON.stringify(response.visitor[0].profilePic).replace(/"/g,""));
-					
+						 document.getElementById("prof1").style.backgroundImage='linear-gradient(rgba(0, 0, 0, 0.3),rgba(0, 0, 0, 0.8)),url("data:image/(png|jpg);base64,'+p1+'")'; 
+					}	 
 		}
 		});
 		}
@@ -137,10 +129,60 @@ function sendProfile()
     show.style.visibility = 'visible';
 	var profilePic = document.getElementById('profilePic').src;
 	//alert(profilePic);
-	//var profilePicture = getBase64Image(document.getElementById('profilePic'));
+	var profilePicture = getBase64Image(document.getElementById('profilePic'));
 	//alert(profilePicture);
 	
-	window.plugins.Base64.encodeFile(profilePic, function(base64)
+		//alert('file base64 encoding: ' + base64);
+		//localStorage.setItem("profilePic",base64);
+		
+	var pname = document.getElementById('pname').value;
+	var pphone = document.getElementById('pMobile').value;
+	var pemail = document.getElementById('pEmail').value;
+	var pBirthDate = document.getElementById('pBirthDate').value;
+	var pGender = document.getElementById("pGender").value;
+	alert(pGender);
+	var pEducation = document.getElementById('pEducation').value;
+	var pProfession = document.getElementById('pProfession').value;	
+	var visitorId = localStorage.getItem("visitorId");
+	var request = createCORSRequest( "post", "http://radio.tekticks.com" );
+	var fileName = upload();
+	//alert(fileName);
+	if(request)
+	{
+		var data = {"profile":[{"visitorId":visitorId,"pname":pname,"pemail":pemail,"profilePicture":profilePicture,"pphone":pphone,"pGender":pGender,"pBirthDate":pBirthDate,"pEducation":pEducation,"pProfession":pProfession}]};
+		var sendData = function(data)
+		{
+	$.ajax({
+		url:"http://radio.tekticks.com/exhibition/signupProfile_json.php",
+		type: 'POST',
+		contentType: 'application/json',
+		data: JSON.stringify(data),
+		dataType:"json",
+		success:function(response)
+		{
+					if(JSON.stringify(response.status)==200)
+						{
+							myApp.hidePreloader();	
+							profileReload();
+							myApp.alert('Data Updated','Update');
+							mainView.router.loadPage("logo.html");
+						}
+							
+		
+		}
+	  
+		});
+		} 
+	sendData(data);
+
+	}
+		
+	}
+	
+	
+	
+	
+	/* window.plugins.Base64.encodeFile(profilePic, function(base64)
 	{
 		alert('file base64 encoding: ' + base64);
 		localStorage.setItem("profilePic",base64);
@@ -187,7 +229,7 @@ function sendProfile()
 
 	}
 		
-	}
+	} */
 
 	
 }

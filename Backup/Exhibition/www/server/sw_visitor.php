@@ -16,7 +16,6 @@ if($visitorid1=="")
 	deliver_response(201,"Missing Information","profile",$jsonresponse);
 }
 else
-
 {			
 		//Cheking visitor entry in Visitor table
 	$selectVisitorQuery="select name,profilePic from visitorProfile where createdBy='$visitorid1'";
@@ -27,7 +26,7 @@ else
 	if($visitorResultRows>0)
 	{
 		$jsonresponse['name']=$selectVisitorResult['name'];
-		$jsonresponse['image']=$selectVisitorResult['profilePic'];
+		$jsonresponse['profilePic']=$selectVisitorResult['profilePic'];
 		json_encode($jsonresponse);
 		deliver_response(200,"Record found","visitor",$jsonresponse);
 			
