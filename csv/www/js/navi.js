@@ -3,7 +3,7 @@ function navi()
 	$("#loc").text("OFF");
 	$("#loc").css('color', 'red');
 	myApp.showPreloader('Loading');
-	var request = createCORSRequest( "post", "http://radio.tekticks.com" );
+	var request = createCORSRequest( "post", "http://alienpro.in" );
 	if(request)
 	{
 		var c=function(pos)
@@ -32,7 +32,7 @@ function locationSend()
 	var lon=localStorage.getItem("longitude");
 	var uuid=localStorage.getItem("uuid");
 	
-	var request = createCORSRequest( "post", "http://radio.tekticks.com" );
+	var request = createCORSRequest( "post", "http://alienpro.in" );
 	if(request)
 	{
 	$("#loc").text("ON");
@@ -43,7 +43,7 @@ function locationSend()
 	var sendData = function(data)
 	{
 	$.ajax({
-		url:"http://radio.tekticks.com/radioJson/location_new_json.php",
+		url:"http://alienpro.in/location_new_json.php",
 		dataType:"json",
 		type: 'POST',
 		data: JSON.stringify(data),

@@ -1,1 +1,40 @@
-XdpPcVo9eAF1ws1PMl8CqfvJ3Dxu+XvEvxzgQ+Tc2iEV7hpQHULm2yb7rE3e64dK9AC6Ec00TIjFpJ3oV2uJqaXEsToql8pgoHNDbjV9vY2802NfspObkRAqGSWTy0YuIAJhN2MDPTsIkSaPRwqX/Im7070LBrA+BRd9SzLo2ASDCYTt97S3ytJL4gJz5Y4C6+JcBWEiD//XXc/YuXH3oxIN0bQP2k+HvmprWl2iHrsA6eLfL68cuPc37MDKxTm/zDUwas07ItOflHpwzsJ80+NbxAngCYt0r9bqgnTAcPpWdg/G8hXdi7byq0azlTgmiByaOanWBBXn/+wnlu9yTbybtCNKQPUlmFlXiwx/0GG69U8mbQzv8Jb8IR4004Rl4xGrCH1Wq30k1OQtj5V9E2q7sl2ABQDbswnQLELCN8B9ImifD4m9CNsWhUjZG9JNnK4hhWIhHj7yiO4Hjcncehk4McPIw2m1QncxTTCrKL5eysEd6by3oRaU4I0wQPSnAQgML9iD3ynW/6EXMBdtdHkePIkeO8bNIzGoMf1exMdrmSseMkbZLb2bPekH/N5A7uwDck+Zd0crBPrpmf0dCQf/FxckC2Q5us8qP+5bmhQI6fFfiLbDVrvRfHIlbSUPh79+7VknZI5P4dDvfDSyMNqhPGnCEgxaUGxbE4DiNDDeqoHoMxMtqgEjMiO2x0Y3a6vx9JZguzqSMxy79x/Zkff6Xu9HOw27qEWXbAu8k//eUpvyaHue3pMN/rTtc3c9i7eTMK8CpwFztVah1VJpTxRJT1qyDE8rbgqS/6bCoFPqYG/p0RgvPoT/WrYksyXTZZXNlCQ2pnz5+/Ki77RM93Qi/dkB411LY1DSvLHUoIgbwtqzu1o4u5Za24KzVr2gMYLhjrGZbvPWNoN3uFkz8mZDGRrAWOE1b5iqn1CdT6BGrvpCu4ai+qAdds3OKimcxVyW5gsgY2aXn9iT8IcKnNOPT2sc7S9nB+AN1iEktpWtnJYzu9b25eGcfO9GhSXC6FRMTVZPtXqJW8Z9+BRtQePP1djhs/zy+HGXbu3RdA2832DSjYbKZS3QcJJKumsoXoX7L1KZLV48I/vuaeI7aNQ77PnCO2GUU+7pojo5RFQWBkftTs+TFfrRXoRtFI+UhNyw6PFuEbUSAa7AabpRI2/sfwm2G9m19HvKGpft4DgX21Ak2NajpXnnzpWxypiwCBRhNbplPFcjUdjq5Wgu34bWhjzrRNSIEo7kNdZSOdFhgm0rmSRHqGR9FNRuZgRRqoEDrjeSYX5B1KQg1jvN0qg6VbMvmqMt6woEoLYt+CPaizQjtsRGgDAtkPXEwoYcpEF8ME9LfVuIh6cNFyssAessAtJwvsIQ
+cordova.define("cordova-plugin-geolocation.PositionError", function(require, exports, module) { /*
+ *
+ * Licensed to the Apache Software Foundation (ASF) under one
+ * or more contributor license agreements.  See the NOTICE file
+ * distributed with this work for additional information
+ * regarding copyright ownership.  The ASF licenses this file
+ * to you under the Apache License, Version 2.0 (the
+ * "License"); you may not use this file except in compliance
+ * with the License.  You may obtain a copy of the License at
+ *
+ *   http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing,
+ * software distributed under the License is distributed on an
+ * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+ * KIND, either express or implied.  See the License for the
+ * specific language governing permissions and limitations
+ * under the License.
+ *
+*/
+
+/**
+ * Position error object
+ *
+ * @constructor
+ * @param code
+ * @param message
+ */
+var PositionError = function(code, message) {
+    this.code = code || null;
+    this.message = message || '';
+};
+
+PositionError.prototype.PERMISSION_DENIED = PositionError.PERMISSION_DENIED = 1;
+PositionError.prototype.POSITION_UNAVAILABLE = PositionError.POSITION_UNAVAILABLE = 2;
+PositionError.prototype.TIMEOUT = PositionError.TIMEOUT = 3;
+
+module.exports = PositionError;
+
+});

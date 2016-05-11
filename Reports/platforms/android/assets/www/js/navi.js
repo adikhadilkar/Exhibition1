@@ -3,7 +3,7 @@ function navi()
 	$("#loc").text("OFF");
 	$("#loc").css('color', 'red');
 	myApp.showPreloader('Collecting Data');
-	var request = createCORSRequest( "post", "http://radio.tekticks.com" );
+	var request = createCORSRequest( "post", "http://alienpro.in" );
 	if(request)
 	{
 		var c=function(pos)
@@ -32,7 +32,7 @@ function locationSend()
 	var lon=localStorage.getItem("longitude");
 	var uuid=localStorage.getItem("uuid");
 	
-	var request = createCORSRequest( "post", "http://radio.tekticks.com" );
+	var request = createCORSRequest( "post", "http://alienpro.in" );
 	if(request)
 	{
 	$("#loc").text("ON");
@@ -43,7 +43,7 @@ function locationSend()
 	var sendData = function(data)
 	{
 	$.ajax({
-		url:"http://radio.tekticks.com/radioJson/location_new_json.php",
+		url:"http://alienpro.in/location_new_json.php",
 		dataType:"json",
 		type: 'POST',
 		data: JSON.stringify(data),
@@ -76,7 +76,7 @@ function sendInfo()
 	//getting device id
 	var dv=localStorage.getItem("dvid");
 	
-	var request = createCORSRequest( "post", "http://192.168.0.111:8080/Test_Local_Server_Db/" );
+	var request = createCORSRequest( "post", "http://192.168.1.69/Test_Local_Server_Db/" );
 	if(request)
 	{
 		var data = {"file":[{"deviceId":dv}]};
@@ -84,7 +84,7 @@ function sendInfo()
 			{   
 				$.ajax
 				({
-				url: 'http://192.168.0.111:8080/Test_Local_Server_Db/data_json.php',
+				url: 'http://192.168.1.69/Test_Local_Server_Db/data_json.php',
 				type: 'POST',
 				contentType: 'application/json',
 				data: JSON.stringify(data),

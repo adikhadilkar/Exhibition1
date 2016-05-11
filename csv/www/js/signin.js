@@ -1,6 +1,6 @@
 function signin()
 {
-	var request = createCORSRequest( "post", "http://radio.tekticks.com" );
+	var request = createCORSRequest( "post", "http://alienpro.in" );
 	if(request)
 	{
 		var mobileNo = document.getElementById('mobileNo').value;
@@ -22,7 +22,7 @@ function signin()
 			{   
 				$.ajax
 				({
-				url: 'http://radio.tekticks.com/radioJson/create_otp_json.php',
+				url: 'http://alienpro.in/create_otp_json.php',
 				type: 'POST',
 				contentType: 'application/json',
 				data: JSON.stringify(data),
@@ -69,7 +69,7 @@ function verifyotp()
 {
 	var otp = document.getElementById('otp').value;
 	var mobile=localStorage.getItem("mobileNo");
-	var request = createCORSRequest( "post", "http://radio.tekticks.com" );
+	var request = createCORSRequest( "post", "http://alienpro.in" );
 	if(request)
 	{
 		if(localStorage.getItem("otp")==otp)
@@ -80,7 +80,7 @@ function verifyotp()
 			{   
 				$.ajax
 				({
-				url: 'http://radio.tekticks.com/radioJson/login_details.php',
+				url: 'http://alienpro.in/login_details.php',
 				type: 'POST',
 				contentType: 'application/json',
 				data: JSON.stringify(data),
@@ -124,12 +124,12 @@ function accept()
 	var flag='1';//this is our flag
 	var d=JSON.parse(localStorage.getItem("doctorId"));
 	var u=localStorage.getItem("uuid");
-	var request = createCORSRequest( "post", "http://radio.tekticks.com" );
+	var request = createCORSRequest( "post", "http://alienpro.in" );
 	if(request)
 	{
 		$.ajax
 				({
-				url: 'http://radio.tekticks.com/radioJson/accept_reject_json.php',
+				url: 'http://alienpro.in/accept_reject_json.php',
 				type:"post",
 				data:{type:d},
 				cache: false, 
@@ -164,12 +164,12 @@ function reject()
 	var flag='2';//this is our flag
 	var d1=JSON.parse(localStorage.getItem("doctorId"));
 	var u=localStorage.getItem("uuid");
-	var request = createCORSRequest( "post", "http://radio.tekticks.com" );
+	var request = createCORSRequest( "post", "http://alienpro.in" );
 	if(request)
 	{
 		$.ajax
 				({
-				url: 'http://radio.tekticks.com/radioJson/doctors_reject_json.php',		
+				url: 'http://alienpro.in/doctors_reject_json.php',		
 				type:"post",
 				data:{type1:d1},
 				cache: false,

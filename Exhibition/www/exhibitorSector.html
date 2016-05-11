@@ -1,14 +1,14 @@
-<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
 <div data-page="lazy-load" class="page">
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
   <div class="navbar">
     <div class="navbar-inner">
       <div class="left"><a href="logo.html" class="back link icon-only"><i class="icon icon-back"></i></a></div>
-		<div class="center">
-			<form data-search-list=".list-block-search" data-search-in=".item-title" class="searchbar searchbar-init">
+		<div class="center">Exhibitors
+			<!-- <form data-search-list=".list-block-search" data-search-in=".item-title" class="searchbar searchbar-init">
 			<div class="searchbar-input">
 				<input type="search" placeholder="Search" id="search"><a href="#" class="searchbar-clear"></a>
 			</div><a href="#" class="searchbar-cancel">Cancel</a>
-			</form>
+			</form> -->
 		</div>
       <div class="right"><a href="#" class="open-panel link icon-only"><i class="icon icon-bars"></i></a></div>
     </div>
@@ -25,132 +25,45 @@
 	</div>
 
 	<div class="tab active" id="alphabet">
-		<!--<div class="list-block" style="margin:0px 0px">
-			<ul id="alphabetu">
-				 <li class="item-content">
-					<div class="item-inner">
-						<div class="item-title">Pinnacle India</div>
-					</div>
-				</li>
-				<li class="item-content">
-					<div class="item-inner">
-						<div class="item-title">Nucsoft PVT LTD</div>
-					</div>
-				</li>
-				<li class="item-content">
-					<div class="item-inner">
-						<div class="item-title">Infosys</div>
-					</div>
-				</li> 
-			</ul>   
-		</div>-->
+		<div class="list-block inputs-list" style="margin:0px 0px">
+        <ul>
+		<li>
+          <div class="item-content">
+			 <div class="item-inner">			 
+              <div class="item-input">
+                <input type="text" name="search"  id="search" placeholder="Search.."/>
+              </div>  
+            </div>
+          </div>
+        </li>
+		</ul>
+		</div>
 	</div>
   
   
 	<div class="tab" id="sector">
-		<!-- <div class="list-block accordion-list" style="margin:0px 0px">
-			<ul>
-					
-				<li class="accordion-item">
-					<a href="#" class="item-content item-link">
-						<div class="item-inner">
-							<div class="item-title">Sector 1</div>
-						</div>
-					</a>
-					<div class="accordion-item-content">
-						<div class="list-block">
-							<ul>
-								<li class="item-content">
-									<div class="item-inner">
-										<div class="item-title">Pinnacle</div>
-									</div>
-								</li>
-								<li class="item-content">
-									<div class="item-inner">
-										<div class="item-title">Nucsoft PVT LTD</div>
-									</div>
-								</li>
-							</ul>
-						</div>
-					</div>
-				</li>
-
-				<li class="accordion-item">
-					<a href="#" class="item-content item-link">
-						<div class="item-inner">
-							<div class="item-title">Sector 2</div>
-						</div>
-					</a>
-					<div class="accordion-item-content">
-						<div class="content-block">
-							<ul>
-								<li class="item-content">
-									<div class="item-inner">
-										<div class="item-title">1</div>
-									</div>
-								</li>
-								<li class="item-content">
-									<div class="item-inner">
-										<div class="item-title">2</div>
-									</div>
-								</li>
-								<li class="item-content">
-									<div class="item-inner">
-										<div class="item-title">3</div>
-									</div>
-								</li>
-								<li class="item-content">
-									<div class="item-inner">
-										<div class="item-title">4</div>
-									</div>
-								</li>
-								<li class="item-content">
-									<div class="item-inner">
-										<div class="item-title">5</div>
-									</div>
-								</li>
-							</ul>		  
-						</div>
-					</div>
-				</li>
- 
- 
-				<li class="accordion-item">
-					<a href="#" class="item-content item-link">
-						<div class="item-inner">
-							<div class="item-title">Sector 3</div>
-						</div>
-					</a>
-					<div class="accordion-item-content">
-						<div class="content-block">
-							<ul>
-								<li class="item-content">
-									<div class="item-inner">
-										<div class="item-title">Regular Pass</div>
-									</div>
-								</li>
-								<li class="item-content">
-									<div class="item-inner">
-										<div class="item-title">VIP Pass</div>
-									</div>
-								</li>
-								<li class="item-content">
-									<div class="item-inner">
-										<div class="item-title">VVIP Pass</div>
-									</div>
-								</li>
-							</ul>		  
-						</div>
-					</div>
-				</li>
-			</ul>
-		</div> -->
+		
     </div>
 			
 </div>
   
 </div></div>
 
+<script>
+	$(document).ready(function(){
+    $("#search").keyup("input", function(){
+       var txt=$(this).val();
+	   if(txt!='')
+	   {
+			
+	   }
+	   else
+	   {
+			
+	   }
+    }):
+	});
+</script>
     
 
    

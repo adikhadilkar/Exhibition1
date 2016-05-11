@@ -26,7 +26,6 @@ var request = createCORSRequest( "post", "http://radio.tekticks.com" );
 		$.each(data.exhibitorsInformation, function (index, exhibitorsInformation) {
         companyName.push(exhibitorsInformation.companyName); //push values here
 		});
-		companyName.sort();
 		//alert(companyName);
 		for(var i=0;i<n;i++)
 		{ 
@@ -46,19 +45,3 @@ var request = createCORSRequest( "post", "http://radio.tekticks.com" );
 }
 	)};
 }
-
-
-
-
-
-
-/* $("#search").click(function(){
-alert($("#search").val());
-//$search=$("#search").val();
-if($search.length>0)
-{
-	$.get("http://radio.tekticks.com/exhibition/liveSearch.php",{"search":$search},function($data){
-	$("#result").html($data);
-	})
-}
-});  */
