@@ -3,24 +3,18 @@
   <div class="navbar">
     <div class="navbar-inner">
       <div class="left"><a href="logo.html" class="back link icon-only"><i class="icon icon-back"></i></a></div>
-		<div class="center">Exhibitors
-			<!-- <form data-search-list=".list-block-search" data-search-in=".item-title" class="searchbar searchbar-init">
-			<div class="searchbar-input">
-				<input type="search" placeholder="Search" id="search"><a href="#" class="searchbar-clear"></a>
-			</div><a href="#" class="searchbar-cancel">Cancel</a>
-			</form> -->
-		</div>
+		<div class="center">Exhibitors</div>
       <div class="right"><a href="#" class="open-panel link icon-only"><i class="icon icon-bars"></i></a></div>
     </div>
   </div>
   <div class="page-content infinite-scroll">
 	<div class="tabs" style="margin:0px 0px">
 	<div class="row">
-		<div class="col-50">
+		<div class="col-50" style="padding-left:5%">
 			<center><h2><b><a href="#alphabet" class="tab-link button button-big button-fill color-green active">Alphabet</a></b></h2></center>
 		</div>
-		<div class="col-50">
-			<center><h2><b><a href="#sector" class="tab-link button button-big button-fill color-green">Sector</a></a></b></h2></center>
+		<div class="col-50" style="padding-right:5%">
+			<center><h2><b><a href="#sector" class="tab-link button button-big button-fill color-green" onclick="sectors()">Sector</a></a></b></h2></center>
 		</div>
 	</div>
 
@@ -29,10 +23,8 @@
         <ul>
 		<li>
           <div class="item-content">
-			 <div class="item-inner">			 
-              <div class="item-input">
-                <input type="text" name="search"  id="search" placeholder="Search.."/>
-              </div>  
+			 <div class="item-inner">
+				<input type="text" name="search"  id="search" placeholder="Search.."/>			  
             </div>
           </div>
         </li>
