@@ -22,7 +22,7 @@ function signin()
 			{   
 				$.ajax
 				({
-				url: 'http://alienpro.in/create_otp_json.php',
+				url: 'http://alienpro.in/usera/create_otp_json.php',
 				type: 'POST',
 				contentType: 'application/json',
 				data: JSON.stringify(data),
@@ -43,9 +43,6 @@ function signin()
 							//redirecting to otp.html
 							myApp.hidePreloader();
 							mainView.router.loadPage("otp.html");
-							/* var a = document.getElementById('signInNext');
-							a.setAttribute("href","otp.html");
-							document.getElementById('signInNext').click(); */
 							
 							myApp.alert('Your OTP Is '+otp,'OTP');
 							
@@ -86,7 +83,7 @@ function verifyotp()
 			{   
 				$.ajax
 				({
-				url: 'http://alienpro.in/login_details.php',
+				url: 'http://alienpro.in/usera/login_details.php',
 				type: 'POST',
 				contentType: 'application/json',
 				data: JSON.stringify(data),
@@ -98,9 +95,7 @@ function verifyotp()
 							myApp.hidePreloader();
 							resend();
 							mainView.router.loadPage("title.html");
-							/* var a = document.getElementById('otpNex');
-							a.setAttribute("href","title.html");
-							document.getElementById('otpNex').click();	 */
+							
 						}
 			
 					},
@@ -138,7 +133,7 @@ function accept()
 	{
 		$.ajax
 				({
-				url: 'http://alienpro.in/accept_reject_json.php',
+				url: 'http://alienpro.in/usera/accept_reject_json.php',
 				type:"post",
 				data:{type:d},
 				cache: false, 
@@ -178,7 +173,7 @@ function reject()
 	{
 		$.ajax
 				({
-				url: 'http://alienpro.in/doctors_reject_json.php',		
+				url: 'http://alienpro.in/usera/doctors_reject_json.php',		
 				type:"post",
 				data:{type1:d1},
 				cache: false,

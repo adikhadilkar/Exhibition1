@@ -12,22 +12,15 @@ $selectedExhibitors=array();
 $jsonresponse=array();
 $sectorId=$data['sectors'][0]['sectorId'];
 
-
-
-
-	/* select  a.id, a.companyName, c.link from exhibitor a , exhibitorProfile b,media c,exhibitionSector d, exhibitor_exhibitionSector e where e.exhibitionSectorId=1 and e.exhibitorId=a.id and c.id=b.`logoMediaId`  */ 
-
-
 	//select sectors exhibitors
 	$selectSectorsQuery1 = "SELECT `exhibitorId` FROM `exhibitor_exhibitionSector` WHERE `exhibitionSectorId`='$sectorId'";
 	$selectSectors1 = mysql_query($selectSectorsQuery1,$conn) or die(mysql_error());
-	$da=mysql_fetch_array($selectSectors1);
 	$selectSectorsRows1 = mysql_num_rows($selectSectors1);
 	
 	  if($selectSectorsRows1 > 0)
 	{
 		
-		/* while($selectSectorsResult=mysql_fetch_assoc($selectSectors1))
+		while($selectSectorsResult=mysql_fetch_assoc($selectSectors1))
 		{
 			$json=$selectSectorsResult['exhibitorId'];
 			
@@ -37,14 +30,18 @@ $sectorId=$data['sectors'][0]['sectorId'];
 			
 			$sectors1=mysql_fetch_assoc($selectSectorsInfo1);
 			
-				$jsonresponse['companyName'] = $sectors1['companyName'];*/
+				$jsonresponse['companyName'] = $sectors1['companyName'];
 				
-			array_push($data,$selectSectors1); 
+			array_push($data,$jsonresponse);
 			//json_encode($jsonresponse);
-			deliver_response(200,"News Information","news",$da);
+			deliver_response(200,"News Information","news",$jsonresponse);
 			
 		}
 			
+	}
+	else
+	{
+		deliver_response(201,"News Information","news",$jsonresponse);
 	}
 	 
 	 

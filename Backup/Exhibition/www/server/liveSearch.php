@@ -9,12 +9,19 @@ header('Access-Control-Allow-Headers: Content-Type');
 include 'jsonFormat.php';
 include 'jsonDeliver.php';
 include 'config.php';
-$data=array();
-$response=array();
-//select exhibitor details
-@$selectExhibitorsQuery="SELECT id, companyName FROM `exhibitor`";
-@$selectExhibitors=mysql_query($selectExhibitorsQuery,$conn) or die(mysql_error());
+//$data=array();
+//$response=array();
 
+$searchQuery="SELECT  `companyName` FROM  `exhibitor` WHERE  `companyName` LIKE  '$_GET[search]%'";
+$data=$conn->query($searchQuery);
+while($result=$data->fetch_assoc())
+{
+	echo "$result[companyName]<br>";
+}
+
+
+
+/* @$selectExhibitors=mysql_query($selectExhibitorsQuery,$conn) or die(mysql_error());
 @$ExhibitorsRows=mysql_num_rows($selectExhibitors);
   while($exhibitors=mysql_fetch_array($selectExhibitors))
   {
@@ -25,6 +32,6 @@ $response=array();
 		
 }
     $json= json_encode($data,JSON_NUMERIC_CHECK);     
-	deliver_response(200,"exhibitors","exhibitorsInformation",$data);
+	deliver_response(200,"exhibitors","exhibitorsInformation",$data); */
 
 ?>
