@@ -50,7 +50,7 @@ var request = createCORSRequest( "post", "http://radio.tekticks.com" );
 			
 			/* $('#alphabet').append('<div class="list-block media-list" style="margin:0px 0px"><ul><li><a href="eachExhibitor.html" class="item-link item-content" id="'+id[i]+'" onclick="getEachExhibitor(this)"><div class="item-inner"><div class="item-title-row"><div class="item-title">'+companyName[i]+'</div></div></div></a></li></ul></div>'); */
 			
-			$('#alphabet').append('<div class="list-block media-list" style="margin:0px 0px"><ul><li><a href="eachExhibitor.html" class="item-link item-content" id="'+id[i]+'" onclick="getEachExhibitor(this)"><div class="item-media"><img src="'+link[i]+'" width="100"></div><div class="item-inner"><div class="item-title-row"><div class="item-title"><b>'+companyName[i]+'</b></div><div class="item-after"></div></div><div class="item-subtitle">'+sectorName[i]+'</div><div class="item-text">'+description[i]+'</div></div></a></li></ul></div>');
+			$('#alphabet').append('<div class="list-block media-list" style="margin:0px 0px" ><ul><li><a href="eachExhibitor.html" class="item-link item-content" id="'+id[i]+'" onclick="getEachExhibitor(this)"><div class="item-media"><img src="'+link[i]+'" width="100"></div><div class="item-inner"><div class="item-title-row"><div class="item-title"><b>'+companyName[i]+'</b></div><div class="item-after"></div></div><div class="item-subtitle">'+sectorName[i]+'</div><div class="item-text">'+description[i]+'</div></div></a></li></ul></div>');
 			
 		}
 		}
@@ -69,6 +69,7 @@ var request = createCORSRequest( "post", "http://radio.tekticks.com" );
 
 function sectors()
 {
+
 myApp.showPreloader();	
 var request = createCORSRequest( "post", "http://radio.tekticks.com" );
 	if(request)
@@ -79,8 +80,10 @@ var request = createCORSRequest( "post", "http://radio.tekticks.com" );
 		contentType: 'application/json',
 		success:function(data)
 		{
-		
+		//$("#sector").find("div").remove();
 		myApp.hidePreloader();
+		//to remove div and load it everytime to resolve redundancy
+		
 		var n=Object.keys(data.sectorsInformation).length;
 		
 		if(n>0)
@@ -107,7 +110,7 @@ var request = createCORSRequest( "post", "http://radio.tekticks.com" );
 			
 			/* $('#alphabet').append('<div class="list-block media-list" style="margin:0px 0px"><ul><li><a href="eachExhibitor.html" class="item-link item-content" id="'+id[i]+'" onclick="getEachExhibitor(this)"><div class="item-inner"><div class="item-title-row"><div class="item-title">'+companyName[i]+'</div></div></div></a></li></ul></div>'); */
 			
-			$('#sector').append('<div class="list-block accordion-list" style="margin:0px 0px"><ul><li class="accordion-item"><a href="#" class="item-content item-link" id="'+id[i]+'" onclick="eachSector(this)"><div class="item-inner"><div class="item-title" style="word-wrap:break-word">'+sectorName[i]+'</div></div></a></li></ul></div>');
+			$('#sector').append('<div class="list-block accordion-list" style="margin:0px 0px" id="ml"><ul><li class="accordion-item"><a href="#" class="item-content item-link" id="'+id[i]+'" onclick="eachSector(this)"><div class="item-inner"><div class="item-title" style="word-wrap:break-word">'+sectorName[i]+'</div></div></a></li></ul></div>');
 		}
 		}
 		else

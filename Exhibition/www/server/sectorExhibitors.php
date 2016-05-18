@@ -1,4 +1,5 @@
 <?php
+header("Content-Type: text/html; charset=utf-8");
 date_default_timezone_set("Asia/Kolkata");
 header('Access-Control-Allow-Origin: *');
 header('Access-Control-Allow-Credentials: true');
@@ -8,7 +9,7 @@ include 'jsonDeliver.php';
 include 'config.php'; 
 $json = file_get_contents("php://input");
 $data1=array();
-//$data = json_decode($json, true);
+$data = json_decode($json, true);
 $selectedExhibitors=array();
 $jsonresponse=array();
 $sectorId=$data['sectors'][0]['sectorId'];
@@ -24,10 +25,11 @@ $response=array();
 		$response['id'] = $sectors1['id'];
 		$response['companyName'] = $sectors1['companyName'];
 		$response['link'] = $sectors1['link'];
-		array_push($data,$response); 
+		array_push($data1,$response); 
+		
 	}	
 	
 			$json= json_encode($data,JSON_NUMERIC_CHECK);  
-			deliver_response(200,"secExhibitor Information","secExhibitor",$data);
+			deliver_response(200,"secExhibitor","secExhibitorInformation",$data1);
 
 ?>
