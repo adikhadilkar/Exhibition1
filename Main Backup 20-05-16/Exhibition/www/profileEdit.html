@@ -1,0 +1,193 @@
+<div data-page="login-screen-embedded" class="page">
+<div class="navbar">
+    <div class="navbar-inner">
+      <div class="left"><a href="logo.html" class="back link icon-only"><i class="icon icon-back"></i></a></div>
+      <div class="center">Edit Profile</div>
+      <div class="right"><a href="#" class="open-panel link icon-only"><i class="icon icon-bars"></i></a></div>
+    </div>
+  </div>
+  
+    <div class="page-content login-screen-content" style="padding-top:50px" id="profileShow" style="visibility:hidden;">
+<style>
+ #profile
+{
+height:200px;
+width:device-width;
+}
+#profile img
+{
+max-width:device-width; 
+max-height:100%;
+margin:auto;
+display:block;
+}
+</style>
+			
+<form method="POST" name="register" >	
+
+   <div class="content-block profile" style="text-align:center;padding:5px;width:device-width">
+
+		<!-- <a href="#" class="button button-fill button-raised color-red" id="profilePic" onclick="getPhoto(pictureSource.PHOTOLIBRARY);" class="lazy"> Upload Image </a> -->
+   
+		<center><img src="img/Profilelogo.png" id="profilePic" onclick="getPhoto(pictureSource.PHOTOLIBRARY);" class="lazy" width="200" height="200"></center>
+             </div>
+      <div class="list-block inputs-list" style="padding:0px 0px">
+        <ul>
+		<div class="content-block">
+		<div class="content-block-title color-black">Basic Information</div>
+		<li>
+          <div class="item-content">
+            <div class="item-media"><i class="icon icon-form-name"></i></div>
+            <div class="item-inner"> 
+              <div class="item-title color-gray"><small>Your Name</small></div>
+              <div class="item-input">
+                <input type="text"  id="pname" name="pname" placeholder=""/>
+              </div>
+            </div>
+          </div>
+        </li>
+		
+			<li class="item-content">
+			<div class="item-media"><i class="icon icon-form-tel"></i></div>
+            <div class="item-inner"> 
+			<div class="label" id="mobileError" name = "mobileError" style="color:#ff0000"></div>
+              <div class="item-title color-gray"><small>Your Mobile Number</small></div>
+              <div class="item-input">
+                <input type="text" name="pMobile" id="pMobile" placeholder="" maxlength="10" onkeypress="return isNumber(event)" />
+              </div>
+            </div>
+          </li>
+		  
+		  <li>
+          <div class="item-content">
+            <div class="item-media"><i class="icon icon-form-email"></i></div>
+            <div class="item-inner">
+            <div class="label" id="emailError" name = "emailError" style="color:#ff0000"></div>			
+              <div class="item-title color-gray"><small>Your E-mail</small></div>
+              <div class="item-input">
+                <input type="email" id="pEmail" placeholder=""/>
+              </div>
+            </div>
+          </div>
+        </li>
+		
+        </div>
+		 
+          <!--<div class="item-content">
+            <div class="item-media"><i class="icon icon-form-calendar"></i></div>
+            <div class="item-inner"> 
+              <div class="item-title floating-label">Your birth date (DD/MM/YYYY)</div>
+              <div class="item-input">
+                <input type="date"  id="pBirthDate" placeholder=""/>
+              </div>
+            </div>
+          </div>-->
+		  
+		  <!--<div class="item-content">
+			<div class="item-inner">
+				<div class="item-title label">Pick A Date</div>
+				<div class="item-input">
+					<input type="date" placeholder="Pick A Date" value="2014-04-30">
+				</div>
+			</div>
+		</div>-->
+		<div class="content-block">
+		<div class="content-block-title color-black">Additional Information</div>  
+        <li>
+      <!-- <div class="item-content">
+        <div class="item-media"><i class="icon icon-form-calendar"></i></div>
+        <div class="item-inner">
+          <div class="item-title">Date Of Birth</div>
+          <div class="item-input">
+            <input type="date" placeholder="Enter Birthdate" id="pBirthDate" value="2014-04-30">
+          </div>
+        </div>
+      </div> -->
+	  
+	  <div class="item-content">
+            <div class="item-media"><i class="icon icon-form-calendar"></i></div>
+            <div class="item-inner"> 
+              <div class="item-input">
+            <input type="date" placeholder="Select birth date"  id="pBirthDate" >
+          </div>
+            </div>
+          </div>
+	  
+    </li>
+		
+		
+		
+		<li>
+          <div class="item-content">
+            <div class="item-media"><i class="icon icon-form-gender"></i></div>
+            <div class="item-inner"> 
+              <div class="item-title color-gray"><small>Your Gender</small></div>
+              <div class="item-input">
+                <select id="pGender">
+				<option value="">Gender</option>
+                  <option value="M">Male</option>
+                  <option value="F">Female</option>
+				   <!-- <option>Other</option> -->
+                </select>
+              </div>
+            </div>
+          </div>
+        </li>
+		
+		<li>
+          <div class="item-content">
+            <div class="item-media"><i class="icon icon-form-comment"></i></div>
+            <div class="item-inner"> 
+              <div class="item-title color-gray"><small>Your Education</small></div>
+              <div class="item-input">
+                <select id="pEducation">
+				 <option value="">Education</option>
+                  <option value="SSC">S.S.C</option>
+                  <option value="HSC">H.S.C</option>
+				  <option value="Graduation">Graduation</option>
+				  <option value="Post Graduation">Post Graduation</option>
+				  <option value="PHD">P.H.D</option>
+				  <option value="Other">Other</option>
+				   <!-- <option>Other</option> -->
+                </select>
+              </div>
+            </div>
+          </div>
+        </li>
+		
+		
+		<li>
+          <div class="item-content">
+            <div class="item-media"><i class="icon icon-form-calendar"></i></div>
+            <div class="item-inner"> 
+              <div class="item-title color-gray"><small>Your Profession</small></div>
+              <div class="item-input">
+                <input type="text"  id="pProfession" placeholder=""/>
+              </div>
+            </div>
+          </div>
+        </li>
+          </div>
+        </ul>
+      </div>
+      
+	  <div class="content-block"><a href="#" class="button button-fill button-raised color-red alert-text" id="update" onclick="profile()"> Update </a>
+	  
+	
+	  <a href="#" id="reloadProfile"></a>
+	  <!-- <div class="content-block"> onclick="signup()"
+        <div class="list-block-label">Some text about login information.<br>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</div>
+      </div>-->
+	  
+    
+
+  </div>
+  
+  <center><div class="content-block"><div class="label" id="updateInfo" name = "updateInfo" style="color:#00ff00"></div></div></center>
+  
+  
+</form>
+	
+  </div>
+</div>
+</div>

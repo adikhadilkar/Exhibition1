@@ -1,0 +1,110 @@
+<div data-page="lazy-load" class="page">
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+  <div class="navbar">
+    <div class="navbar-inner">
+      <div class="left"><a href="logo.html" class="back link icon-only"><i class="icon icon-back"></i></a></div>
+		<div class="center">Exhibitors</div>
+      <div class="right"><a href="#" class="open-panel link icon-only"><i class="icon icon-bars"></i></a></div>
+    </div>
+  </div>
+  <div class="page-content infinite-scroll" style="margin:0px 0px">
+
+	
+	 <div class="tabs" style="margin:0px 0px">
+	 
+	 <!-- <div class="buttons-row" style="padding:5%">
+      
+      <a href="#alphabet" class="tab-link active button button-fill"><b>Alphabet</b></a>
+      
+      <a href="#sector" class="tab-link button button-fill" onclick="sectors()"><b>Sector</b></a>
+    </div> -->
+	 
+	 <div class="row">
+		<div class="col-50" style="padding-left:5%">
+			<center><h2><b><a href="#alphabet" class="tab-link button button-big button-fill color-blue active">Alphabet</a></b></h2></center>
+		</div>
+		<div class="col-50" style="padding-right:5%">
+			<center><h2><b><a href="#sector" class="tab-link button button-big button-fill color-blue" onclick="sectors()">Sector</a></a></b></h2></center>
+		</div>
+	</div> 
+
+	<div class="tab active">
+		<div class="list-block inputs-list" style="margin:0px 0px">
+        <ul>
+		<li>
+          <div class="item-content">
+			 <div class="item-inner">
+				<input type="text" name="search" onkeyup="getData(this.value)" id="search" placeholder="Search.."/>
+            </div>
+          </div>
+        </li>
+		
+		</ul>
+		</div>
+		<div id="alphabet"></div>
+		
+		<!-- <div class="list-block inputs-list" style="margin:0px 0px" id="alphabet">
+        <ul>
+		<li>
+          <div class="item-content">
+			 <div class="item-inner">
+				
+            </div>
+          </div>
+        </li>
+		
+		</ul>
+		</div> -->
+	</div>
+  
+  
+	<div class="tab" id="sector">
+	
+	</div>
+		
+		
+		
+    </div>
+	
+	<div class="popup-overlay"></div>
+		
+	<div class="popup demo-rateus" style="display: none;">
+	<div class="view navbar-fixed">
+	<div class="page-content">
+    <div class="content-block">
+	<div class="center" style="text-align:center" id="sectorContent"></div>
+    <div style="text-align:center"><a href="#" class="close-popup button button-fill button-raised color-blue" id="pclose"><b>Close</b></a></div>
+    </div>
+    </div>
+	</div></div>
+
+		
+</div>  
+  
+</div></div>
+
+<script>
+	$(document).ready(function(){
+    $("#search").keyup("input", function(){
+       var txt=$(this).val();
+	   if(txt!='')
+	   {
+			
+	   }
+	   else
+	   {
+			
+	   }
+    }):
+	});
+</script>
+    
+
+    
+  
+	
+
+	
+	
+	
+  

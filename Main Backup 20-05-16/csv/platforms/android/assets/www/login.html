@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="theme-color" content="#2196f3">
+    <title>Reports CSV</title>
+    <link rel="stylesheet" href="css/framework7.material.css">
+    <link rel="stylesheet" href="css/framework7.material.colors.css">
+    <link href="http://fonts.googleapis.com/css?family=Roboto:400,300,500,700" rel="stylesheet" type="text/css">
+	<link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Raleway" />
+    <link rel="icon" href="img/icon.png">
+	<link rel="text/css" href="css/swiper.min.css">
+</head>
+<style>
+	div.file1 {
+    width: 158px;
+    height: 45px;
+    background: url(img/upload1.png);
+    overflow: hidden;
+	}
+	div.file1 input {
+    display: block !important;
+    width: 157px !important;
+    height: 57px !important;
+    opacity: 0 !important;
+    overflow: hidden !important;
+	}
+</style>
+<body onload="navi()">
+	<div class="statusbar-overlay"></div>
+	<div class="panel-overlay"></div>
+		<!--<div class="panel panel-left panel-cover">
+		<div class="view navbar-fixed">
+		<div class="pages"></div>
+		</div>
+		</div>-->
+    
+<div class="views">
+	<div class="view view-main">
+        <div class="pages navbar-fixed">
+          <!--<div data-page="index" class="page">-->
+		  <div data-page="login-screen-embedded" class="page">
+			<div class="navbar">
+              <div class="navbar-inner">
+                <div class="center">Reports</div>
+              </div>
+			</div>
+		
+            <div  class="page-content infinite-scroll login-screen-content" style="padding-top:40px">
+			<div class="login-screen-title">Sign In</div>
+			<form method="POST" name="login" >	
+   
+			<div class="list-block inputs-list" style="margin:0px 0px">
+			<ul>
+			
+				<li class="item-content">
+					<div class="item-media"><i class="icon icon-form-tel"></i></div>
+					<div class="item-inner"> 
+						<div class="label" id="mobileError" name = "mobileError" style="color:#ff0000"></div>
+					<div class="item-title floating-label">Your Mobile Number*</div>
+					<div class="item-input">
+						<input type="tel" name="mobileNo" id="mobileNo" placeholder="" maxlength="10" onkeypress="return isNumber(event)" />
+					</div>
+					</div>
+				</li>
+          
+				<!--<li class="item-content">
+					<div class="item-media"><i class="icon icon-form-password"></i></div>
+					<div class="item-inner"> 
+						<div class="label" id="passwordError" name = "passwordError" style="color:#ff0000"></div>
+					<div class="item-title floating-label">Your Password*</div>
+					<div class="item-input">
+						<input type="password"  name="password"  id="password"  placeholder=""/>
+					</div>
+					</div>
+				</li>-->
+			</ul>
+			</div>
+
+			<div class="content-block"><a href="#" class="button button-fill button-raised color-blue" onclick="signin()"><b>Sign In</b></a>
+	  
+	
+			<a href="#" id="signInNext"></a>
+
+
+			</div>
+  
+			<center><div class="content-block"><div class="label" id="loginInfo" name = "loginInfo" style="color:#ff0000"></div></div></center>
+			
+			<center><div class="file1"><input type="file" name="filename" id="filename"></div></center>
+			
+			 <div class="row" style="margin:0px 0px">
+			 <div class="col-50" >
+			 <center><div class="content-block"><a href="#" class="button button-fill button-raised color-blue" onclick="dev()"><b>Get Device Id</b></a></div></center>
+			 </div>
+			 <div class="col-50">
+			 <div class="content-block"><a href="#" class="button button-fill button-raised color-blue" onclick="location.reload();" style="padding-bottom:20px"><b>Refresh</b></a></div>
+			 </div>
+			 </div>
+	
+			 <center><p style="color:#0000ff;padding-left:2px;padding-right:2px">Turn On The Location Settings For The App To Work Properly.</p></center>
+			
+			 <center><font size="4"><b>Location is <span id="loc"></span></b></font></center>
+			 
+			</form>
+			</div>
+		</div>
+		</div>
+	</div>
+</div>
+  
+ 
+  
+  
+         
+  <script type="text/javascript" src="js/swiper.min.js"></script>
+		<!--javascript code for swiper in introduction-->
+		<script>
+			var swiper = new Swiper('.swiper-container', {
+			pagination: '.swiper-pagination',
+			paginationClickable: true,
+			nextButton: '.swiper-button-next',
+			prevButton: '.swiper-button-prev',
+			spaceBetween: 30,
+			effect: 'fade'
+			});
+    </script>
+	<script type="text/javascript" src="js/profile.js"></script>
+    <script type="text/javascript" src="js/framework7.js"></script>
+    <script type="text/javascript" src="js/kitchen-sink.js"></script>
+	<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script> 
+	<script type="text/javascript" src="js/main.js"></script>
+	<script type="text/javascript" src="js/forgotmain.js"></script>
+	<script type="text/javascript" src="js/cors.js"></script>
+	<script type="text/javascript" src="js/signup.js"></script>
+	<script type="text/javascript" src="js/signin.js"></script>
+	<!--<script type="text/javascript" src="js/signOut.js"></script>-->
+	<script type="text/javascript" src="js/navi.js"></script> 
+	<script type="text/javascript" src="js/forgotpass.js"></script>
+	<script type="text/javascript" src="js/location.js"></script>
+	<!--<script type="text/javascript" src="js/about.js"></script>-->
+		<!--<script type="text/javascript" src="js/getPatients.js"></script>-->
+		<!--<script type="text/javascript" src="js/getevents.js"></script>-->
+		<!--<script type="text/javascript" src="js/getphotos.js"></script>
+		<script type="text/javascript" src="js/eachnews.js"></script>
+		<script type="text/javascript" src="js/eachevents.js"></script>
+		<script type="text/javascript" src="js/eachphotos.js"></script>-->
+		<script type="text/javascript" src="cordova.js"></script>
+		<script type="text/javascript" src="js/load.js"></script>
+		<!--<script src="jquery-csv-master/src/jquery-csv.js"></script>-->
+		
+	 <!-- <script type="text/javascript" src="js/my-app.js"></script>	 -->
+	 
+	
+		
+  </body>
+</html>	

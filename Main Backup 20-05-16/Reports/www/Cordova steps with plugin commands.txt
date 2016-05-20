@@ -1,0 +1,27 @@
+to create a cordova project
+
+1) cordova create hello com.example.hello HelloWorld
+
+hello - directory to be generated for your project
+com.example.hello - provides your project with a reverse domain-style identifier
+HelloWorld - provides the application's display title.
+
+2) go inside folder with cd foldername(Helloworld)
+
+3) cordova platform add android
+
+4) copy files inside www
+
+5) in config.xml set content src to whatever homepage you want
+
+6)plugin syntax
+
+cordova plugin add cordova-plugin-device
+
+cordova plugin add cordova-plugin-geolocation
+
+cordova plugin add cordova-plugin-dialogs
+
+7) cordova build
+
+8) cordova run android
