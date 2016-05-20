@@ -1,5 +1,6 @@
 function getExhibitors()
 {
+$("#nosearch").fadeOut();
 myApp.showPreloader();	
 var request = createCORSRequest( "post", "http://radio.tekticks.com" );
 	if(request)
@@ -258,14 +259,16 @@ console.log(data);
 	
 		$("#companyName").fadeOut();
 		$("#company").fadeOut();
+		$("#company1").fadeOut();
 	}
 	else
 	{
 	    $("#companyName").fadeIn();
 		$("#company").fadeIn();
+		$("#company1").fadeIn();
 		$("#companyName").text(companyName);
 		$("#company").text(companyName);
-          		  
+        $("#company1").text(companyName);		  
 	}
 	
 	if(mobileNo.replace(/\s/g,"") == "")
@@ -341,7 +344,7 @@ console.log(data);
 
 function sectors()
 {
-
+$("#pclose").fadeOut();
 myApp.showPreloader();	
 var request = createCORSRequest( "post", "http://radio.tekticks.com" );
 	if(request)
@@ -397,6 +400,8 @@ var request = createCORSRequest( "post", "http://radio.tekticks.com" );
 	)};
 }
 
+
+//to fetch exhibitors within a particular sector
 function eachSector(item)
 {
 myApp.showPreloader();
@@ -420,24 +425,27 @@ var request = createCORSRequest( "post", "http://radio.tekticks.com" );
 			if(JSON.stringify(response.status)==200)
 			{
 				myApp.hidePreloader();
+				$("#pclose").fadeIn();
 				$("#sectorContent").find("div").remove();
 				var id=[];
 				var companyName=[];
+				var about=[];
 				var logolink=[];
 				
 				for(var i=0;i<response.secExhibitorInformation.length;i++)
 				{
 					id[i]= JSON.stringify(response.secExhibitorInformation[i].id).replace(/"/g,"");
 					companyName[i]= JSON.stringify(response.secExhibitorInformation[i].companyName).replace(/"/g,"");
+					about[i]= JSON.stringify(response.secExhibitorInformation[i].about).replace(/"/g,"");
 					logolink[i]= JSON.stringify(response.secExhibitorInformation[i].link).replace(/"/g,"");
 				}
 				
 
 				
-				 for(var j=0;j<response.secExhibitorInformation.length;j++)
+				for(var j=0;j<response.secExhibitorInformation.length;j++)
 				{ 
 
-				$('#sectorContent').append('<div class="list-block media-list" style="margin:0px 0px" ><ul><li><a href="exhibitorProfile2.html" class="item-link item-content" id="'+id[j]+'" onclick="getEachExhibitor(this)"><div class="item-media"><img src="'+logolink[j]+'" width="100"></div><div class="item-inner"><div class="item-title-row"><div class="item-title"><b>'+companyName[j]+'</b></div><div class="item-after"></div></div><div class="item-text"></div></div></a></li></ul></div>');
+				$('#sectorContent').append('<div class="list-block media-list" style="margin:0px 0px" ><ul><li><a href="exhibitorProfile2.html" class="item-link item-content" id="'+id[j]+'" onclick="getEachExhibitor(this)"><div class="item-media"><img src="'+logolink[j]+'" width="100"></div><div class="item-inner"><div class="item-title-row"><div class="item-title"><b>'+companyName[j]+'</b></div><div class="item-after"></div></div><div class="item-text" style="text-align:left">'+about[j]+'</div></div></a></li></ul></div>');
 				} 
 				
 			}	
@@ -450,4 +458,71 @@ console.log(data);
 }
 }
 
-
+function getData(value)
+{
+	//myApp.showPreloader();
+	var request = createCORSRequest( "post", "http://radio.tekticks.com" );
+	if(request)
+	{
+	var keyword = document.getElementById('search').value;	
+	var data = {"search":[{"keyword":keyword}]};
+	var sendData = function(data)
+	{		
+		$.ajax({
+		url:"http://radio.tekticks.com/exhibition/liveSearch.php",
+		type: 'POST',
+		dataType:"json",
+		data: JSON.stringify(data),
+		contentType: 'application/json',
+		success:function(response)
+		{
+			if(JSON.stringify(response.status)==200)
+			{
+				$("#alphabet").find("div").remove();
+				$("#search").fadeIn();
+				var id=[];
+				var companyName=[];
+				var sectorName=[];
+				var logolink=[];
+				var description=[];
+				
+				
+				if(response.searchedInformation.length=="")
+				{
+					$("#nosearch").fadeIn();
+					$("#nosearch").html("<center><h1>Match Not Found!!</h1></center>");
+					$("#nosearch").css({"color": "red"});
+				}
+				else
+				{
+					$("#nosearch").fadeOut();
+					for(var i=0;i<response.searchedInformation.length;i++)
+				{
+					id[i]= JSON.stringify(response.searchedInformation[i].id).replace(/"/g,"");
+					companyName[i]= JSON.stringify(response.searchedInformation[i].companyName).replace(/"/g,"");
+					sectorName[i]= JSON.stringify(response.searchedInformation[i].sectorName).replace(/"/g,"");
+					logolink[i]= JSON.stringify(response.searchedInformation[i].link).replace(/"/g,"");
+					description[i]= JSON.stringify(response.searchedInformation[i].description).replace(/"/g,"");
+					
+				}
+				
+				for(var j=0;j<response.searchedInformation.length;j++)
+				{ 
+				$('#alphabet').append('<div class="list-block media-list" style="margin:0px 0px" ><ul><li><a href="exhibitorProfile2.html" class="item-link item-content" id="'+id[j]+'" onclick="getEachExhibitor(this)"><div class="item-media"><img src="'+logolink[j]+'" width="100"></div><div class="item-inner"><div class="item-title-row"><div class="item-title"><b>'+companyName[j]+'</b></div><div class="item-after"></div></div><div class="item-subtitle">'+sectorName[j]+'</div><div class="item-text">'+description[j]+'</div></div></a></li></ul></div>');
+				}
+				}
+				
+				
+					
+				
+			}	
+		
+		}
+		});
+}
+sendData(data);	
+console.log(data);
+}
+	
+	
+}

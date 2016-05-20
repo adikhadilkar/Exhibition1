@@ -10,7 +10,6 @@
   <div class="page-content infinite-scroll" style="margin:0px 0px">
 
 	
-	
 	 <div class="tabs" style="margin:0px 0px">
 	 
 	 <!-- <div class="buttons-row" style="padding:5%">
@@ -22,25 +21,28 @@
 	 
 	 <div class="row">
 		<div class="col-50" style="padding-left:5%">
-			<center><h2><b><a href="#alphabet" class="tab-link button button-big button-fill color-green active">Alphabet</a></b></h2></center>
+			<center><h2><b><a href="#alphabet" class="tab-link button button-big button-fill color-blue active">Alphabet</a></b></h2></center>
 		</div>
 		<div class="col-50" style="padding-right:5%">
-			<center><h2><b><a href="#sector" class="tab-link button button-big button-fill color-green" onclick="sectors()">Sector</a></a></b></h2></center>
+			<center><h2><b><a href="#sector" class="tab-link button button-big button-fill color-blue" onclick="sectors()">Sector</a></a></b></h2></center>
 		</div>
 	</div> 
 
-	<div class="tab active" id="alphabet">
+	<div class="tab active">
 		<div class="list-block inputs-list" style="margin:0px 0px">
         <ul>
 		<li>
           <div class="item-content">
 			 <div class="item-inner">
-				<input type="text" name="search"  id="search" placeholder="Search.."/>			  
+				<input type="text" name="search" onkeyup="getData(this.value)" id="search" placeholder="Search.."/>
             </div>
           </div>
         </li>
+		
 		</ul>
 		</div>
+		<div id="alphabet"></div>
+		<p id="nosearch"></p>
 	</div>
   
   
@@ -59,7 +61,7 @@
 	<div class="page-content">
     <div class="content-block">
 	<div class="center" style="text-align:center" id="sectorContent"></div>
-    <div style="text-align:left"><a href="#" class="close-popup"><b>Close</b></a></div>
+    <div style="text-align:center"><a href="#" class="close-popup button button-fill button-raised color-blue" id="pclose"><b>Close</b></a></div>
     </div>
     </div>
 	</div></div>
@@ -81,7 +83,7 @@
 	   {
 			
 	   }
-    }):
+    });
 	});
 </script>
     

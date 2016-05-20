@@ -1,5 +1,6 @@
 function getExhibitors()
 {
+$("#nosearch").fadeOut();
 myApp.showPreloader();	
 var request = createCORSRequest( "post", "http://radio.tekticks.com" );
 	if(request)
@@ -485,7 +486,17 @@ function getData(value)
 				var logolink=[];
 				var description=[];
 				
-				for(var i=0;i<response.searchedInformation.length;i++)
+				
+				if(response.searchedInformation.length=="")
+				{
+					$("#nosearch").fadeIn();
+					$("#nosearch").html("<center><h1>Match Not Found!!</h1></center>");
+					$("#nosearch").css({"color": "red"});
+				}
+				else
+				{
+					$("#nosearch").fadeOut();
+					for(var i=0;i<response.searchedInformation.length;i++)
 				{
 					id[i]= JSON.stringify(response.searchedInformation[i].id).replace(/"/g,"");
 					companyName[i]= JSON.stringify(response.searchedInformation[i].companyName).replace(/"/g,"");
@@ -499,53 +510,10 @@ function getData(value)
 				{ 
 				$('#alphabet').append('<div class="list-block media-list" style="margin:0px 0px" ><ul><li><a href="exhibitorProfile2.html" class="item-link item-content" id="'+id[j]+'" onclick="getEachExhibitor(this)"><div class="item-media"><img src="'+logolink[j]+'" width="100"></div><div class="item-inner"><div class="item-title-row"><div class="item-title"><b>'+companyName[j]+'</b></div><div class="item-after"></div></div><div class="item-subtitle">'+sectorName[j]+'</div><div class="item-text">'+description[j]+'</div></div></a></li></ul></div>');
 				}
+				}
 				
 				
-		/*  var m=Object.keys(data.searchedInformation).length;
-		alert(m);
-		if(m>0)
-		{
-		var id = []; // create array here
-		$.each(data.searchedInformation, function (index, searchedInformation) {
-        id.push(searchedInformation.id); //push values here
-		});
-		alert(id);
-		//array for company name
-		var companyName = []; // create array here
-		$.each(data.searchedInformation, function (index, searchedInformation) {
-        companyName.push(searchedInformation.companyName); //push values here
-		});
-		//companyName.sort();
-		alert(companyName);
-		
-		var link = []; // create array here
-		$.each(data.searchedInformation, function (index, searchedInformation) {
-        link.push(searchedInformation.link); //push values here
-		});
-		
-		var sectorName = []; // create array here
-		$.each(data.searchedInformation, function (index, searchedInformation) {
-        sectorName.push(searchedInformation.sectorName); //push values here
-		});
-		
-		var description = []; // create array here
-		$.each(data.searchedInformation, function (index, searchedInformation) {
-        description.push(searchedInformation.description); //push values here
-		});
-		
-		for(var i=0;i<n;i++)
-		{ 
-			$('#alphabet').append('<div class="list-block media-list" style="margin:0px 0px" ><ul><li><a href="exhibitorProfile2.html" class="item-link item-content" id="'+id[i]+'" onclick="getEachExhibitor(this)"><div class="item-media"><img src="'+link[i]+'" width="100"></div><div class="item-inner"><div class="item-title-row"><div class="item-title"><b>'+companyName[i]+'</b></div><div class="item-after"></div></div><div class="item-subtitle">'+sectorName[i]+'</div><div class="item-text">'+description[i]+'</div></div></a></li></ul></div>');
-			
-		}
-		}
-		else
-		{
-				
-			myApp.alert('There are no more Exhibitors for you.','Exhibitors');
-		} */
-				
-				
+					
 				
 			}	
 		
